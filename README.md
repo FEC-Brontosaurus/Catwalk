@@ -5,7 +5,9 @@ Notes:
 - Currently each individual has their own github API key to use when making requests
 
 Code Review:
-- Maintain ES6 where possible (both server and client side)
+- Maintain ES6 where possible
+- Must get code approved after any changes to code review
+- Whoever writes code merges after getting approved
 
 Package Consistency:
 - Version: Transpile with Babel (via Webpack)
