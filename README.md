@@ -17,4 +17,10 @@ Package Consistency:
 - Data Store: TBD (if not given)
 - MVC: ExpressJS (if not given)
 - Database: MongoDB + Mongoose (if not given)
+<<<<<<< HEAD
 - Testing: TBD
+=======
+- Testing: TBD
+
+-THIS IS A TEST LINE
+>>>>>>> 02ed0415b699e850c02d395a49c2f8667c6f9397
