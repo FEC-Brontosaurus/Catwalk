@@ -16,7 +16,5 @@ Package Consistency:
 - Front End MVC: ReactJS
 - Data Store: TBD (if not given)
 - MVC: ExpressJS (if not given)
-- Database: MongoDB + Mongoose (if not given)
-- Testing: TBD
-
--THIS IS A TEST LINE
+- Database: Database chosen by HR
+- Testing: Jest + Enzymes
