@@ -15,7 +15,7 @@ const app = express();
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 
 app.use(express.json());
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 app.use(express.static(PUBLIC_DIR));
 
 //  handles client request to get all products
@@ -25,7 +25,6 @@ app.use(express.static(PUBLIC_DIR));
 //  API URL: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/
 //  API Key in headers: { headers: { 'Authorization': API KEY HERE } }
 app.get('/api/allproducts', (req, res) => {
-  console.log('GET');
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products', { headers: { Authorization: API_KEY_AF } })
     .then((results) => res.send(results.data))
     .catch((err) => {

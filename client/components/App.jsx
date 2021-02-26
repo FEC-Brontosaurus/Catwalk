@@ -12,11 +12,23 @@ const App = () => {
   //  if an error occurs log the error
   const getAllProducts = () => {
     axios.get('http://localhost:3000/api/allproducts')
-      .then((results) => console.log(results))
+      .then((results) => {
+        setAllProducts(results.data);
+        setCurrentProduct(results.data[0]);
+      })
       .catch((err) => console.log(err));
   };
 
-  getAllProducts();
+  useEffect(() => getAllProducts(), []);
+
+  const display = () => {
+    console.log(allProducts);
+    console.log(currentProduct);
+  };
+
+  return (
+    <button type="button" onClick={display}>Display Products</button>
+  );
 };
 
 export default App;
