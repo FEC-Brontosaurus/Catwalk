@@ -1,4 +1,4 @@
-# catwalk
+# HR catwalk
 Front End Capstone: Project Catwalk
 
 Notes:
