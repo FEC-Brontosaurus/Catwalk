@@ -16,7 +16,7 @@ const App = () => {
   const getAllProducts = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
-        setAllProducts(results.data);
+        // setAllProducts(results.data);
         setCurrentProduct(results.data[0]);
       })
       .catch((err) => console.log(err));
@@ -27,7 +27,7 @@ const App = () => {
   useEffect(() => getAllProducts(), []);
 
   const display = () => {
-    console.log(allProducts);
+    // console.log(allProducts);
     console.log(currentProduct);
   };
 
