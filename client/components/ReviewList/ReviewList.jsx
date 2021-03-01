@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewList = (props) => (
     <div id="ReviewList" >
-        <div>Greta Test Edit</div>
+        <div>Review List 2.0</div>
     </div>
     
 );
