@@ -33,6 +33,18 @@ app.get('/api/allproducts', (req, res) => {
     });
 });
 
+app.post('/api/interactions', (req, res) => {
+  const { element, widget, time } = req.body;
+  console.log(element, widget, time);
+  res.send(201);
+  // axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions', { headers: { "Authorization": API_KEY_AF } })
+  //   .then((results) => {console.log('FROM API:', results); res.send(201)})
+  //   .catch((err) => {
+  //     console.log('FROM SERVER:', err);
+  //     res.send(422);
+  //   });
+});
+
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
