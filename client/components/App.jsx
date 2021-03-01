@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Overview from './Overview/Overview.jsx';
+import QandA from './QandA/QandA.jsx';
+import ReviewList from './ReviewList/ReviewList.jsx';
 
 const App = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -19,6 +22,8 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+  //  componentDidMount and componentDidUpdate in one.
+  //  When whatever is inside of the array changes useEffect will run
   useEffect(() => getAllProducts(), []);
 
   const display = () => {
@@ -27,7 +32,12 @@ const App = () => {
   };
 
   return (
-    <button type="button" onClick={display}>Display Products</button>
+    <div id="App-div">
+      <Overview currentProduct={currentProduct} />
+      <QandA currentProduct={currentProduct} />
+      <ReviewList currentProduct={currentProduct} />
+    </div>
+    // <button type="button" onClick={display}>Display Products</button>
   );
 };
 
