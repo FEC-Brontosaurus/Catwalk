@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 
 const Answers = (props) => {
 
+  // const [initialAnswers, setInitAnswers] = useState({})
+
+  // getInitialAnswers = (questId) => {
+  //   axios.get(`/api/qa/questions/${questId}/answers`)
+  //     .then((result) =>
+  //       setInitAnswers(result.data)
+  //     )
+  //     .catch((err) => { console.log('error in answers get req', err); });
+  // }
+
+  // useEffect(() => getInitialAnswers(props.questionId), []);
 
   return (
     <React.Fragment>

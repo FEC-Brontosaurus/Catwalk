@@ -48,12 +48,10 @@ app.post('/api/interactions', (req, res) => {
 });
 
 app.get('/api/qa/questions/:productId', (req, res) => {
-
   let { productId } = req.params;
   let numId = Number(productId);
-  console.log(numId);
+  // console.log(numId);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions`, {
-
     headers: { Authorization: API_KEY_BC },
     params: {
       product_id: numId,
@@ -64,10 +62,28 @@ app.get('/api/qa/questions/:productId', (req, res) => {
     .then((results) => res.send(results.data))
     .catch((err) => {
       console.log(err);
-      res.send(500);
+      res.sendStatus(500);
     });
 })
 
+app.get('/api/qa/questions/:questId/answers', (req, res) => {
+  let { questId } = req.params;
+  console.log(questId)
+  let numId = Number(questId);
+  console.log(numId)
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${numId}/answers`, {
+    headers: { Authorization: API_KEY_BC },
+    params: {
+      page: 1,
+      count: 2
+    }
+  })
+    .then((result) => res.send(result.data))
+    .catch((err) => {
+       console.log('error in api get answers req', err);
+       res.sendStatus(500);
+      });
+})
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
