@@ -14,7 +14,7 @@ describe('componentsRendingToTheDOM', () => {
     //  getting each wrapping div within each component and setting them to a constant.
     //  should the id change on the div the tests will fail! Keep this in mind.
     const overviewTest = getById(container, 'Overview');
-    const reviewTest = getById(container, 'ReviewList');
+    const reviewTest = getById(container, 'RatingsAndReviews');
     const qandaTest = getById(container, 'QandA');
 
     //  checking to make sure each div was properly rendered.
