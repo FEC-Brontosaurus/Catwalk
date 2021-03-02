@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Overview from './Overview/Overview.jsx';
 import QandA from './QandA/QandA.jsx';
-import RatingsAndReviews from './ReviewList/ReviewList.jsx';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 
 const App = () => {
   const [allProducts, setAllProducts] = useState([]);
