@@ -23,6 +23,7 @@ describe('componentsRendingToTheDOM', () => {
       currentStyle={currentStyle}
     />);
 
+    //  check to make sure that the first style is the current style
     expect(currentStyle.style_id).toBe(styles[0].style_id);
   })
 });
