@@ -48,15 +48,20 @@ app.post('/api/interactions', (req, res) => {
 });
 
 app.get('/api/qa/questions/:productId', (req, res) => {
-  const { productId } = req.params;
-  // res.send(200);
+
+  let { productId } = req.params;
+  let numId = Number(productId);
+  console.log(numId);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions`, {
-    parameters: {
-      product_id: Number(productId),
+
+    headers: { Authorization: API_KEY_BC },
+    params: {
+      product_id: numId,
       page: 1,
-      count: 4 },
-    headers: { Authorization: API_KEY_BC } })
-    .then((results) => res.send(results))
+      count: 4 }
+
+  })
+    .then((results) => res.send(results.data))
     .catch((err) => {
       console.log(err);
       res.send(500);
