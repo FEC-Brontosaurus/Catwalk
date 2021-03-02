@@ -19,6 +19,7 @@ const StylesRow = ({ row, currentStyle, setCurrentStyle }) => (
           src={style.photos[0].thumbnail_url}
           key={style.name + styleidx}
           onClick={() => setCurrentStyle(style) }
+          data-testid={style.name}
         />
       </div>
     ))}

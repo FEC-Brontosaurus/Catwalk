@@ -39,25 +39,31 @@ describe('componentsRendingToTheDOM', () => {
       {style_id: 110044, name: "Red", photos: [{thumbnail_url: 'test4'}]}]
 
     //  simulate what is rendering to the screen
-    const { findByTestId } = render(
-    <div>
-      {row.map((style, styleidx) => (
-      <div id="style-div" key={style.name + styleidx} >
-        <img
-          id="style-img"
-          style={(style.style_id === currentStyle.style_id) ? {boxShadow: '0px 0px 5px 3px #888888'} : null }
-          src={style.photos[0].thumbnail_url}
-          key={style.name + styleidx}
-          onClick={() => setCurrentStyle(style) }
-          data-testid={style.name}
-        />
-      </div>
-    ))}
-    </div>)
+    const { findByTestId } = render(<StylesRow setCurrentStyle={setCurrentStyle} currentStyle={currentStyle} row={row} />)
 
     //  simulate a click on one of the images
     await fireEvent.click(screen.getByTestId("Blue"));
     //  expect the setCurrentState to be called after click
     await expect(setCurrentStyle).toBeCalled();
+  })
+
+  it('Should only allow one style can be selected at a given time', async () => {
+
+    //  create dummy variables to simulate render
+    let currentStyle = {style_id: 110041, name: "Cyan", photos: ['test1']};
+    const setCurrentStyle = ((style) => {currentStyle = style});
+    const row = [
+      {style_id: 110041, name: "Cyan", photos: [{thumbnail_url: 'test1'}]},
+      {style_id: 110042, name: "Blue", photos: [{thumbnail_url: 'test2'}]},
+      {style_id: 110043, name: "Purple", photos: [{thumbnail_url: 'test3'}]},
+      {style_id: 110044, name: "Red", photos: [{thumbnail_url: 'test4'}]}]
+
+    //  simulate what is rendering to the screen
+    const { findByTestId } = render(<StylesRow setCurrentStyle={setCurrentStyle} currentStyle={currentStyle} row={row} />)
+
+    //  simulate a click on one of the images
+    await fireEvent.click(screen.getByTestId("Blue"));
+    //  expect the setCurrentState to be called after click
+    await expect(currentStyle).toStrictEqual({style_id: 110042, name: "Blue", photos: [{thumbnail_url: 'test2'}]});
   })
 });
