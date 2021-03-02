@@ -63,7 +63,7 @@ describe('componentsRendingToTheDOM', () => {
 
     //  simulate a click on one of the images
     await fireEvent.click(screen.getByTestId("Blue"));
-    //  expect the setCurrentState to be called after click
+    //  expect that the current state should only be one style
     await expect(currentStyle).toStrictEqual({style_id: 110042, name: "Blue", photos: [{thumbnail_url: 'test2'}]});
   })
 });
