@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div id="App-div">
       <Overview currentProduct={currentProduct} />
-      <QandA currentProduct={currentProduct} />
+      <QandA id={currentProduct.id} />
       <ReviewList currentProduct={currentProduct} />
     </div>
     // <button type="button" onClick={display}>Display Products</button>
