@@ -8,6 +8,8 @@ const axios = require('axios');
 
 const API_KEY_AF = require('../config/keyAF.js');
 
+const API_KEY_BC = require('../config/keyBC.js');
+
 const PORT = 3000;
 
 const app = express();
@@ -44,6 +46,22 @@ app.post('/api/interactions', (req, res) => {
   //     res.send(422);
   //   });
 });
+
+app.get('/api/qa/questions/:productId', (req, res) => {
+  const { productId } = req.params;
+  // res.send(200);
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions`, {
+    parameters: {
+      product_id: Number(productId),
+      page: 1,
+      count: 4 },
+    headers: { Authorization: API_KEY_BC } })
+    .then((results) => res.send(results))
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    });
+})
 
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
