@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
+import LogClick from '../../LogClick';
 import facebook from '../../../../public/static/facebook.png';
 import twitter from '../../../../public/static/twitter.png';
 import pinterest from '../../../../public/static/pinterest.png';
@@ -33,9 +34,9 @@ const ProductInformation = ({ currentProduct, currentStyle }) => (
 
     <div id="product-info-overview">Overview: {currentProduct.description}</div>
     <div id="product-info-share">
-      <img id="product-info-share-facebook" src={facebook} alt="" />
-      <img id="product-info-share-twitter" src={twitter} alt="" />
-      <img id="product-info-share-pinterest" src={pinterest} alt="" />
+      <img id="product-info-share-facebook" src={facebook} alt="" onClick={() => LogClick('img', 'Overview')} />
+      <img id="product-info-share-twitter" src={twitter} alt="" onClick={() => LogClick('img', 'Overview')} />
+      <img id="product-info-share-pinterest" src={pinterest} alt="" onClick={() => LogClick('img', 'Overview')} />
     </div>
   </div>
 );
