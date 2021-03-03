@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Overview from './Overview/Overview.jsx';
 import QandA from './QandA/QandA.jsx';
-import ReviewList from './ReviewList/ReviewList.jsx';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 
 const App = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -17,7 +17,7 @@ const App = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[0]);
+        setCurrentProduct(results.data[1]);
       })
       .catch((err) => console.log(err));
   };
@@ -35,7 +35,8 @@ const App = () => {
     <div id="App-div">
       <Overview currentProduct={currentProduct} />
       <QandA id={currentProduct.id} />
-      <ReviewList currentProduct={currentProduct} />
+      <RatingsAndReviews currentProduct={currentProduct} />
+
     </div>
     // <button type="button" onClick={display}>Display Products</button>
   );
