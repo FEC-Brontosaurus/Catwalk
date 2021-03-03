@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React from 'react';
 import checkmark from '../../../../public/static/checkmark.jpg';
 
 //  will render each style in the current row
@@ -6,24 +9,26 @@ import checkmark from '../../../../public/static/checkmark.jpg';
 //  onclick make the style clicked the new current style
 const StylesRow = ({ row, currentStyle, setCurrentStyle }) => (
   <div id="styles-row">
-    {row.map((style, styleidx) => (
-      <div id="style-div" key={style.name + styleidx} >
+    {row.map((style, rowidx) => (
+      <div id="style-div" key={style.name + rowidx}>
         <img
           id="check-img"
-          onClick={() => setCurrentStyle(style) }
-          src={checkmark} style={(style.style_id === currentStyle.style_id) ? {opacity: 1} : {opacity: 0} }
+          onClick={() => setCurrentStyle(style)}
+          src={checkmark}
+          style={(style.style_id === currentStyle.style_id) ? { opacity: 1 } : { opacity: 0 }}
+          alt=""
         />
         <img
           id="style-img"
-          style={(style.style_id === currentStyle.style_id) ? {boxShadow: '0px 0px 5px 3px #888888'} : null }
+          style={(style.style_id === currentStyle.style_id) ? { boxShadow: '0px 0px 5px 3px #888888' } : null}
           src={style.photos[0].thumbnail_url}
-          key={style.name + styleidx}
-          onClick={() => setCurrentStyle(style) }
+          onClick={() => setCurrentStyle(style)}
           data-testid={style.name}
+          alt=""
         />
       </div>
     ))}
   </div>
-)
+);
 
 export default StylesRow;
