@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent, queryByAttribute } from '@testing-library/react';
+import { render, queryByAttribute } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Overview from '../../client/components/Overview/Overview.jsx';
+import Overview from '../../client/components/Overview/Overview';
 
 const getById = queryByAttribute.bind(null, 'id');
 
@@ -10,7 +10,7 @@ const getById = queryByAttribute.bind(null, 'id');
 describe('Overview Tests', () => {
   it('Should render components to the DOM', () => {
     //  create a dummy current product that we can use to pass into funcitons
-    const currentProduct = {id: '1111'};
+    const currentProduct = { id: '1111' };
 
     //  get the div that is inside of the overview function
     const { container } = render(<Overview currentProduct={currentProduct} />);
