@@ -4,7 +4,7 @@ import TimeAgo from 'react-timeago';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
 
-    const reformattedDate = (isoDate) => {
+    const reformattedDate = () => {
         const monthObj = {
             '01': 'January',
             '02': 'February',
@@ -19,19 +19,20 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             '11': 'November',
             '12': 'December'
         };
-        const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-').reverse()
-        date[0] = monthObj[date[0]];
-        return date[0] + ' ' + date[1] + ', ' + date[2];
+        const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-')
+        console.log(date)
+        date[1] = monthObj[date[1]];
+        return date[1] + ' ' + date[2] + ', ' + date[0];
     }
 
-    const reformattedSummary = (summaryStr) => {
-        if (summaryStr.length === 0) {
+    const reformattedSummary = () => {
+        if (productReviewObj.summary.length === 0) {
             return '[No summary provided]';
         }
-        if (summaryStr.length >= 60) {
-             return summarStr.splice(0, 60);
+        if (productReviewObj.summary.length >= 60) {
+             return productReviewObj.summary.slice(0, 60);
         }
-        return summaryStr;
+        return productReviewObj.summary;
     }
 
 
@@ -40,7 +41,6 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             <div>{reformattedDate(productReviewObj.date)}</div>
             <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
         </div>
-
     )
 }
 
