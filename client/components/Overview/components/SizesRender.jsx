@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import LogClick from '../../LogClick';
 
-const SizesRender = ({ styleArray, setCurrentSize }) => {
+const SizesRender = ({ styleArray, setCurrentSize, currentSize }) => {
 
   //  remove any sizes from the array to render that are out of stock
   styleArray = styleArray.filter((size) => size.quantity > 0);
-
+  console.log(currentSize);
   //  set the default size to the first item in the array
-  setCurrentSize(styleArray[0])
+  // setCurrentSize(styleArray[0])
 
   //  will render all in stock sizes to the DOM
   //  on clicking a size it willl update the current size and log the click
@@ -15,10 +15,13 @@ const SizesRender = ({ styleArray, setCurrentSize }) => {
   return (
     <div id="sizes-container">
       {(styleArray.length > 0) ?
-      <select id="sizes-select" onChange={(event) => {
-        setCurrentSize(event.target.value);
-        LogClick('select', 'Overview');
-      }}>
+      <select id="sizes-select"
+        defaultValue={'DEFAULT'}
+        onChange={(event) => {
+          setCurrentSize(event.target.value);
+          LogClick('select', 'Overview');
+        }}>
+        <option value='DEFAULT' disabled hidden>Select a Style</option>
         {styleArray.map((size, idx) => (
           <option id="sizes-option" key={size.size + idx} value={size.size} >{size.size}</option>
         ))}
