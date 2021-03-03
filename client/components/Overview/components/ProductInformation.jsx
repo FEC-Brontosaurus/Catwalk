@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import facebook from '../../../../public/static/facebook.png';
@@ -15,17 +17,19 @@ const ProductInformation = ({ currentProduct, currentStyle }) => (
     <div id="product-info-category">Category: {currentProduct.category}</div>
     <div id="product-info-title">Title: {currentProduct.name}</div>
 
-    {currentStyle ? currentStyle.sale_price ?
-    <div style={{display: 'inline-block'}}>
-      <div id="product-info-price-discount" style={{color: 'red', display: 'inline-block'}}>
-        {currentStyle.sale_price}
-      </div>
-      <div id="product-info-price-line" style={{textDecoration: 'line-through', display: 'inline-block'}}>
-        {currentProduct.default_price}
-      </div>
-    </div> :
-    <div id="product-info-price">Price: {currentProduct.default_price}</div> :
-    <div id="product-info-price">Price: {currentProduct.default_price}</div>}
+    {currentStyle ? currentStyle.sale_price
+      ? (
+        <div style={{ display: 'inline-block' }}>
+          <div id="product-info-price-discount" style={{ color: 'red', display: 'inline-block' }}>
+            {currentStyle.sale_price}
+          </div>
+          <div id="product-info-price-line" style={{ textDecoration: 'line-through', display: 'inline-block' }}>
+            {currentProduct.default_price}
+          </div>
+        </div>
+      )
+      : <div id="product-info-price">Price: {currentProduct.default_price}</div>
+      : <div id="product-info-price">Price: {currentProduct.default_price}</div>}
 
     <div id="product-info-overview">Overview: {currentProduct.description}</div>
     <div id="product-info-share">
