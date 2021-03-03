@@ -19,23 +19,29 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             '11': 'November',
             '12': 'December'
         };
-
         const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-').reverse()
         date[0] = monthObj[date[0]];
         return date[0] + ' ' + date[1] + ', ' + date[2];
+    }
+
+    const reformattedSummary = (summaryStr) => {
+        if (summaryStr.length === 0) {
+            return '[No summary provided]';
+        }
+        if (summaryStr.length >= 60) {
+             return summarStr.splice(0, 60);
+        }
+        return summaryStr;
     }
 
 
     return (
         <div id="IndividualReviewTile-div">
             <div>{reformattedDate(productReviewObj.date)}</div>
+            <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
         </div>
 
     )
-
-    
-
-
 }
 
 
