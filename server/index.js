@@ -106,6 +106,22 @@ app.get('/api/getallstyles', (req, res) => {
     });
 });
 
+//RatingsAndReviews API Requests
+app.get('/api/getAllReviews', (req, res) => {
+  const { id } = req.query;
+  console.log(id);
+  const idNum = Number(id);
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/`, { headers: {Authorization: API_KEY_AF}, params: { product_id: idNum} })
+    .then((results) => {
+      console.log(results);
+      res.send(results.data.results);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    })
+})
+
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
