@@ -7,6 +7,8 @@ const Sizes = ({ currentStyle, setCurrentSize }) => {
   for (var key in currentStyle.skus) {
     styleArray.push(currentStyle.skus[key]);
   }
+  styleArray = styleArray.filter((size) => size.quantity > 0);
+  setCurrentSize(styleArray[0])
 
   return (
     <SizesRender styleArray={styleArray} setCurrentSize={setCurrentSize} />
