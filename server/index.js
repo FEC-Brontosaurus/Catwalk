@@ -68,10 +68,8 @@ app.get('/api/qa/questions/:productId', (req, res) => {
 
 app.get('/api/qa/questions/:questId/answers', (req, res) => {
   let { questId } = req.params;
-  console.log(questId)
   let numId = Number(questId);
-  console.log(numId)
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${numId}/answers`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
     headers: { Authorization: API_KEY_BC },
     params: {
       page: 1,
@@ -84,6 +82,25 @@ app.get('/api/qa/questions/:questId/answers', (req, res) => {
        res.sendStatus(500);
       });
 })
+
+app.get('/api/moreAnswers/:questId', (req, res) => {
+  let { questId } = req.params;
+  let numId = Number(questId);
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
+    headers: { Authorization: API_KEY_BC },
+    params: {
+      page: 1,
+      count: 4
+    }
+  })
+    .then((result) => res.send(result.data))
+    .catch((err) => {
+       console.log('error in api get more answers req', err);
+       res.sendStatus(500);
+      });
+})
+
+
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
