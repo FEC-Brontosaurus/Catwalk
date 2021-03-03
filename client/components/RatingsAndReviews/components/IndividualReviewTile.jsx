@@ -19,10 +19,9 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             '11': 'November',
             '12': 'December'
         };
-        const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-')
-        console.log(date)
+        const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-');
         date[1] = monthObj[date[1]];
-        return date[1] + ' ' + date[2] + ', ' + date[0];
+        return `${date[1]} ${date[2]}, ${date[0]}`;
     }
 
     const reformattedSummary = () => {
