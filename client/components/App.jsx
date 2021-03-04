@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Overview from './Overview/Overview.jsx';
-import QandA from './QandA/QandA.jsx';
-import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
+import Overview from './Overview/Overview';
+import QandA from './QandA/QandA';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
 
 const App = () => {
-  const [allProducts, setAllProducts] = useState([]);
-
   const [currentProduct, setCurrentProduct] = useState({});
 
   //  Function to get all products.
@@ -17,7 +15,7 @@ const App = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[1]);
+        setCurrentProduct(results.data[0]);
       })
       .catch((err) => console.log(err));
   };
@@ -26,11 +24,6 @@ const App = () => {
   //  When whatever is inside of the array changes useEffect will run
   useEffect(() => getAllProducts(), []);
 
-  const display = () => {
-    // console.log(allProducts);
-    console.log(currentProduct);
-  };
-
   return (
     <div id="App-div">
       <Overview currentProduct={currentProduct} />
@@ -38,7 +31,6 @@ const App = () => {
       <RatingsAndReviews currentProduct={currentProduct} />
 
     </div>
-    // <button type="button" onClick={display}>Display Products</button>
   );
 };
 
