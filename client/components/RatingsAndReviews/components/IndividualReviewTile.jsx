@@ -1,47 +1,89 @@
-import { useState } from "react";
-import React from 'react';
-import TimeAgo from 'react-timeago';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable quote-props */
+import React, { useState } from 'react';
+// eslint-disable-next-line import/extensions
+import Modal from '../Modals/modalIndex.jsx';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
+  const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);
+  const [isModalShowing, setIsModalShowing] = useState(false);
+  const [clickedImageSrc, setClickedImageSrc] = useState('');
 
-    const reformattedDate = () => {
-        const monthObj = {
-            '01': 'January',
-            '02': 'February',
-            '03': 'March',
-            '04': 'April',
-            '05': 'May',
-            '06': 'June',
-            '07': 'July', 
-            '08': 'August',
-            '09': 'September',
-            '10': 'October', 
-            '11': 'November',
-            '12': 'December'
-        };
-        const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-');
-        date[1] = monthObj[date[1]];
-        return `${date[1]} ${date[2]}, ${date[0]}`;
+  const reformattedDate = () => {
+    const monthObj = {
+      '01': 'January',
+      '02': 'February',
+      '03': 'March',
+      '04': 'April',
+      '05': 'May',
+      '06': 'June',
+      '07': 'July',
+      '08': 'August',
+      '09': 'September',
+      '10': 'October',
+      '11': 'November',
+      '12': 'December',
+    };
+    const date = new Date(productReviewObj.date).toISOString().replace(/T.*/, '').split('-');
+    date[1] = monthObj[date[1]];
+    return `${date[1]} ${date[2]}, ${date[0]}`;
+  };
+
+  const reformattedSummary = () => {
+    if (productReviewObj.summary.length === 0) {
+      return '[No summary provided]';
     }
-
-    const reformattedSummary = () => {
-        if (productReviewObj.summary.length === 0) {
-            return '[No summary provided]';
-        }
-        if (productReviewObj.summary.length >= 60) {
-             return productReviewObj.summary.slice(0, 60);
-        }
-        return productReviewObj.summary;
+    if (productReviewObj.summary.length >= 60) {
+      return productReviewObj.summary.slice(0, 60);
     }
+    return productReviewObj.summary;
+  };
 
+  const reformattedBody = () => {
+    if (isShowingFullReviewBody) {
+      return productReviewObj.body;
+    // eslint-disable-next-line no-else-return
+    } else {
+      const shortenedStr = productReviewObj.body.slice(0, 250);
+      return `${shortenedStr}...`;
+    }
+  };
 
-    return (
-        <div id="IndividualReviewTile-div">
-            <div>{reformattedDate(productReviewObj.date)}</div>
-            <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
-        </div>
-    )
-}
+  return (
+    <div id="IndividualReviewTile-div">
+      <div>{reformattedDate(productReviewObj.date)}</div>
+      <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
+      {productReviewObj.body.length >= 250
+        ? (
+          <div>
+            {reformattedBody(productReviewObj.body)}
+            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
+          </div>
+        )
+        : <div>{productReviewObj.body}</div>}
+      {productReviewObj.photos.length > 0
+        && productReviewObj.photos.map((photoObj) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+          <img
+            onClick={() => {
+              setIsModalShowing(true);
+              setClickedImageSrc(photoObj.url);
+            }}
+            id="IndividualReviewTile-img"
+            key={photoObj.id}
+            src={photoObj.url}
+            alt="Individual Review Tile"
+          />
+        ))}
+      <Modal
+        isModalShowing={isModalShowing} 
+        setIsModalShowing={setIsModalShowing}
+        clickedImageSrc={clickedImageSrc}
+        setClickedImageSrc={setClickedImageSrc}
+      />
 
+    </div>
+  );
+};
 
 export default IndividualReviewTile;
