@@ -3,7 +3,7 @@ import SizesRender from './SizesRender';
 import LogClick from '../../LogClick';
 
 //
-const Sizes = ({ currentStyle, setCurrentSize }) => {
+const Sizes = ({ currentStyle, setCurrentSize, currentSize }) => {
 
   //  for loop to make the sku property an array rather than multiple objects
   //  this makes it able to be mapped in SizesRender function
@@ -13,7 +13,7 @@ const Sizes = ({ currentStyle, setCurrentSize }) => {
   }
 
   return (
-    <SizesRender styleArray={styleArray} setCurrentSize={setCurrentSize} />
+    <SizesRender styleArray={styleArray} setCurrentSize={setCurrentSize} currentSize={currentSize} />
   )
 };
 
