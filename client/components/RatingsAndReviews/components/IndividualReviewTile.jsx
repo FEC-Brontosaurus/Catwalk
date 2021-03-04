@@ -1,8 +1,10 @@
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
+import Modal from '../Modals/modalIndex.jsx';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
   const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);
+  const [isModalShowing, setIsModalShowing] = useState(false);
 
   const reformattedDate = () => {
     const monthObj = {
@@ -19,7 +21,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
       '11': 'November',
       '12': 'December',
     };
-    const date = new Date(productReviewObj.date).toISOString().replace(/T.*/,'').split('-');
+    const date = new Date(productReviewObj.date).toISOString().replace(/T.*/, '').split('-');
     date[1] = monthObj[date[1]];
     return `${date[1]} ${date[2]}, ${date[0]}`;
   };
@@ -52,19 +54,24 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         ? (
           <div>
             {reformattedBody(productReviewObj.body)}
-            <button type="button" onClick={() => {setIsShowingFullReviewBody(!isShowingFullReviewBody)}}>{isShowingFullReviewBody ? `Show Less` : 'Show More'}</button>
+            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
         : <div>{productReviewObj.body}</div>}
-      {productReviewObj.photos.length > 0 
+      {productReviewObj.photos.length > 0
         && productReviewObj.photos.map((photoObj) => (
           <img
-          id="IndividualReviewTile-img"
+            onClick={(event) => {
+              setIsModalShowing(true);
+            }}
+            id="IndividualReviewTile-img"
             key={photoObj.id}
             src={photoObj.url}
             alt="Individual Review Tile"
           />
         ))}
+      <Modal isModalShowing={isModalShowing} setIsModalShowing={setIsModalShowing}/>
+
     </div>
   );
 };

@@ -7,10 +7,12 @@ import IndividualReviewTile from './components/IndividualReviewTile.jsx';
 const RatingsAndReviews = ({ currentProduct }) => {
   const [productReviewArr, setProductReviewArr] = useState([]);
 
-  // given the id from the current product, make an API GET request 
+  // given the id from the current product, make an API GET request
   const getAllReviews = () => {
     console.log('currentProduct id: ', currentProduct.id);
-    axios.get('http://localhost:3000/api/getAllReviews', { params: {'id': currentProduct.id} })
+    // eslint-disable-next-line object-curly-spacing
+    // eslint-disable-next-line quote-props
+    axios.get('http://localhost:3000/api/getAllReviews', { params: { 'id': currentProduct.id } })
       .then((results) => {
         console.log('results on client side: ', results.data);
         setProductReviewArr(results.data);
