@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Modal = ({ isModalShowing, setIsModalShowing }) => {
-  return (
-      <div>
-        {isModalShowing 
-            ? <div>Modal should appear!
-                <button onClick={(event) => setIsModalShowing(false)}>Close Modal</button>
-              </div>
-            : null
-        }
-      </div>
-  )
-}
+const Modal = ({
+  isModalShowing, setIsModalShowing, clickedImageSrc, setClickedImageSrc,
+}) => (
+  <div>
+    {isModalShowing
+      ? (
+        <div className="modal" id="modal">
+          <h3>Modal Window</h3>
+          <img
+            id="IndividualReviewTile-modal-img"
+            src={clickedImageSrc}
+            alt="Modal Render"
+          />
+          <button
+            type="button"
+            onClick={() => {
+              setIsModalShowing(false);
+              setClickedImageSrc(null);
+            }}
+          >
+            Close Modal
+          </button>
+        </div>
+      )
+      : null}
+  </div>
+);
 
 export default Modal;

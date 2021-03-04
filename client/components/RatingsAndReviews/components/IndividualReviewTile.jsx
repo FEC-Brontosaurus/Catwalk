@@ -1,10 +1,13 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
+// eslint-disable-next-line import/extensions
 import Modal from '../Modals/modalIndex.jsx';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
   const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);
   const [isModalShowing, setIsModalShowing] = useState(false);
+  const [clickedImageSrc, setClickedImageSrc] = useState('');
 
   const reformattedDate = () => {
     const monthObj = {
@@ -60,9 +63,11 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         : <div>{productReviewObj.body}</div>}
       {productReviewObj.photos.length > 0
         && productReviewObj.photos.map((photoObj) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <img
-            onClick={(event) => {
+            onClick={() => {
               setIsModalShowing(true);
+              setClickedImageSrc(photoObj.url);
             }}
             id="IndividualReviewTile-img"
             key={photoObj.id}
@@ -70,7 +75,12 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             alt="Individual Review Tile"
           />
         ))}
-      <Modal isModalShowing={isModalShowing} setIsModalShowing={setIsModalShowing}/>
+      <Modal
+        isModalShowing={isModalShowing} 
+        setIsModalShowing={setIsModalShowing}
+        clickedImageSrc={clickedImageSrc}
+        setClickedImageSrc={setClickedImageSrc}
+      />
 
     </div>
   );
