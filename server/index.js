@@ -41,15 +41,16 @@ app.post('/api/interactions', (req, res) => {
 });
 
 app.get('/api/qa/questions/:productId', (req, res) => {
-  let { productId } = req.params;
-  let numId = Number(productId);
+  const { productId } = req.params;
+  const numId = Number(productId);
   // console.log(numId);
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions`, {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions', {
     headers: { Authorization: API_KEY_BC },
     params: {
       product_id: numId,
-      page: 1,
-      count: 4 }
+      page: 2,
+      count: 5,
+    },
 
   })
     .then((results) => res.send(results.data))
@@ -60,38 +61,36 @@ app.get('/api/qa/questions/:productId', (req, res) => {
 });
 
 app.get('/api/qa/questions/:questId/answers', (req, res) => {
-  let { questId } = req.params;
-  let numId = Number(questId);
+  const { questId } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
     headers: { Authorization: API_KEY_BC },
     params: {
       page: 1,
-      count: 2
-    }
+      count: 2,
+    },
   })
     .then((result) => res.send(result.data))
     .catch((err) => {
-       console.log('error in api get answers req', err);
-       res.sendStatus(500);
-      });
-})
+      console.log('error in api get answers req', err);
+      res.sendStatus(500);
+    });
+});
 
 app.get('/api/moreAnswers/:questId', (req, res) => {
-  let { questId } = req.params;
-  let numId = Number(questId);
+  const { questId } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
     headers: { Authorization: API_KEY_BC },
     params: {
       page: 1,
-      count: 4
-    }
+      count: 4,
+    },
   })
     .then((result) => res.send(result.data))
     .catch((err) => {
-       console.log('error in api get more answers req', err);
-       res.sendStatus(500);
-      });
-})
+      console.log('error in api get more answers req', err);
+      res.sendStatus(500);
+    });
+});
 
 app.get('/api/getallstyles', (req, res) => {
   const { id } = req.query;
@@ -105,12 +104,12 @@ app.get('/api/getallstyles', (req, res) => {
     });
 });
 
-//RatingsAndReviews API Requests
+//  RatingsAndReviews API Requests
 app.get('/api/getAllReviews', (req, res) => {
   const { id } = req.query;
   console.log(id);
   const idNum = Number(id);
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/`, { headers: {Authorization: API_KEY_AF}, params: { product_id: idNum} })
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_AF }, params: { product_id: idNum } })
     .then((results) => {
       console.log(results);
       res.send(results.data.results);
@@ -118,8 +117,8 @@ app.get('/api/getAllReviews', (req, res) => {
     .catch((err) => {
       console.log(err);
       res.send(500);
-    })
-})
+    });
+});
 
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);

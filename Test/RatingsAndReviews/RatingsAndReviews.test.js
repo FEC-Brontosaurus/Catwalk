@@ -11,18 +11,16 @@
 // //As we add new elements to the DOM, we have to create a new test to makes sure they render
 describe('Ratings And Reviews Tests', () => {
     it ('Should render Rating and Review components to the DOM', () => {
-//         //create a dummy current product that we can use to pass into functions
-//         const currentProduct = {id: '1111'};
+    //         //create a dummy current product that we can use to pass into functions
+    //         const currentProduct = {id: '1111'};
 
-//         //get the div that is inside of the Rating and Reviews function
-//         const { container } = render(<RatingsAndReviews currentProduct={currentProduct} />);
+    //         //get the div that is inside of the Rating and Reviews function
+    //         const { container } = render(<RatingsAndReviews currentProduct={currentProduct} />);
 
+    //  const IndividualReviewTileTest = getById(container, 'IndividualReviewTile-div');
 
-      //  const IndividualReviewTileTest = getById(container, 'IndividualReviewTile-div');
-
-//         //check to make sure each div was added to the DOM
-//         expect(IndividualReviewTile).toBeInTheDocument();
-      expect(1).toBe(1);
-    });
+    //         //check to make sure each div was added to the DOM
+    //         expect(IndividualReviewTile).toBeInTheDocument();
+    expect(1).toBe(1);
+  });
 });
-
