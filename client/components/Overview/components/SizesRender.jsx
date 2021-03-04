@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react';
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/no-array-index-key */
+import React from 'react';
 import LogClick from '../../LogClick';
 
-const SizesRender = ({ styleArray, setCurrentSize }) => {
-
+const SizesRender = ({ styleArray, setCurrentSize, setCurrentQuantity }) => {
   //  remove any sizes from the array to render that are out of stock
   styleArray = styleArray.filter((size) => size.quantity > 0);
 
@@ -12,21 +13,26 @@ const SizesRender = ({ styleArray, setCurrentSize }) => {
   //  all sizes are out of stock OUT OF STOCK will be rendered to the DOM
   return (
     <div id="sizes-container">
-      {(styleArray.length > 0) ?
-      <select id="sizes-select"
-        defaultValue={'DEFAULT'}
-        onChange={(event) => {
-          setCurrentSize(event.target.value);
-          LogClick('select', 'Overview');
-        }}>
-        <option value='DEFAULT' disabled hidden>Select a Style</option>
-        {styleArray.map((size, idx) => (
-          <option id="sizes-option" key={size.size + idx} value={size.size} >{size.size}</option>
-        ))}
-      </select> :
-      <div>OUT OF STOCK</div>}
+      {(styleArray.length > 0)
+        ? (
+          <select
+            id="sizes-select"
+            defaultValue="DEFAULT"
+            onChange={(event) => {
+              setCurrentSize(event.target.value);
+              setCurrentQuantity(null);
+              LogClick('select', 'Overview');
+            }}
+          >
+            <option value="DEFAULT" disabled hidden>Select a Style</option>
+            {styleArray.map((size, idx) => (
+              <option id="sizes-option" key={size.size + idx} value={size.size}>{size.size}</option>
+            ))}
+          </select>
+        )
+        : <div>OUT OF STOCK</div>}
     </div>
-  )
+  );
 };
 
 export default SizesRender;

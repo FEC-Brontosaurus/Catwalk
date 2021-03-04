@@ -33,7 +33,7 @@ app.get('/api/allproducts', (req, res) => {
 app.post('/api/interactions', (req, res) => {
   const { element, widget, time } = req.body;
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions', {element: element, widget: widget, time: time}, { headers: { Authorization: API_KEY_BC } })
-    .then((results) => res.send(201))
+    .then(() => res.send(201))
     .catch((err) => {
       console.log(err);
       res.send(500);
