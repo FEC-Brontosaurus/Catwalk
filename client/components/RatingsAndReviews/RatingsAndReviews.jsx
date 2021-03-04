@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable import/extensions */
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
 
