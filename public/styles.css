@@ -51,6 +51,15 @@
   margin: 3px;
 }
 
+#sizes-container-addtocart {
+  position: relative;
+}
+
+#sizes-select-addtocart {
+  position: absolute;
+  z-index: 2;
+}
+
 /* Ratings and Review CSS */
 
 #IndividualReviewTile-img {
