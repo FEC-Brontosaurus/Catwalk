@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './styles/AnswerStyles.css';
 // import axios from 'axios';
 
 const Answers = ({ answers, loadFlag }) => {
@@ -23,6 +24,7 @@ const Answers = ({ answers, loadFlag }) => {
       obj.date = value.date;
       obj.answerer_name = value.answerer_name;
       obj.helpfulness = value.helpfulness;
+      obj.photos = value.photos;
       tempArr.push(obj);
     });
     return tempArr.sort((a, b) => b.helpfulness - a.helpfulness);
@@ -44,17 +46,22 @@ const Answers = ({ answers, loadFlag }) => {
     <div>
       {answers
       && initialAnswers.map((answer) => (
-        <div className="QandA-Answer" key={answer.answer_id.toString()}>
-          A:
-          {answer.body}
-          <span className="username-timestamp">
-            {answer.answerer_name}
-          </span>
-          <span className="helpful-yes">
-            Helpful?
-            <span href="#"> yes </span>
-            <span className="report-answer"> Report </span>
-          </span>
+        <div>
+          <div className="QandA-Answer" key={answer.answer_id.toString()}>
+            A:
+            {answer.body}
+            <span className="username-timestamp">
+              {answer.answerer_name}
+            </span>
+            <span className="helpful-yes">
+              Helpful?
+              <span href="#"> yes </span>
+              <span className="report-answer"> Report </span>
+            </span>
+          </div>
+          <div>
+            {answer.photos.length > 0 ? answer.photos.map((photo) => (<img className="answer-image" src={photo}></img>)) : null }
+          </div>
         </div>
       ))}
     </div>
