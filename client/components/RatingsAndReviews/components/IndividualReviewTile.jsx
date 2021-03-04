@@ -33,11 +33,21 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         return productReviewObj.summary;
     }
 
-
     return (
         <div id="IndividualReviewTile-div">
             <div>{reformattedDate(productReviewObj.date)}</div>
             <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
+            <div>{productReviewObj.body}</div>
+            {productReviewObj.photos.length > 0 
+            && productReviewObj.photos.map((photoObj) => (
+                <img
+                  id="IndividualReviewTile-img"
+                  key={photoObj.id}
+                  src={photoObj.url} 
+                  alt="Individual Review Tile Photo"
+                />
+            ))}
+            <br></br>
         </div>
     )
 }
