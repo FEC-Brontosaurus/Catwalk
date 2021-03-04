@@ -4,12 +4,19 @@ import React from 'react';
 import SizesRender from './SizesRender';
 
 //
-const Sizes = ({ currentStyle, setCurrentSize, setCurrentQuantity }) => {
+const Sizes = ({
+  currentStyle, setCurrentSize, setCurrentQuantity, currentSize,
+  addToCartNoSize, setAddToCartNoSize,
+}) => {
   //  for loop to make the sku property an array rather than multiple objects
   //  this makes it able to be mapped in SizesRender function
   const styleArray = [];
   for (const key in currentStyle.skus) {
-    styleArray.push(currentStyle.skus[key]);
+    if (currentStyle.skus[key].quantity === 0) {
+      styleArray.push({ size: 'OUT OF STOCK' });
+    } else {
+      styleArray.push(currentStyle.skus[key]);
+    }
   }
 
   return (
@@ -17,6 +24,9 @@ const Sizes = ({ currentStyle, setCurrentSize, setCurrentQuantity }) => {
       styleArray={styleArray}
       setCurrentSize={setCurrentSize}
       setCurrentQuantity={setCurrentQuantity}
+      currentSize={currentSize}
+      addToCartNoSize={addToCartNoSize}
+      setAddToCartNoSize={setAddToCartNoSize}
     />
   );
 };

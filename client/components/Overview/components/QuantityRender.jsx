@@ -23,13 +23,12 @@ const QuantityRender = ({
         >
           {currentQuantity ? <option value="DEFAULT" disabled hidden>Select Quantity</option>
             : <option value="DEFAULT" selected disabled hidden>Select Quantity</option>}
-          {/* <option value="DEFAULT" disabled hidden >Select Quantity</option> */}
           {quantityArray.map((quantity, idx) => (
             <option id="quantity-option-valid" key={quantity + idx} value={quantity}>{quantity}</option>
           ))}
         </select>
       )
-      : <select id="quantity-select-invalid"><option id="quantity-option-invalid" value="DEFAULT" hidden>------</option></select>}
+      : <select id="quantity-select-invalid" disabled value="disabled"><option id="quantity-option-invalid" value="disabled" disabled hidden>-</option></select>}
   </div>
 );
 
