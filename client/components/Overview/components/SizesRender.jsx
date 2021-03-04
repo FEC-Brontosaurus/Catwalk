@@ -1,33 +1,55 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LogClick from '../../LogClick';
 
 const SizesRender = ({
-  styleArray, setCurrentSize, setCurrentQuantity, currentSize, addToCartNoSize, setAddToCartNoSize,
+  styleArray, setCurrentSize, setCurrentQuantity, currentSize, addToCartNoSize, setAddToCartNoSize, value, setValue
 }) => {
   //  remove any sizes from the array to render that are out of stock
   styleArray = styleArray.filter((size) => size.quantity > 0);
-  let value = '';
 
-  if (!currentSize) {
-    value = 'DEFAULT';
-  }
-
+  //  if the user did not have a size selected
+  //  open the size drop down and request them to
   if (addToCartNoSize) {
     return (
-      <div>
+      <div id="sizes-container-addtocart">
         <div>Please Select Size</div>
         <select
           id="sizes-select-addtocart"
-          style={{overflow: 'hidden'}}
+
           value={value}
-          size={styleArray.length}
+          style={{overflow: 'hidden'}}
+          size={styleArray.length + 1}
           onChange={(event) => {
-            value = event.target.value;
+            setValue(event.target.value);
             setCurrentSize(event.target.value);
             setCurrentQuantity(null);
             setAddToCartNoSize(false);
+            LogClick('select', 'Overview');
+          }}
+        >
+          <option value="DEFAULT">Select Size</option>
+          {styleArray.map((size, idx) => (
+            <option id="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
+          ))}
+        </select>
+      </div>
+    );
+  }
+
+  //  if the user clicked on a different style or hasn't selected a size the value will be the default string
+  //  when the user selects a different size change the displayed size / current size and reset the quantity selecte
+  if (currentSize === null) {
+    return (
+      <div>
+        <select
+          id="sizes-select"
+          value="DEFAULT"
+          onChange={(event) => {
+            setValue(event.target.value);
+            setCurrentSize(event.target.value);
+            setCurrentQuantity(null);
             LogClick('select', 'Overview');
           }}
         >
@@ -39,15 +61,16 @@ const SizesRender = ({
       </div>
     );
   }
-  //  will render all in stock sizes to the DOM
-  //  changing the current size will set the reset what the current quantity is
+
+
+  //  when the user selects a different size change the displayed size / current size and reset the quantity selecte
   return (
     <div>
       <select
         id="sizes-select"
-        value={value}
+        value={currentSize}
         onChange={(event) => {
-          value = event.target.value;
+          setValue(event.target.value);
           setCurrentSize(event.target.value);
           setCurrentQuantity(null);
           LogClick('select', 'Overview');

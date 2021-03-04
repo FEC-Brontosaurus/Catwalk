@@ -4,7 +4,7 @@ import axios from 'axios';
 import StylesRow from './StylesRow';
 
 const Styles = ({
-  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity, setAddToCartNoSize,
+  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity, setAddToCartNoSize, setValue
 }) => {
   const [styles, setStyles] = useState([]);
 
@@ -41,6 +41,7 @@ const Styles = ({
           setCurrentSize={setCurrentSize}
           setCurrentQuantity={setCurrentQuantity}
           setAddToCartNoSize={setAddToCartNoSize}
+          setValue={setValue}
         />
       ))}
     </div>

@@ -10,9 +10,12 @@ const Overview = ({ currentProduct }) => {
   //  Current selection of items to be used in specific
   //  components that rely on others existing e.g. size depends on current style
   const [currentStyle, setCurrentStyle] = useState({});
-  const [currentSize, setCurrentSize] = useState();
+  const [currentSize, setCurrentSize] = useState(null);
   const [currentQuantity, setCurrentQuantity] = useState();
   const [addToCartNoSize, setAddToCartNoSize] = useState(false);
+  const [value, setValue] = useState('DEFAULT')
+
+  console.log(currentSize)
 
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
@@ -32,6 +35,7 @@ const Overview = ({ currentProduct }) => {
         setCurrentSize={setCurrentSize}
         setCurrentQuantity={setCurrentQuantity}
         setAddToCartNoSize={setAddToCartNoSize}
+        setValue={setValue}
       />
       {currentStyle
         ? (
@@ -42,6 +46,8 @@ const Overview = ({ currentProduct }) => {
             currentSize={currentSize}
             addToCartNoSize={addToCartNoSize}
             setAddToCartNoSize={setAddToCartNoSize}
+            value={value}
+            setValue={setValue}
           />
         ) : null }
       {currentStyle ? (

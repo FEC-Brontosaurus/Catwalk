@@ -10,7 +10,7 @@ import LogClick from '../../LogClick';
 //  if the style id is the current styles id add a shadow effect and make the checkmark visible
 //  onclick make the style clicked the new current style
 const StylesRow = ({
-  row, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity, setAddToCartNoSize
+  row, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity, setAddToCartNoSize, setValue,
 }) => (
   <div id="styles-row">
     {row.map((style, rowidx) => (
@@ -24,6 +24,7 @@ const StylesRow = ({
             (style === currentStyle ? null : setAddToCartNoSize(false));
             (style === currentStyle ? null : setCurrentSize(null));
             (style === currentStyle ? null : setCurrentQuantity(null));
+            (style === currentStyle ? null : setValue('DEFAULT'));
           }}
           src={checkmark}
           style={(style.style_id === currentStyle.style_id) ? { opacity: 1 } : { opacity: 0 }}
