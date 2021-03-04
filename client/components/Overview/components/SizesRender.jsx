@@ -20,7 +20,9 @@ const SizesRender = ({
         <div>Please Select Size</div>
         <select
           id="sizes-select-addtocart"
+          style={{overflow: 'hidden'}}
           value={value}
+          size={styleArray.length}
           onChange={(event) => {
             value = event.target.value;
             setCurrentSize(event.target.value);
