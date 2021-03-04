@@ -51,6 +51,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
 
   return (
     <div id="IndividualReviewTile-div">
+      <div>{productReviewObj.rating}</div>
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
       {productReviewObj.body.length >= 250
