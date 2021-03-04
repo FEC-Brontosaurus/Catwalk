@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line import/extensions
 import Modal from '../Modals/modalIndex.jsx';
+import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
   const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
-import styles from './styles/RatingsAndReviews.css'; 
+
 
 const RatingsAndReviews = ({ currentProduct }) => {
   const [productReviewArr, setProductReviewArr] = useState([]);
