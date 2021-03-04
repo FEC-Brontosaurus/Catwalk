@@ -5,7 +5,7 @@ import QandA from './QandA/QandA';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
 
 const App = () => {
-  const [currentProduct, setCurrentProduct] = useState({});
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   //  Function to get all products.
   //  Makes a get request to the server
@@ -26,9 +26,9 @@ const App = () => {
 
   return (
     <div id="App-div">
-      <Overview currentProduct={currentProduct} />
-      <QandA id={currentProduct.id} />
-      <RatingsAndReviews currentProduct={currentProduct} />
+      {(currentProduct) ? <Overview currentProduct={currentProduct} /> : null}
+      {(currentProduct) ? <QandA id={currentProduct.id} /> : null}
+      {(currentProduct) ? <RatingsAndReviews currentProduct={currentProduct} /> : null}
 
     </div>
   );

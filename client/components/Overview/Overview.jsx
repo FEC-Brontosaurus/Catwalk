@@ -15,20 +15,18 @@ const Overview = ({ currentProduct }) => {
   const [addToCartNoSize, setAddToCartNoSize] = useState(false);
   const [value, setValue] = useState('DEFAULT')
 
-  console.log(currentSize)
-
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
   return (
     <div id="Overview">
-      {(currentProduct && currentStyle) ? (
+      {(currentStyle) ? (
         <ProductInformation
           currentProduct={currentProduct}
           currentStyle={currentStyle}
         />
       )
         : null}
-      <Styles
+      {currentProduct ? <Styles
         id={currentProduct.id}
         currentStyle={currentStyle}
         setCurrentStyle={setCurrentStyle}
@@ -36,7 +34,7 @@ const Overview = ({ currentProduct }) => {
         setCurrentQuantity={setCurrentQuantity}
         setAddToCartNoSize={setAddToCartNoSize}
         setValue={setValue}
-      />
+      /> : null}
       {currentStyle
         ? (
           <Sizes
