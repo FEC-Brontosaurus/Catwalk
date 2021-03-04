@@ -19,7 +19,7 @@ const StylesRow = ({
           id="check-img"
           onClick={() => {
             setCurrentStyle(style);
-            setAddToCartNoSize(false);
+            // setAddToCartNoSize(false);
             LogClick('img', 'Overview');
             (style === currentStyle ? null : setAddToCartNoSize(false));
             (style === currentStyle ? null : setCurrentSize(null));
