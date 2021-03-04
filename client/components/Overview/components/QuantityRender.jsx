@@ -7,7 +7,9 @@ import LogClick from '../../LogClick';
 //  otherwise it will render the list possible quantities
 //  if the user changes sizes it will re-select to display select select quantity
 //  this essentially will reset the displayed quantity everytime a new size is chosen
-const QuantityRender = ({ quantityArray, setCurrentQuantity, currentSize, currentQuantity }) => (
+const QuantityRender = ({
+  quantityArray, setCurrentQuantity, currentSize, currentQuantity,
+}) => (
   <div id="quantity-container">
     {(currentSize)
       ? (
@@ -19,8 +21,8 @@ const QuantityRender = ({ quantityArray, setCurrentQuantity, currentSize, curren
             LogClick('select', 'Overview');
           }}
         >
-          {currentQuantity ? <option value="DEFAULT" disabled hidden >Select Quantity</option> :
-          <option value="DEFAULT" selected disabled hidden >Select Quantity</option>}
+          {currentQuantity ? <option value="DEFAULT" disabled hidden>Select Quantity</option>
+            : <option value="DEFAULT" selected disabled hidden>Select Quantity</option>}
           {/* <option value="DEFAULT" disabled hidden >Select Quantity</option> */}
           {quantityArray.map((quantity, idx) => (
             <option id="quantity-option-valid" key={quantity + idx} value={quantity}>{quantity}</option>

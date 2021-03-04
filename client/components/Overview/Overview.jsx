@@ -11,8 +11,6 @@ const Overview = ({ currentProduct }) => {
   const [currentSize, setCurrentSize] = useState();
   const [currentQuantity, setCurrentQuantity] = useState(null);
 
-  console.log(currentQuantity);
-
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
   return (
@@ -29,7 +27,14 @@ const Overview = ({ currentProduct }) => {
         currentStyle={currentStyle}
         setCurrentStyle={setCurrentStyle}
       />
-      {currentStyle ? <Sizes currentStyle={currentStyle} setCurrentSize={setCurrentSize} setCurrentQuantity={setCurrentQuantity} /> : null }
+      {currentStyle
+        ? (
+          <Sizes
+            currentStyle={currentStyle}
+            setCurrentSize={setCurrentSize}
+            setCurrentQuantity={setCurrentQuantity}
+          />
+        ) : null }
       {currentStyle ? (
         <Quantity
           currentStyle={currentStyle}

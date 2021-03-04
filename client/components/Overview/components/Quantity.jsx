@@ -3,7 +3,9 @@
 import React from 'react';
 import QuantityRender from './QuantityRender';
 
-const Quantity = ({ currentStyle, currentSize, setCurrentQuantity, currentQuantity }) => {
+const Quantity = ({
+  currentStyle, currentSize, setCurrentQuantity, currentQuantity,
+}) => {
   //  array to keep track of list of elements to be mapped in Quantity Render
   const quantityArray = [];
 
@@ -35,7 +37,6 @@ const Quantity = ({ currentStyle, currentSize, setCurrentQuantity, currentQuanti
       quantityArray={quantityArray}
       setCurrentQuantity={setCurrentQuantity}
       currentSize={currentSize}
-      setCurrentQuantity={setCurrentQuantity}
       currentQuantity={currentQuantity}
     />
   );

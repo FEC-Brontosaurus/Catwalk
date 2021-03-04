@@ -13,7 +13,11 @@ const Sizes = ({ currentStyle, setCurrentSize, setCurrentQuantity }) => {
   }
 
   return (
-    <SizesRender styleArray={styleArray} setCurrentSize={setCurrentSize} setCurrentQuantity={setCurrentQuantity} />
+    <SizesRender
+      styleArray={styleArray}
+      setCurrentSize={setCurrentSize}
+      setCurrentQuantity={setCurrentQuantity}
+    />
   );
 };
 
