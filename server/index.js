@@ -60,18 +60,14 @@ app.get('/api/qa/questions/:productId', (req, res) => {
     });
 });
 
-app.get('/api/qa/questions/:questId/answers', (req, res) => {
+app.post('/api/qa/questions/:questId/answers', (req, res) => {
   const { questId } = req.params;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
-    headers: { Authorization: API_KEY_BC },
-    params: {
-      page: 1,
-      count: 2,
-    },
+  console.log(req.body.params);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/answers`, req.body.params, { headers: { Authorization: API_KEY_BC },
   })
-    .then((result) => res.send(result.data))
+    .then((result) => res.send(201))
     .catch((err) => {
-      console.log('error in api get answers req', err);
+      console.log('error in api post answers req', err);
       res.sendStatus(500);
     });
 });

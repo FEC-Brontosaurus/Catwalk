@@ -3,7 +3,7 @@ import axios from 'axios';
 import Question from './Question';
 import Search from './Search';
 
-const QandA = ({ id }) => {
+const QandA = ({ id, title }) => {
   const [initialQuestions, setInitQuestions] = useState([]);
   const [loadMoreQuestions, setLoadMoreQuestions] = useState(false);
   const [masterList, setMasterList] = useState([]);
@@ -64,6 +64,7 @@ const QandA = ({ id }) => {
         {initialQuestions.length > 0
         ? (
         <Question
+          title={title}
           loadFlag={loadMoreQuestions}
           questions={(!loadMoreQuestions ? setDisplayQuestions(initialQuestions)
             : initialQuestions)}
