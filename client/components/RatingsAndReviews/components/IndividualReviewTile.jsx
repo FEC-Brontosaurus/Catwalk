@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable quote-props */
 import React, { useState } from 'react';
-// eslint-disable-next-line import/extensions
 import Modal from '../Modals/modalIndex.jsx';
+import RenderStars from '../../renderStars.jsx'
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
@@ -43,7 +41,6 @@ const IndividualReviewTile = ({ productReviewObj }) => {
   const reformattedBody = () => {
     if (isShowingFullReviewBody) {
       return productReviewObj.body;
-    // eslint-disable-next-line no-else-return
     } else {
       const shortenedStr = productReviewObj.body.slice(0, 250);
       return `${shortenedStr}...`;
@@ -52,7 +49,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
 
   return (
     <div id="IndividualReviewTile-div">
-      <div>{productReviewObj.rating}</div>
+      <RenderStars rating={productReviewObj.rating}/>
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
       {productReviewObj.body.length >= 250
