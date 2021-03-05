@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const axios = require('axios');
 const API_KEY_AF = require('../config/keyAF.js');
-
+const API_KEY_GS = require('../config/keyGS.js');
 const API_KEY_BC = require('../config/keyBC.js');
 
 const PORT = 3000;
@@ -32,7 +32,7 @@ app.get('/api/allproducts', (req, res) => {
 //  post request to send click event to the API
 app.post('/api/interactions', (req, res) => {
   const { element, widget, time } = req.body;
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions', {element: element, widget: widget, time: time}, { headers: { Authorization: API_KEY_BC } })
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions', {element: element, widget: widget, time: time}, { headers: { Authorization: API_KEY_GS } })
     .then(() => res.send(201))
     .catch((err) => {
       console.log(err);
@@ -107,11 +107,10 @@ app.get('/api/getallstyles', (req, res) => {
 //  RatingsAndReviews API Requests
 app.get('/api/getAllReviews', (req, res) => {
   const { id } = req.query;
-  console.log(id);
   const idNum = Number(id);
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_AF }, params: { product_id: idNum } })
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_GS }, params: { product_id: idNum } })
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.send(results.data.results);
     })
     .catch((err) => {

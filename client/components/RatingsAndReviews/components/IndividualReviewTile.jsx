@@ -88,7 +88,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         ? <div><span>&#10003;</span>I recommend this product</div>
         : null
       }
-      <HelpfulReviewFeedbackButton/>
+      <HelpfulReviewFeedbackButton helpfulnessRating={productReviewObj.helpfulness}/>
       <br></br>
     </div>
   );
