@@ -13,7 +13,7 @@ const Overview = ({ currentProduct }) => {
   const [currentSize, setCurrentSize] = useState(null);
   const [currentQuantity, setCurrentQuantity] = useState();
   const [addToCartNoSize, setAddToCartNoSize] = useState(false);
-  const [value, setValue] = useState('DEFAULT')
+  const [value, setValue] = useState('DEFAULT');
 
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
@@ -26,15 +26,17 @@ const Overview = ({ currentProduct }) => {
         />
       )
         : null}
-      {currentProduct ? <Styles
-        id={currentProduct.id}
-        currentStyle={currentStyle}
-        setCurrentStyle={setCurrentStyle}
-        setCurrentSize={setCurrentSize}
-        setCurrentQuantity={setCurrentQuantity}
-        setAddToCartNoSize={setAddToCartNoSize}
-        setValue={setValue}
-      /> : null}
+      {currentProduct ? (
+        <Styles
+          id={currentProduct.id}
+          currentStyle={currentStyle}
+          setCurrentStyle={setCurrentStyle}
+          setCurrentSize={setCurrentSize}
+          setCurrentQuantity={setCurrentQuantity}
+          setAddToCartNoSize={setAddToCartNoSize}
+          setValue={setValue}
+        />
+      ) : null}
       {currentStyle
         ? (
           <Sizes

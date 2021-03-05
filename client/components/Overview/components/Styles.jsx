@@ -4,7 +4,8 @@ import axios from 'axios';
 import StylesRow from './StylesRow';
 
 const Styles = ({
-  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity, setAddToCartNoSize, setValue
+  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity,
+  setAddToCartNoSize, setValue,
 }) => {
   const [styles, setStyles] = useState([]);
 
@@ -12,6 +13,7 @@ const Styles = ({
   const getAllStyles = () => {
     axios.get('http://localhost:3000/api/getallstyles', { params: { id } })
       .then((results) => {
+        console.log(results);
         //  makes the default style the first style
         setCurrentStyle(results.data[0]);
         // this will take all of the styles and seperate them into n arrays of length 4
