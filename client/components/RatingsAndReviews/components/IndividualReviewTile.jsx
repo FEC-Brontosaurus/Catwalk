@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HelpfulReviewFeedbackButton from '../components/HelpfulReviewFeedbackButton.jsx'
 import Modal from '../Modals/modalIndex.jsx';
 import RenderStars from '../../renderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
@@ -84,6 +85,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
       {productReviewObj.response.length > 0
       ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
       : null}
+      <HelpfulReviewFeedbackButton/>
     </div>
   );
 };
