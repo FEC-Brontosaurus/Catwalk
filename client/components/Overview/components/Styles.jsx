@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import StylesRow from './StylesRow';
 
-const Styles = ({ id, currentStyle, setCurrentStyle }) => {
+const Styles = ({
+  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity,
+  setAddToCartNoSize, setValue,
+}) => {
   const [styles, setStyles] = useState([]);
 
   //  ajax request to get all styles for the current products id
   const getAllStyles = () => {
     axios.get('http://localhost:3000/api/getallstyles', { params: { id } })
       .then((results) => {
+        console.log(results);
         //  makes the default style the first style
         setCurrentStyle(results.data[0]);
         // this will take all of the styles and seperate them into n arrays of length 4
@@ -36,6 +40,10 @@ const Styles = ({ id, currentStyle, setCurrentStyle }) => {
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
           key={rowidx}
+          setCurrentSize={setCurrentSize}
+          setCurrentQuantity={setCurrentQuantity}
+          setAddToCartNoSize={setAddToCartNoSize}
+          setValue={setValue}
         />
       ))}
     </div>

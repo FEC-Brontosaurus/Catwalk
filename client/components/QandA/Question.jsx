@@ -14,10 +14,10 @@ const Question = ({ questions, loadFlag }) => {
   //     })
   //     .catch((err) => { console.log('error in handle more answers', err); });
   // };
-
+  console.log(questions);
   return (
     <div>
-      {questions.map((question) => (
+      {questions && questions.map((question) => (
         <div>
           <div className="QandA-question" key={question.question_id.toString()}>
             Q:
@@ -33,9 +33,9 @@ const Question = ({ questions, loadFlag }) => {
             <span className="add-an-answer"> Add an Answer + </span>
           </div>
           {Object.keys(question.answers).length > 0
-            && <Answers loadFlag={loadFlag} answers={question.answers} />}
+            && <Answers loadFlag={loadFlag} answers={question.answers} /> }
         </div>
-      ))}
+      )) }
     </div>
   );
 };
