@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modals/modalIndex.jsx';
-import RenderStars from '../../RenderStars.jsx';
+//import RenderStars from '../../RenderStars.jsx'; //CircleCI does NOT like this import. I will comment it out every time I run something through
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
