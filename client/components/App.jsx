@@ -15,7 +15,7 @@ const App = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[1]);
+        setCurrentProduct(results.data[0]);
       })
       .catch((err) => console.log(err));
   };
@@ -29,7 +29,6 @@ const App = () => {
       {(currentProduct) ? <Overview currentProduct={currentProduct} /> : null}
       {(currentProduct) ? <QandA id={currentProduct.id} /> : null}
       {(currentProduct) ? <RatingsAndReviews currentProduct={currentProduct} /> : null}
-
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import noImage from '../../../../../public/static/noimage.jpg';
 
@@ -8,9 +9,9 @@ const ImageGallery = ({ imageArray, currentStyle, setCurrentStyle}) => {
 
   return (
     <div id="imagegallery-container">
-      {imageArray.map((style) => (
+      {imageArray.map((style, idx) => (
         <>
-          {style.photos[0].thumbnail_url ? <img src={style.photos[0].thumbnail_url} alt="" /> : <img src={noImage} alt="" /> }
+          {style.photos[0].thumbnail_url ? <img key={style.photos[0].thumbnail_url + idx} src={style.photos[0].thumbnail_url} alt="" /> : <img src={noImage} alt="" /> }
         </>
       ))}
       {currentImage ? <img src={currentImage} alt="" /> : <img src={noImage} alt="" />}
