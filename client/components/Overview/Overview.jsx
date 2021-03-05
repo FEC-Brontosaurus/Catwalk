@@ -24,9 +24,8 @@ const Overview = ({ currentProduct }) => {
   //  update the current index to be where the current style exists in the image array
   useEffect(() => setCurrentImageIndex(imageArray.findIndex((style) => style.style_id === currentStyle.style_id)), [currentStyle]);
 
-  console.log('currentStyle', currentStyle);
-  console.log('imageArray array', imageArray);
-  console.log(currentImageIndex);
+  console.log('currentImageIndex', currentImageIndex);
+  console.log('imageArray', imageArray);
 
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
@@ -81,8 +80,8 @@ const Overview = ({ currentProduct }) => {
         />
       )
         : null }
-      {(currentStyle && imageArray.length > 0) ? (
-        <ImageGallery imageArray={imageArray} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} setImageArray={setImageArray} setCurrentImageIndex={setCurrentImageIndex} currentImageIndex={currentImageIndex} />
+      {(currentStyle) ? (
+        <ImageGallery imageArray={imageArray} setCurrentStyle={setCurrentStyle} setCurrentImageIndex={setCurrentImageIndex} currentImageIndex={currentImageIndex} currentStyle={currentStyle} />
       ) : null}
     </div>
   );

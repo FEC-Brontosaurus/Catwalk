@@ -8,9 +8,9 @@ import '../../styles/ImageGalleryStyles.css';
 const ImageGalleryArrows = ({
   currentImageIndex, setCurrentImageIndex, imageArray,
 }) => (
-  <div id="imagegallery-arrows-container">
-    {currentImageIndex === 0 ? null : <img id="imagegallery-leftarrow" src={leftArrow} alt="" onClick={() => setCurrentImageIndex((currentImageIndex - 1))} />}
-    {currentImageIndex === imageArray.length - 1 ? null : <img id="imagegallery-rightarrow" src={rightArrow} alt="" onClick={() => setCurrentImageIndex((currentImageIndex + 1))} />}
+  <div id="imagegallery-thumbnail-arrows-container">
+    {currentImageIndex === 0 ? null : <img id="imagegallery-thumbnail-leftarrow" src={leftArrow} alt="" onClick={() => setCurrentImageIndex((currentImageIndex - 1))} />}
+    {currentImageIndex === imageArray.length - 1 ? null : <img id="imagegallery-thumbnail-rightarrow" src={rightArrow} alt="" onClick={() => setCurrentImageIndex((currentImageIndex + 1))} />}
   </div>
 );
 

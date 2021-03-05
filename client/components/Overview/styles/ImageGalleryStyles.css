@@ -4,20 +4,21 @@
 #imagegallery-mainimage-container {
   position: relative;
   width: 1000px;
+  height:1000px;
 }
 
-#imagegallery-slide-container {
+/* #imagegallery-slide-container {
   position: relative;
-  overflow-x: scroll; /* Switch this to hidden in order to hide the scroll bar */
+  overflow-x: scroll; Switch this to hidden in order to hide the scroll bar
   white-space: nowrap;
   width: 1000px;
-}
+} */
 
 #imagegallery-slide-image {
   height: 1000px;
   width: 1000px;
   background-size: cover;
-  position: relative;
+  position: absolute;
   display: inline-block;
 }
 
