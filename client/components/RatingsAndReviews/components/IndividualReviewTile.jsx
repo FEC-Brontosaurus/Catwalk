@@ -82,7 +82,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
       {/* Check for merge error here*/}
       <div>{productReviewObj.reviewer_name}</div>
       {productReviewObj.response.length > 0
-      ? <div>{productReviewObj.response}</div>
+      ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
       : null}
     </div>
   );
