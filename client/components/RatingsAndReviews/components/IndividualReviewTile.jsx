@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modals/modalIndex.jsx';
-// import RenderStars from '../../RenderStars.jsx';
+import RenderStars from '../../renderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
@@ -79,7 +79,8 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         clickedImageSrc={clickedImageSrc}
         setClickedImageSrc={setClickedImageSrc}
       />
-
+      {/* Check for merge error here*/}
+      <div>{productReviewObj.reviewer_name}</div>
     </div>
   );
 };
