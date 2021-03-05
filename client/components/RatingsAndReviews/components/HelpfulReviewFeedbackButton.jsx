@@ -8,8 +8,16 @@ const HelpfulReviewFeedbackButton = () => {
             {isHelpfulReviewFeedbackButtonClicked 
             ? (
               <div>
-                  <div>INSERT "YES" TALLY HERE</div>
-                  <div>INSERT "NO" TALLY</div>
+                <button
+                  type="button"
+                  style={{color: "#a6a6a6"}}
+                >Yes</button>
+                <div>INSERT YES TALLY HERE</div>
+                <button
+                type="button"
+                style={{color: "#a6a6a6"}}
+                >No</button>
+                <div>INSERT NO TALLY</div>
               </div>
               )
             : (<div>
@@ -17,12 +25,12 @@ const HelpfulReviewFeedbackButton = () => {
                   type="button"
                   onClick={() => {setIsHelpfulReviewFeedbackButtonClicked(true)}}
                 >Yes</button>
-              <div>INSERT YES TALLY HERE</div>
-              <button
+                <div>INSERT YES TALLY HERE</div>
+                <button
                 type="button"
                 onClick={() => {setIsHelpfulReviewFeedbackButtonClicked(true)}}
-              >No</button>
-              <div>INSERT NO TALLY</div>
+                >No</button>
+                <div>INSERT NO TALLY</div>
               </div>)
         }
         </div>
