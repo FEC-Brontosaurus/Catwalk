@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers';
+import AnswerModal from './ModalAnswer';
 
 const Question = ({ questions, loadFlag }) => {
-  const [moreAnswers, setMoreAnswers] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   // const handleMoreAnswers = (e, value) => {
   //   e.preventDefault();
@@ -14,7 +15,6 @@ const Question = ({ questions, loadFlag }) => {
   //     })
   //     .catch((err) => { console.log('error in handle more answers', err); });
   // };
-  console.log(questions);
   return (
     <div>
       {questions && questions.map((question) => (
@@ -30,12 +30,13 @@ const Question = ({ questions, loadFlag }) => {
                 yes
               </span>
             </span>
-            <span className="add-an-answer"> Add an Answer + </span>
+            <button  className="add-an-answer" onClick={() => setOpenModal(true)}> Add an Answer + </button>
           </div>
           {Object.keys(question.answers).length > 0
             && <Answers loadFlag={loadFlag} answers={question.answers} /> }
         </div>
       )) }
+      <AnswerModal open={openModal} setOpen={setOpenModal} />
     </div>
   );
 };

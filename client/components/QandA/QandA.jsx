@@ -12,7 +12,6 @@ const QandA = ({ id }) => {
     //  takes initial questions array
     // sorts by helpfulness
     const sorted = initial.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
-    console.log('sorted questions log', sorted);
     return sorted;
   };
 
@@ -46,7 +45,6 @@ const QandA = ({ id }) => {
 
   const displaySearchResults = (searchTerm) => {
     setInitQuestions(masterList);
-    console.log('initial questions inside displaySearchREsults', initialQuestions);
     let tempArr = [];
     for (let i = 0; i < initialQuestions.length; i+= 1) {
       if (initialQuestions[i].question_body.toLowerCase().includes(searchTerm.toLowerCase())) {
