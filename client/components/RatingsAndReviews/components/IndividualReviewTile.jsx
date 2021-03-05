@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modals/modalIndex.jsx';
-// import RenderStars from '../../RenderStars.jsx';
+import RenderStars from '../../RenderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
@@ -79,7 +79,10 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         clickedImageSrc={clickedImageSrc}
         setClickedImageSrc={setClickedImageSrc}
       />
-
+      {productReviewObj.recommend
+        ? <div><span>&#10003;</span>I recommend this product</div>
+        : null
+      }
     </div>
   );
 };
