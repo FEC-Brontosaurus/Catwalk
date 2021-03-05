@@ -62,7 +62,6 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         : <div>{productReviewObj.body}</div>}
       {productReviewObj.photos.length > 0
         && productReviewObj.photos.map((photoObj) => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <img
             onClick={() => {
               setIsModalShowing(true);
