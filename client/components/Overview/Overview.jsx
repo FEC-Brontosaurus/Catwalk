@@ -5,6 +5,7 @@ import Styles from './components/Styles';
 import Sizes from './components/Sizes';
 import Quantity from './components/Quantity';
 import AddToCart from './components/AddToCart';
+import ImageGallery from './components/ImageGallery/ImageGallery';
 
 const Overview = ({ currentProduct }) => {
   //  Current selection of items to be used in specific
@@ -14,6 +15,7 @@ const Overview = ({ currentProduct }) => {
   const [currentQuantity, setCurrentQuantity] = useState();
   const [addToCartNoSize, setAddToCartNoSize] = useState(false);
   const [value, setValue] = useState('DEFAULT');
+  const [imageArray, setImageArray] = useState([]);
 
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
@@ -35,6 +37,7 @@ const Overview = ({ currentProduct }) => {
           setCurrentQuantity={setCurrentQuantity}
           setAddToCartNoSize={setAddToCartNoSize}
           setValue={setValue}
+          setImageArray={setImageArray}
         />
       ) : null}
       {currentStyle
@@ -67,6 +70,9 @@ const Overview = ({ currentProduct }) => {
         />
       )
         : null }
+      {(currentStyle && imageArray.length > 0) ? (
+        <ImageGallery imageArray={imageArray} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} />
+      ) : null}
     </div>
   );
 };
