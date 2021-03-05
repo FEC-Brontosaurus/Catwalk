@@ -14,6 +14,7 @@ const Styles = ({
   const getAllStyles = () => {
     axios.get('http://localhost:3000/api/getallstyles', { params: { id } })
       .then((results) => {
+        console.log(results);
         //  create an array with all styles (not in rows of 4)
         setImageArray(results.data);
         //  makes the default style the first style
