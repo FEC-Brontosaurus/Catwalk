@@ -84,6 +84,10 @@ const IndividualReviewTile = ({ productReviewObj }) => {
       {productReviewObj.response.length > 0
       ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
       : null}
+      {productReviewObj.recommend
+        ? <div><span>&#10003;</span>I recommend this product</div>
+        : null
+      }
     </div>
   );
 };
