@@ -1,18 +1,27 @@
-#imagegallery-main-image {
+#imagegallery-container {
+}
+
+#imagegallery-mainimage-container {
+  position: relative;
+  width: 1000px;
+}
+
+#imagegallery-slide-container {
+  position: relative;
+  overflow-x: scroll; /* Switch this to hidden in order to hide the scroll bar */
+  white-space: nowrap;
+  width: 1000px;
+}
+
+#imagegallery-slide-image {
   height: 1000px;
   width: 1000px;
   background-size: cover;
-  position: absolute;
-}
-
-#imagegallery-main-container {
   position: relative;
   display: inline-block;
-  height: 1000px;
-  width: 1000px;
 }
 
-#imagegallery-main-leftarrow {
+#imagegallery-leftarrow {
   position: absolute;
   height: 50px;
   width: 50px;
@@ -21,7 +30,7 @@
   left: 10px;
 }
 
-#imagegallery-main-rightarrow {
+#imagegallery-rightarrow {
   position: absolute;
   height: 50px;
   width: 50px;

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductInformation from './components/ProductInformation';
 import Styles from './components/Styles';
 import Sizes from './components/Sizes';
@@ -16,6 +16,17 @@ const Overview = ({ currentProduct }) => {
   const [addToCartNoSize, setAddToCartNoSize] = useState(false);
   const [value, setValue] = useState('DEFAULT');
   const [imageArray, setImageArray] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  //  on user changing style in image gallery by clicking the arrows update the current style
+  useEffect(() => setCurrentStyle(imageArray[currentImageIndex]), [currentImageIndex]);
+
+  //  update the current index to be where the current style exists in the image array
+  useEffect(() => setCurrentImageIndex(imageArray.findIndex((style) => style.style_id === currentStyle.style_id)), [currentStyle]);
+
+  console.log('currentStyle', currentStyle);
+  console.log('imageArray array', imageArray);
+  console.log(currentImageIndex);
 
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
@@ -71,7 +82,7 @@ const Overview = ({ currentProduct }) => {
       )
         : null }
       {(currentStyle && imageArray.length > 0) ? (
-        <ImageGallery imageArray={imageArray} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} />
+        <ImageGallery imageArray={imageArray} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} setImageArray={setImageArray} setCurrentImageIndex={setCurrentImageIndex} currentImageIndex={currentImageIndex} />
       ) : null}
     </div>
   );
