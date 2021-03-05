@@ -60,7 +60,7 @@ const Answers = ({ answers, loadFlag }) => {
             </span>
           </div>
           <div>
-            {answer.photos.length > 0 ? answer.photos.map((photo) => (<img className="answer-image" src={photo}></img>)) : null }
+            {answer.photos.length > 0 ? answer.photos.map((photo) => (<img key={photo} className="answer-image" src={photo}></img>)) : null }
           </div>
         </div>
       ))}
