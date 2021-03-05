@@ -8,8 +8,8 @@ const HelpfulReviewFeedbackButton = () => {
             {isHelpfulReviewFeedbackButtonClicked 
             ? (
               <div>
-                  <div>INSERT YES TALLY HERE</div>
-                  <div>INSERT NO TALLY</div>
+                  <div>INSERT "YES" TALLY HERE</div>
+                  <div>INSERT "NO" TALLY</div>
               </div>
               )
             : (<div>
