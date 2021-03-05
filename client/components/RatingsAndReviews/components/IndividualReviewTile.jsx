@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modals/modalIndex.jsx';
-import RenderStars from '../../RenderStars.jsx'
+import RenderStars from '../../RenderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
