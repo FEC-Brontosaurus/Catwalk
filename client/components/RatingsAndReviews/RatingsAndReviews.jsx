@@ -19,7 +19,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   };
 
   //given the id from the current product, make an API GET request to get the review metadata for a given product
-  const getProductMetaData = () => {
+  const getProductMetadata = () => {
     axios.get('http://localhost:3000/api/getProductMetadata', { params: { 'id': currentProduct.id } })
       .then((results) => {
         // console.log('getProductMetaData: ', results.data);
@@ -28,7 +28,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => (currentProduct ? (getAllReviews(), getProductMetaData()) : null), [currentProduct]);
+  useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
 
   return (
     <div id="RatingsAndReviews">
