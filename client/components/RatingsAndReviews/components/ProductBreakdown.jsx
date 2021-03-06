@@ -3,7 +3,6 @@ import RenderStars from '../../renderStars.jsx';
 
 const ProductBreakdown = ({ productMetadataObj }) => {
     const [ averageRating , setAverageRating ] = useState(0);
-    const [ average5StarRating, setAverage5StarRating] = useState(0);
 
     const calculateAverageRating = () => {
         const ratingsObj = productMetadataObj.ratings;
@@ -16,21 +15,21 @@ const ProductBreakdown = ({ productMetadataObj }) => {
         setAverageRating((weightedAverageRating/totalVotes).toFixed(1));
     }
 
-    const calculate5StarAverageRating = () => {
+    const calculateStarAverageRating = (num) => {
         var ratingsObj = productMetadataObj.ratings;
-        var total5StarVotes = ratingsObj[5];
+        var total5StarVotes = Number(num);
         var totalVotes = 0;
         for (var rating in ratingsObj) {
             totalVotes += Number(ratingsObj[rating]);
         }
         var starRatingValuePercentage = (total5StarVotes/totalVotes) * 100;
-        setAverage5StarRating(starRatingValuePercentage.toFixed(1)) ;
+        return starRatingValuePercentage.toFixed(1);
     }
     
     useEffect(() => (productMetadataObj 
         ? (
           calculateAverageRating(),
-          calculate5StarAverageRating()
+          calculateStarAverageRating()
         )
         : null), [productMetadataObj]);
     
@@ -39,7 +38,11 @@ const ProductBreakdown = ({ productMetadataObj }) => {
             <h3>ProductBreakdown</h3>
             <div>{averageRating}</div>
             <div>{RenderStars(Number(averageRating))}</div>
-            <div>5 Stars <progress value={average5StarRating} max="100"></progress></div>
+            <div>5 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100"></progress></div>
+            <div>4 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[4])} max="100"></progress></div>
+            <div>3 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[3])} max="100"></progress></div>
+            <div>2 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[2])} max="100"></progress></div>
+            <div>1 Star <progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100"></progress></div>
         </div>
     )
 }
