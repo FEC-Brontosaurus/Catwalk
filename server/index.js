@@ -105,12 +105,13 @@ app.get('/api/getallstyles', (req, res) => {
 });
 
 //  RatingsAndReviews API Requests
+//  Get all the Reviews
 app.get('/api/getAllReviews', (req, res) => {
   const { id } = req.query;
   const idNum = Number(id);
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_GS }, params: { product_id: idNum } })
     .then((results) => {
-      // console.log(results);
+      console.log(results);
       res.send(results.data.results);
     })
     .catch((err) => {
@@ -118,6 +119,20 @@ app.get('/api/getAllReviews', (req, res) => {
       res.send(500);
     });
 });
+
+//MARK REVIEW AS HELPFUL- updates a review to show it was found helpful 
+app.put('/api/reviews/:review_id/helpful', (req, res) => {
+  //the request will have two values: the id of what to change and the +1 incremented value of the helpfulness review (on the client side)
+  const { review_id } = req.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/${review_id}/helpful`, {body: {review_id}}, { headers: { Authorization: API_KEY_GS}})
+    .then(() => {
+      res.send(204);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    })
+})
 
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);

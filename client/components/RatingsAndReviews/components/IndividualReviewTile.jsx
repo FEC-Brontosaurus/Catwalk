@@ -61,8 +61,8 @@ const IndividualReviewTile = ({ productReviewObj }) => {
           </div>
         )
         : <div>{productReviewObj.body}</div>}
-      {productReviewObj.photos.length > 0
-        && productReviewObj.photos.map((photoObj) => (
+      {productReviewObj.photos
+        ? productReviewObj.photos.map((photoObj) => (
           <img
             onClick={() => {
               setIsModalShowing(true);
@@ -73,7 +73,8 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             src={photoObj.url}
             alt="Individual Review Tile"
           />
-        ))}
+        ))
+      : null}
       <Modal
         isModalShowing={isModalShowing} 
         setIsModalShowing={setIsModalShowing}
@@ -81,14 +82,16 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         setClickedImageSrc={setClickedImageSrc}
       />
       <div>{productReviewObj.reviewer_name}</div>
-      {productReviewObj.response.length > 0
+      {productReviewObj.response
       ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
       : null}
       {productReviewObj.recommend
         ? <div><span>&#10003;</span>I recommend this product</div>
         : null
       }
-      <HelpfulReviewFeedbackButton helpfulnessRating={productReviewObj.helpfulness}/>
+      <HelpfulReviewFeedbackButton 
+        review_id={productReviewObj.review_id}
+        helpfulnessRating={productReviewObj.helpfulness}/>
       <br></br>
     </div>
   );
