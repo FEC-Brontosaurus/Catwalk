@@ -6,8 +6,7 @@ const HelpfulReviewFeedbackButton = ({ review_id, helpfulnessRating }) => {
     const [isHelpfulReviewFeedbackButtonClicked, setIsHelpfulReviewFeedbackButtonClicked] = useState(false);
 
     //axios put request to show that the review was found to be helpful
-    const reviewWasHelpful = (review_id) => {
-      console.log(review_id)
+    const reviewWasHelpful = ({review_id}) => {
       axios.put(`/api/reviews/${review_id}/helpful`)
        .then()
        .catch(()=> console.log('The error is on the client side'))
