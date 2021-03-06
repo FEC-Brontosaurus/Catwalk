@@ -5,13 +5,16 @@ import leftArrow from '../../../../../public/static/leftarrow.png';
 import rightArrow from '../../../../../public/static/rightarrow.png';
 import '../../styles/ImageGalleryStyles.css';
 
-const ImageGalleryArrows = ({
-  currentImageIndex, setCurrentImageIndex, imageArray,
+const ImageGalleryThumbnailArrows = ({
+  setThumbDisplayArr, thumbDisplayArr, thumbSplitArr,
 }) => (
-  <div id="imagegallery-thumbnail-arrows-container">
-    {currentImageIndex === 0 ? null : <img id="imagegallery-thumbnail-leftarrow" src={leftArrow} alt="" onClick={() => setCurrentImageIndex((currentImageIndex - 1))} />}
-    {currentImageIndex === imageArray.length - 1 ? null : <img id="imagegallery-thumbnail-rightarrow" src={rightArrow} alt="" onClick={() => setCurrentImageIndex((currentImageIndex + 1))} />}
-  </div>
+  <>
+    {console.log('inside image gallery arrows', thumbSplitArr)}
+    <div id="imagegallery-thumbnail-arrows-container">
+      {thumbDisplayArr === 0 ? null : <img id="imagegallery-thumbnail-leftarrow" src={leftArrow} alt="" onClick={() => setThumbDisplayArr((thumbDisplayArr - 1))} />}
+      {thumbDisplayArr === thumbSplitArr.length - 1 ? null : <img id="imagegallery-thumbnail-rightarrow" src={rightArrow} alt="" onClick={() => setThumbDisplayArr((thumbDisplayArr + 1))} />}
+    </div>
+  </>
 );
 
-export default ImageGalleryArrows;
+export default ImageGalleryThumbnailArrows;

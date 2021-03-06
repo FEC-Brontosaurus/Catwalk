@@ -6,7 +6,8 @@ import ImageGalleryArrows from './ImageGalleryArrows';
 import ImageGalleryThumbnail from './ImageGalleryThumbnail';
 
 const ImageGalleryImageSlide = ({
-  imageArray, setCurrentImageIndex, currentImageIndex, currentStyle,
+  imageArray, setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
 }) => (
   <div id="imagegallery-mainimage-container">
     <ImageGalleryArrows
@@ -18,8 +19,11 @@ const ImageGalleryImageSlide = ({
       imageArray={imageArray}
       currentImageIndex={currentImageIndex}
       setCurrentImageIndex={setCurrentImageIndex}
+      setCurrentStyle={setCurrentStyle}
+      thumbDisplayArr={thumbDisplayArr}
+      thumbSplitArr={thumbSplitArr}
+      setThumbDisplayArr={setThumbDisplayArr}
     />
-    {/* <div id="imagegallery-slide-container"> */}
     {imageArray.map((style, idx) => (
       <>
         {(style.photos[0].url !== null)
@@ -27,20 +31,19 @@ const ImageGalleryImageSlide = ({
             <div
               id="imagegallery-slide-image"
               key={style.photos[0].url + idx}
-              style={currentStyle === style ? { backgroundImage: `url(${style.photos[0].url})`, opacity: 1 } : { backgroundImage: `url(${style.photos[0].url})`, opacity: 0 }}
+              style={currentStyle === style ? { backgroundImage: `url(${style.photos[0].url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.photos[0].url})`, opacity: 0 }}
               alt=""
             />
           ) : (
             <div
               key={style.photos[0].url + idx}
               id="imagegallery-slide-image"
-              style={currentStyle === style ? { backgroundImage: `url(${noImage})`, opacity: 1 } : { backgroundImage: `url(${noImage})`, opacity: 0 }}
+              style={currentStyle === style ? { backgroundImage: `url(${noImage})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${noImage})`, opacity: 0 }}
               alt=""
             />
           ) }
       </>
     ))}
-    {/* </div> */}
   </div>
 );
 

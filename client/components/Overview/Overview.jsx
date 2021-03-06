@@ -17,15 +17,12 @@ const Overview = ({ currentProduct }) => {
   const [value, setValue] = useState('DEFAULT');
   const [imageArray, setImageArray] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [thumbSplitArr, setThumbSplitArr] = useState([]);
+  const [thumbDisplayArr, setThumbDisplayArr] = useState(0);
 
   //  on user changing style in image gallery by clicking the arrows update the current style
   useEffect(() => setCurrentStyle(imageArray[currentImageIndex]), [currentImageIndex]);
-
-  //  update the current index to be where the current style exists in the image array
-  useEffect(() => setCurrentImageIndex(imageArray.findIndex((style) => style.style_id === currentStyle.style_id)), [currentStyle]);
-
-  console.log('currentImageIndex', currentImageIndex);
-  console.log('imageArray', imageArray);
+  useEffect(() => setThumbDisplayArr(Math.floor(currentImageIndex / 7)), [currentImageIndex]);
 
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
@@ -48,6 +45,8 @@ const Overview = ({ currentProduct }) => {
           setAddToCartNoSize={setAddToCartNoSize}
           setValue={setValue}
           setImageArray={setImageArray}
+          setThumbSplitArr={setThumbSplitArr}
+          setCurrentImageIndex={setCurrentImageIndex}
         />
       ) : null}
       {currentStyle
@@ -80,8 +79,17 @@ const Overview = ({ currentProduct }) => {
         />
       )
         : null }
-      {(currentStyle) ? (
-        <ImageGallery imageArray={imageArray} setCurrentStyle={setCurrentStyle} setCurrentImageIndex={setCurrentImageIndex} currentImageIndex={currentImageIndex} currentStyle={currentStyle} />
+      {(currentStyle && imageArray.length > 0) ? (
+        <ImageGallery
+          imageArray={imageArray}
+          setCurrentStyle={setCurrentStyle}
+          setCurrentImageIndex={setCurrentImageIndex}
+          currentImageIndex={currentImageIndex}
+          currentStyle={currentStyle}
+          thumbDisplayArr={thumbDisplayArr}
+          thumbSplitArr={thumbSplitArr}
+          setThumbDisplayArr={setThumbDisplayArr}
+        />
       ) : null}
     </div>
   );
