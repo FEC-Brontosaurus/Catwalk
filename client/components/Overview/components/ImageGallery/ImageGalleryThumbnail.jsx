@@ -24,7 +24,6 @@ const ImageGalleryThumbnail = ({
       )
       : null }
     <div id="imagegallery-thumbnail-slide-container">
-
       {thumbSplitArr[thumbDisplayArr].map((style, idx) => (
         <>
           {(style.photos[0].url !== null)
