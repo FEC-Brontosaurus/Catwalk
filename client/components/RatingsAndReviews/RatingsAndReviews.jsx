@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import ProductBreakdown from './components/ProductBreakdown.jsx'
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
 
 
@@ -31,7 +32,9 @@ const RatingsAndReviews = ({ currentProduct }) => {
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
-      {console.log('in return statement: ', productMetadataObj)}
+      <ProductBreakdown 
+        productMetadataObj={productMetadataObj}
+      />
       {productReviewArr.map((productReviewObj) => (
         <IndividualReviewTile
           key={productReviewObj.review_id}
