@@ -12,6 +12,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const getAllReviews = () => {
     axios.get('http://localhost:3000/api/getAllReviews', { params: { 'id': currentProduct.id } })
       .then((results) => {
+        console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data);
       })
       .catch((err) => console.log(err));
@@ -21,6 +22,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const getProductMetaData = () => {
     axios.get('http://localhost:3000/api/getProductMetadata', { params: { 'id': currentProduct.id } })
       .then((results) => {
+        console.log('getProductMetaData: ', results.data);
         setProductMetadataObj(results.data)
       })
       .catch((err) => console.log(err));
@@ -32,15 +34,21 @@ const RatingsAndReviews = ({ currentProduct }) => {
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
-      <ProductBreakdown 
-        productMetadataObj={productMetadataObj}
-      />
-      {productReviewArr.map((productReviewObj) => (
+
+      {productReviewArr.length > 0 
+        ? productReviewArr.map((productReviewObj) => (
+        <div>
+          <ProductBreakdown 
+          productMetadataObj={productMetadataObj}
+        />
         <IndividualReviewTile
           key={productReviewObj.review_id}
           productReviewObj={productReviewObj}
         />
-      ))}
+        </div>
+      ))
+      : <div>No reviews yet!</div>
+    }
     </div>
   );
 };

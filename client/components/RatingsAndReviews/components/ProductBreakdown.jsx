@@ -23,6 +23,9 @@ const ProductBreakdown = ({ productMetadataObj }) => {
             <h3>ProductBreakdown</h3>
             <div>{calculateAverageRating()}</div>
             <div>{RenderStars(Number(averageRating))}</div>
+            {/* <div className="w3-border">
+                <div className="w3-grey" style="height:24px;width:20%"></div>
+            </div> */}
         </div>
     )
 }
