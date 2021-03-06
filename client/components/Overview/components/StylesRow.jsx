@@ -13,17 +13,17 @@ import noimage from '../../../../public/static/noimage.jpg';
 //  if the style id is the current styles id add a shadow effect and make the checkmark visible
 //  onclick make the style clicked the new current style
 const StylesRow = ({
-  row, currentStyle, setCurrentStyle, setCurrentSize,
-  setCurrentQuantity, setAddToCartNoSize, setValue,
+  row, currentStyle, setCurrentStyle, setCurrentSize, rowidx, styles,
+  setCurrentQuantity, setAddToCartNoSize, setValue, setCurrentImageIndex,
 }) => (
   <div id="styles-row">
-    {row.map((style, rowidx) => (
-      <div id="style-div" key={style.name + rowidx}>
+    {row.map((style, styleidx) => (
+      <div id="style-div" key={style.name + styleidx}>
         <img
           id="check-img"
           onClick={() => {
             setCurrentStyle(style);
-            // setAddToCartNoSize(false);
+            setCurrentImageIndex(rowidx * 4 + styleidx)
             LogClick('img', 'Overview');
             (style === currentStyle ? null : setAddToCartNoSize(false));
             (style === currentStyle ? null : setCurrentSize(null));
@@ -41,6 +41,8 @@ const StylesRow = ({
             src={style.photos[0].thumbnail_url}
             onClick={() => {
               setCurrentStyle(style);
+              // {console.log(styles[rowidx][styleidx])}
+              setCurrentImageIndex(rowidx * 4 + styleidx)
               LogClick('img', 'Overview');
               (style === currentStyle ? null : setAddToCartNoSize(false));
               (style === currentStyle ? null : setCurrentSize(null));
