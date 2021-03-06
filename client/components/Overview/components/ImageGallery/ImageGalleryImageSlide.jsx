@@ -25,7 +25,7 @@ const ImageGalleryImageSlide = ({
       setThumbDisplayArr={setThumbDisplayArr}
     />
     {imageArray.map((style, idx) => (
-      <>
+      <React.Fragment key={idx}>
         {(style.photos[0].url !== null)
           ? (
             <div
@@ -42,7 +42,7 @@ const ImageGalleryImageSlide = ({
               alt=""
             />
           ) }
-      </>
+      </React.Fragment>
     ))}
   </div>
 );

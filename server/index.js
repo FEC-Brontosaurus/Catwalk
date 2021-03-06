@@ -120,7 +120,7 @@ app.get('/api/getAllReviews', (req, res) => {
     });
 });
 
-//MARK REVIEW AS HELPFUL- updates a review to show it was found helpful 
+//MARK REVIEW AS HELPFUL- updates a review to show it was found helpful
 app.put('/api/reviews/:review_id/helpful', (req, res) => {
   //the request will have two values: the id of what to change and the +1 incremented value of the helpfulness review (on the client side)
   const { review_id } = req.params;

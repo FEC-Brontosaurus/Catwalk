@@ -16,7 +16,7 @@ const App = () => {
       .then((results) => {
         // setAllProducts(results.data);
 
-        setCurrentProduct(results.data[2]);
+        setCurrentProduct(results.data[3]);
 
       })
       .catch((err) => console.log(err));

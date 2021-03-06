@@ -25,13 +25,13 @@ const ImageGalleryThumbnail = ({
       : null }
     <div id="imagegallery-thumbnail-slide-container">
       {thumbSplitArr[thumbDisplayArr].map((style, idx) => (
-        <>
+        <React.Fragment key={idx}>
           {(style.photos[0].url !== null)
             ? (
               <div
                 id="imagegallery-thumbnail-slide-image"
                 key={style.photos[0].thumbnail_url + idx}
-                style={{ backgroundImage: `url(${style.photos[0].thumbnail_url})` }}
+                style={(style === imageArray[currentImageIndex]) ? { backgroundImage: `url(${style.photos[0].thumbnail_url})`, boxShadow: '0 0 0 3px white'} : { backgroundImage: `url(${style.photos[0].thumbnail_url})`}}
                 alt=""
                 onClick={() => {
                   setCurrentStyle(style);
@@ -42,7 +42,7 @@ const ImageGalleryThumbnail = ({
               <div
                 key={style.photos[0].thumbnail_url + idx}
                 id="imagegallery-thumbnail-slide-image"
-                style={{ backgroundImage: `url(${noImage})` }}
+                style={(style === imageArray[currentImageIndex]) ? { backgroundImage: `url(${noImage})`, boxShadow: '0 0 0 3px white'} : { backgroundImage: `url(${noImage})`}}
                 alt=""
                 onClick={() => {
                   setCurrentStyle(style);
@@ -50,7 +50,7 @@ const ImageGalleryThumbnail = ({
                 }}
               />
             ) }
-        </>
+        </React.Fragment>
       ))}
     </div>
   </div>
