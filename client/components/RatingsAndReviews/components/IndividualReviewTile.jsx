@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import HelpfulReviewFeedbackButton from '../components/HelpfulReviewFeedbackButton.jsx'
 import Modal from '../Modals/modalIndex.jsx';
-//import RenderStars from '../../RenderStars.jsx'; //CircleCI does NOT like this import. I will comment it out every time I run something through
+import RenderStars from '../../renderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
@@ -60,8 +61,8 @@ const IndividualReviewTile = ({ productReviewObj }) => {
           </div>
         )
         : <div>{productReviewObj.body}</div>}
-      {productReviewObj.photos.length > 0
-        && productReviewObj.photos.map((photoObj) => (
+      {productReviewObj.photos
+        ? productReviewObj.photos.map((photoObj) => (
           <img
             onClick={() => {
               setIsModalShowing(true);
@@ -72,17 +73,26 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             src={photoObj.url}
             alt="Individual Review Tile"
           />
-        ))}
+        ))
+      : null}
       <Modal
         isModalShowing={isModalShowing} 
         setIsModalShowing={setIsModalShowing}
         clickedImageSrc={clickedImageSrc}
         setClickedImageSrc={setClickedImageSrc}
       />
+      <div>{productReviewObj.reviewer_name}</div>
+      {productReviewObj.response
+      ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
+      : null}
       {productReviewObj.recommend
         ? <div><span>&#10003;</span>I recommend this product</div>
         : null
       }
+      <HelpfulReviewFeedbackButton 
+        review_id={productReviewObj.review_id}
+        helpfulnessRating={productReviewObj.helpfulness}/>
+      <br></br>
     </div>
   );
 };
