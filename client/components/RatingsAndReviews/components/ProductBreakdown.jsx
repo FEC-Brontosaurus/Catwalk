@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import RenderStars from '../../renderStars.jsx';
 
 const ProductBreakdown = ({ productMetadataObj }) => {
     const [ averageRating , setAverageRating ] = useState(0);
@@ -19,11 +20,10 @@ const ProductBreakdown = ({ productMetadataObj }) => {
     return (
         <div>
             {console.log(productMetadataObj)}
-            <div>ProductBreakdown</div>
+            <h3>ProductBreakdown</h3>
             <div>{calculateAverageRating()}</div>
-            {/* <div>Average Ratings here</div> */}
+            <div>{RenderStars(Number(averageRating))}</div>
         </div>
-
     )
 }
 
