@@ -14,12 +14,12 @@ const ProductBreakdown = ({ productMetadataObj }) => {
         }
         return (weightedAverageRating/totalVotes).toFixed(1);
     }
+    
 
     useEffect(() => (productMetadataObj ? setAverageRating(calculateAverageRating()) : null), [productMetadataObj]);
     
     return (
         <div>
-            {console.log(productMetadataObj)}
             <h3>ProductBreakdown</h3>
             <div>{calculateAverageRating()}</div>
             <div>{RenderStars(Number(averageRating))}</div>

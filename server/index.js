@@ -124,8 +124,6 @@ app.get('/api/getAllReviews', (req, res) => {
 app.get('/api/getProductMetadata', (req, res) => {
   const { id } = req.query;
   const idNum = Number(id);
-  console.log(id, typeof id);
-  console.log(idNum), typeof idNum;
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/meta', { headers: { Authorization: API_KEY_GS}, params: {product_id: idNum} })
     .then((results) => {
       res.send(results.data)
