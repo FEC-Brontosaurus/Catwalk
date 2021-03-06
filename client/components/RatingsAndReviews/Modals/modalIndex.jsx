@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/RatingsAndReviewsStyles.css'; 
 
 const Modal = ({
   isModalShowing, setIsModalShowing, clickedImageSrc, setClickedImageSrc,

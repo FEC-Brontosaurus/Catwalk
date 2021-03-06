@@ -15,7 +15,9 @@ const App = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[4]);
+
+        setCurrentProduct(results.data[2]);
+
       })
       .catch((err) => console.log(err));
   };
