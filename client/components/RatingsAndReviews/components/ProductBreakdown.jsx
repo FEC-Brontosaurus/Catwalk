@@ -3,6 +3,7 @@ import RenderStars from '../../renderStars.jsx';
 
 const ProductBreakdown = ({ productMetadataObj }) => {
     const [ averageRating , setAverageRating ] = useState(0);
+    const [ average5StarRating, setAverage5StarRating] = useState(0);
 
     const calculateAverageRating = () => {
         const ratingsObj = productMetadataObj.ratings;
@@ -12,20 +13,33 @@ const ProductBreakdown = ({ productMetadataObj }) => {
             weightedAverageRating += (Number(rating) * Number(ratingsObj[rating]));
             totalVotes += Number(ratingsObj[rating]);
         }
-        return (weightedAverageRating/totalVotes).toFixed(1);
+        setAverageRating((weightedAverageRating/totalVotes).toFixed(1));
+    }
+
+    const calculate5StarAverageRating = () => {
+        var ratingsObj = productMetadataObj.ratings;
+        var total5StarVotes = ratingsObj[5];
+        var totalVotes = 0;
+        for (var rating in ratingsObj) {
+            totalVotes += Number(ratingsObj[rating]);
+        }
+        var starRatingValuePercentage = (total5StarVotes/totalVotes) * 100;
+        setAverage5StarRating(starRatingValuePercentage.toFixed(1)) ;
     }
     
-
-    useEffect(() => (productMetadataObj ? setAverageRating(calculateAverageRating()) : null), [productMetadataObj]);
+    useEffect(() => (productMetadataObj 
+        ? (
+          calculateAverageRating(),
+          calculate5StarAverageRating()
+        )
+        : null), [productMetadataObj]);
     
     return (
         <div>
             <h3>ProductBreakdown</h3>
-            <div>{calculateAverageRating()}</div>
+            <div>{averageRating}</div>
             <div>{RenderStars(Number(averageRating))}</div>
-            {/* <div className="w3-border">
-                <div className="w3-grey" style="height:24px;width:20%"></div>
-            </div> */}
+            <div>5 Stars <progress value={average5StarRating} max="100"></progress></div>
         </div>
     )
 }

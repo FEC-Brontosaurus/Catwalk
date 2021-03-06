@@ -12,7 +12,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const getAllReviews = () => {
     axios.get('http://localhost:3000/api/getAllReviews', { params: { 'id': currentProduct.id } })
       .then((results) => {
-        console.log('getAllReviews: ', results.data);
+        // console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data);
       })
       .catch((err) => console.log(err));
@@ -22,31 +22,30 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const getProductMetaData = () => {
     axios.get('http://localhost:3000/api/getProductMetadata', { params: { 'id': currentProduct.id } })
       .then((results) => {
-        console.log('getProductMetaData: ', results.data);
+        // console.log('getProductMetaData: ', results.data);
         setProductMetadataObj(results.data)
       })
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => (currentProduct ? getAllReviews() : null), [currentProduct]);
-  useEffect(() => (currentProduct ? getProductMetaData() : null), [currentProduct]);
+  useEffect(() => (currentProduct ? (getAllReviews(), getProductMetaData()) : null), [currentProduct]);
 
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
-
+      {Object.keys(productMetadataObj).length > 0
+        ? <ProductBreakdown 
+            productMetadataObj={productMetadataObj}
+          />
+        : null
+      }
       {productReviewArr.length > 0 
         ? productReviewArr.map((productReviewObj) => (
-        <div>
-          <ProductBreakdown 
-          productMetadataObj={productMetadataObj}
-        />
-        <IndividualReviewTile
-          key={productReviewObj.review_id}
-          productReviewObj={productReviewObj}
-        />
-        </div>
-      ))
+          <IndividualReviewTile
+            key={productReviewObj.review_id}
+            productReviewObj={productReviewObj}
+          />
+        ))
       : <div>No reviews yet!</div>
     }
     </div>
