@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RenderStars from '../../renderStars.jsx';
 
 const ProductBreakdown = ({ productMetadataObj }) => {
     const [ averageRating , setAverageRating ] = useState(0);
+    const [totalReviews, setTotalReviews] = useState(0);
+    const currentFocusedElement = useRef(null);
 
     const calculateAverageRating = () => {
         const ratingsObj = productMetadataObj.ratings;
-        var totalVotes = 0;
+        var totalReviews = 0;
         var weightedAverageRating = 0;
         for (var rating in ratingsObj) {
             weightedAverageRating += (Number(rating) * Number(ratingsObj[rating]));
-            totalVotes += Number(ratingsObj[rating]);
+            totalReviews += Number(ratingsObj[rating]);
         }
-        setAverageRating((weightedAverageRating/totalVotes).toFixed(1));
+        setTotalReviews(totalReviews);
+        setAverageRating((weightedAverageRating/totalReviews).toFixed(1));
     }
 
     const calculateStarAverageRating = (num) => {
@@ -25,20 +28,33 @@ const ProductBreakdown = ({ productMetadataObj }) => {
         var starRatingValuePercentage = (total5StarVotes/totalVotes) * 100;
         return starRatingValuePercentage.toFixed(1);
     }
+
+    //conditional style 
+    const changeHoverBackgroundColor = () => {
+        currentFocusedElement.current.focus();
+        currentFocusedElement.current.style.color = "red";
+
+    }
     
     useEffect(() => (productMetadataObj 
-        ? (
-          calculateAverageRating(),
-          calculateStarAverageRating()
-        )
-        : null), [productMetadataObj]);
-    
+        ? (calculateAverageRating(),calculateStarAverageRating())
+        : null), [productMetadataObj]
+    );
+
     return (
         <div>
             <h3>ProductBreakdown</h3>
-            <div>{averageRating}</div>
+            <div>Average Rating: {averageRating}</div>
+            <div>Total Reviews: {totalReviews}</div>
             <div>{RenderStars(Number(averageRating))}</div>
-            <div>5 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100"></progress></div>
+            <div 
+              id="star-rating-hover-5"
+              ref={currentFocusedElement}
+              onMouseOver={() => {
+                //   changeHoverBackgroundColor(`5`)
+                changeHoverBackgroundColor()
+                }}
+            >5 Stars<progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100"></progress></div>
             <div>4 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[4])} max="100"></progress></div>
             <div>3 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[3])} max="100"></progress></div>
             <div>2 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[2])} max="100"></progress></div>
