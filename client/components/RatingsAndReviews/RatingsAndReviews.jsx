@@ -9,6 +9,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
 
+
   // given the id from the current product, make an API GET request
   const getAllReviews = () => {
     axios.get('http://localhost:3000/api/getAllReviews', { params: { 'id': currentProduct.id } })
@@ -48,6 +49,10 @@ const RatingsAndReviews = ({ currentProduct }) => {
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
           />
         : null
+      }
+      {(productReviewArr.length === constantReviewArr.length )
+        ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
+        : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
       }
       {productReviewArr.length > 0 
         ? productReviewArr.map((productReviewObj) => (
