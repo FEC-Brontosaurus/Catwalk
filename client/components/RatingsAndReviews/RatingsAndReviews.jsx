@@ -44,10 +44,11 @@ const RatingsAndReviews = ({ currentProduct }) => {
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
       {Object.keys(productMetadataObj).length > 0
-        ? <ProductBreakdown 
+        ? 
+            <ProductBreakdown 
             productMetadataObj={productMetadataObj}
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
-          />
+            />
         : null
       }
       {(productReviewArr.length === constantReviewArr.length )

@@ -11,7 +11,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // eslint-disable-next-line import/extensions
 import RenderStars from '../../renderStars.jsx';
 // import styles from '../styles/RatingsAndReviewsStyles.css';
-
+import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
@@ -114,6 +114,10 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
       {Object.keys(productMetadataObj.recommended).length > 0
         ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
         : null}
+        {Object.keys(productMetadataObj.characteristics).length > 0 
+          ? <CharacteristicsBreakdown />
+          : <div>No characteristics to display</div>
+      }
     </div>
   );
 };
