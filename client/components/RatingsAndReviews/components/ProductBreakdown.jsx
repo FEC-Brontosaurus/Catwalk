@@ -115,7 +115,9 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
         ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
         : null}
         {Object.keys(productMetadataObj.characteristics).length > 0 
-          ? <CharacteristicsBreakdown />
+          ? <CharacteristicsBreakdown 
+              characteristicsObj={productMetadataObj.characteristics}
+            />
           : <div>No characteristics to display</div>
       }
     </div>

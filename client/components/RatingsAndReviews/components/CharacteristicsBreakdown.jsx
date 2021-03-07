@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const CharacteristicsBreakdown = () => {
+const CharacteristicsBreakdown = ({characteristicsObj}) => {
     return (
-        <div>Characteristics Breakdown is working!</div>
+        <div>Characteristics Breakdown is working!{console.log(characteristicsObj)}</div>
     )
 }
 
