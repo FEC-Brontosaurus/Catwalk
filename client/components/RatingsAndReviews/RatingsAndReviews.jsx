@@ -34,7 +34,6 @@ const RatingsAndReviews = ({ currentProduct }) => {
 
   //methods to change data input
   const filterRatingReviewsDisplay = (ratingNum) => {
-    console.log('now the number is in Ratings and reviews! ', ratingNum);
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
     setProductReviewArr(result);
 
