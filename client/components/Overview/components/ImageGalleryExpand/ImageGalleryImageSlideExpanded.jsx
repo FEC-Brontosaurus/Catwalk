@@ -40,13 +40,15 @@ const ImageGalleryImageSlideExpanded = ({
         <React.Fragment key={idx}>
           {(style.url !== null)
             ? (
-              <div
-                id="imagegallery-expanded-slide-image"
-                key={idx}
-                style={idx === currentImageIndex ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
-                alt=""
-                onClick={() => setIsZoom(true)}
-              />
+              <>
+                <div
+                  id="imagegallery-expanded-slide-image"
+                  key={idx}
+                  style={idx === currentImageIndex ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
+                  alt=""
+                  onClick={() => setIsZoom(true)}
+                />
+              </>
             ) : (
               <div
                 key={idx}
