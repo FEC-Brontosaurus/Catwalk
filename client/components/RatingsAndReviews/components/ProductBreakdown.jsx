@@ -12,8 +12,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
     const currentFocusedElement1 = useRef(null);
 
     //calculation functions
-    const calculateAverageRating = () => {
-        const ratingsObj = productMetadataObj.ratings;
+    const calculateAverageRating = (ratingsObj) => {
         var totalReviews = 0;
         var weightedAverageRating = 0;
         for (var rating in ratingsObj) {
@@ -36,7 +35,6 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
     }
 
     const calculateRecommendedPercentage = (recommendedObj) => {
-        console.log(recommendedObj);
         var totalVotes = 0
         for (var recommendation in recommendedObj) {
             totalVotes += Number(recommendedObj[recommendation])
@@ -58,7 +56,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
     
     //initialization
     useEffect(() => (productMetadataObj 
-        ? (calculateAverageRating(),calculateStarAverageRating())
+        ? (calculateAverageRating(productMetadataObj.ratings))
         : null), [productMetadataObj]
     );
 
@@ -69,7 +67,6 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
             <div>Average Rating: {averageRating}</div>
             <div>Total Reviews: {totalReviews}</div>
             <div>{RenderStars(Number(averageRating))}</div>
-
             {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
             <div ref={currentFocusedElement5}
               onClick={() => filterRatingReviewsDisplay(5)}
