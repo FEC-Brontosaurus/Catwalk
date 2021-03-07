@@ -14,18 +14,18 @@ const Styles = ({
   const getAllStyles = () => {
     axios.get('http://localhost:3000/api/getallstyles', { params: { id } })
       .then((results) => {
-        //  create an array with all styles (not in rows of 4)
-        setImageArray(results.data);
-        //  set the number of rows for thumbnail on main image
-        let numberOfRows = Math.ceil(results.data.length / 7);
-        //  split the thumbnails into n arrays of length 7
-        setThumbSplitArr([...Array(numberOfRows)]
-          .map((row, idx) => results.data
-            .slice(idx * 7, idx * 7 + 7)));
+        // //  create an array with all styles (not in rows of 4)
+        // setImageArray(results.data);
+        // //  set the number of rows for thumbnail on main image
+        // let numberOfRows = Math.ceil(results.data.length / 7);
+        // //  split the thumbnails into n arrays of length 7
+        // setThumbSplitArr([...Array(numberOfRows)]
+        //   .map((row, idx) => results.data
+        //     .slice(idx * 7, idx * 7 + 7)));
         //  makes the default style the first style
         setCurrentStyle(results.data[0]);
         // this will take all of the styles and seperate them into n arrays of length 4
-        numberOfRows = Math.ceil(results.data.length / 4);
+        const numberOfRows = Math.ceil(results.data.length / 4);
         setStyles([...Array(numberOfRows)]
           .map((row, idx) => results.data
             .slice(idx * 4, idx * 4 + 4)));

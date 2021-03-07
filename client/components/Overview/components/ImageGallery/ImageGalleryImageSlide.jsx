@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import noImage from '../../../../../public/static/noimage.jpg';
@@ -6,43 +8,49 @@ import ImageGalleryArrows from './ImageGalleryArrows';
 import ImageGalleryThumbnail from './ImageGalleryThumbnail';
 
 const ImageGalleryImageSlide = ({
-  imageArray, setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
+  setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
 }) => (
   <div id="imagegallery-mainimage-container">
-    <ImageGalleryArrows
-      currentImageIndex={currentImageIndex}
-      setCurrentImageIndex={setCurrentImageIndex}
-      imageArray={imageArray}
-    />
-    <ImageGalleryThumbnail
-      imageArray={imageArray}
-      currentImageIndex={currentImageIndex}
-      setCurrentImageIndex={setCurrentImageIndex}
-      setCurrentStyle={setCurrentStyle}
-      thumbDisplayArr={thumbDisplayArr}
-      thumbSplitArr={thumbSplitArr}
-      setThumbDisplayArr={setThumbDisplayArr}
-    />
-    {imageArray.map((style, idx) => (
+    {thumbSplitArr.length > 0 ? (
       <>
-        {(style.photos[0].url !== null)
+        <ImageGalleryArrows
+          currentImageIndex={currentImageIndex}
+          setCurrentImageIndex={setCurrentImageIndex}
+          currentStyle={currentStyle}
+        />
+        <ImageGalleryThumbnail
+          currentStyle={currentStyle}
+          currentImageIndex={currentImageIndex}
+          setCurrentImageIndex={setCurrentImageIndex}
+          setCurrentStyle={setCurrentStyle}
+          thumbDisplayArr={thumbDisplayArr}
+          thumbSplitArr={thumbSplitArr}
+          setThumbDisplayArr={setThumbDisplayArr}
+        />
+      </>
+    ) : null }
+    {currentStyle.photos.map((style, idx) => (
+      <React.Fragment key={idx}>
+        {(style.url !== null)
           ? (
             <div
               id="imagegallery-slide-image"
-              key={style.photos[0].url + idx}
-              style={currentStyle === style ? { backgroundImage: `url(${style.photos[0].url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.photos[0].url})`, opacity: 0 }}
+              key={idx}
+              style={currentImageIndex === idx ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
               alt=""
+              onClick={() => setOverviewModal(true)}
             />
           ) : (
             <div
-              key={style.photos[0].url + idx}
+              key={idx}
               id="imagegallery-slide-image"
               style={currentStyle === style ? { backgroundImage: `url(${noImage})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${noImage})`, opacity: 0 }}
               alt=""
+              onClick={() => setOverviewModal(true)}
             />
           ) }
-      </>
+      </React.Fragment>
     ))}
   </div>
 );
