@@ -11,7 +11,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // eslint-disable-next-line import/extensions
 import RenderStars from '../../renderStars.jsx';
 // import styles from '../styles/RatingsAndReviewsStyles.css';
-
+import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
@@ -81,7 +81,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
         onClick={() => filterRatingReviewsDisplay(5)}
         onMouseOver={() => changeHoverBackgroundColor(currentFocusedElement5)}
         onMouseOut={() => removeHoverBackgroundColor(currentFocusedElement5)}
-      >5 Stars<progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100" />
+      >5 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100" />
       </div>
       <div
         ref={currentFocusedElement4}
@@ -114,6 +114,12 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
       {Object.keys(productMetadataObj.recommended).length > 0
         ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
         : null}
+        {Object.keys(productMetadataObj.characteristics).length > 0 
+          ? <CharacteristicsBreakdown 
+              characteristicsObj={productMetadataObj.characteristics}
+            />
+          : <div>No characteristics to display</div>
+      }
     </div>
   );
 };

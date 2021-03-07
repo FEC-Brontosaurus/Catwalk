@@ -43,16 +43,17 @@ const RatingsAndReviews = ({ currentProduct }) => {
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
-      {Object.keys(productMetadataObj).length > 0
-        ? <ProductBreakdown 
-            productMetadataObj={productMetadataObj}
-            filterRatingReviewsDisplay={filterRatingReviewsDisplay}
-          />
-        : null
-      }
       {(productReviewArr.length === constantReviewArr.length )
         ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
         : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
+      }
+      {Object.keys(productMetadataObj).length > 0
+        ? 
+            <ProductBreakdown 
+            productMetadataObj={productMetadataObj}
+            filterRatingReviewsDisplay={filterRatingReviewsDisplay}
+            />
+        : null
       }
       {productReviewArr.length > 0 
         ? productReviewArr.map((productReviewObj) => (
