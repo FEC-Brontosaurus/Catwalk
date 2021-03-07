@@ -10,6 +10,7 @@
   background-size: cover;
   position: absolute;
   display: inline-block;
+  cursor: zoom-in;
 }
 
 #imagegallery-leftarrow {
@@ -19,6 +20,7 @@
   z-index: 3;
   top: 500px;
   left: 10px;
+  cursor: pointer;
 }
 
 #imagegallery-rightarrow {
@@ -28,6 +30,7 @@
   z-index: 3;
   top: 500px;
   right: 10px;
+  cursor: pointer;
 }
 
 #imagegallery-thumbnail-slide-container {
@@ -49,7 +52,9 @@
   display: inline-block;
   background-size: cover;
   padding: 3px;
-  box-shadow: 0 0 0 3px black
+  opacity: .5;
+  box-shadow: 0 0 0 1px white;
+  cursor: pointer;
 }
 
 #imagegallery-thumbnail-slide-image:hover {
@@ -63,6 +68,7 @@
   z-index: 4;
   bottom: 87px;
   left: 165px;
+  cursor: pointer;
 }
 
 #imagegallery-thumbnail-rightarrow {
@@ -72,4 +78,113 @@
   z-index: 4;
   bottom: 87px;
   right: 165px;
+  cursor: pointer;
+}
+
+#imagegallery-expanded-background{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 10;
+  position: fixed;
+  opacity: .8;
+  padding: 0%;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+
+#imagegallery-expanded-container{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 15;
+  position: fixed;
+  background-color: white;
+}
+
+#imagegallery-expanded-mainimage-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#imagegallery-slide-image {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: absolute;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+#imagegallery-expanded-slide-image {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: absolute;
+  display: inline-block;
+  cursor: crosshair;
+}
+
+#imagegallery-extended-slide-noimage {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: absolute;
+  display: inline-block;
+}
+
+
+#imagegallery-extended-thumbnail-slide-image {
+  position: relative;
+  margin: 10px;
+  width:20px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: white;
+  z-index: 3;
+  display: inline-block;
+  background-size: cover;
+  padding: 3px;
+  opacity: .5;
+  box-shadow: 0 0 0 1px black;
+  cursor: pointer;
+}
+
+#imagegallery-extended-thumbnail-slide-image:hover {
+  opacity: .8;
+}
+
+#imagegallery-expanded-thumbnail-leftarrow{
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  z-index: 4;
+  bottom: 72px;
+  left: 425px;
+  cursor: pointer;
+}
+
+#imagegallery-expanded-thumbnail-rightarrow{
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  z-index: 4;
+  bottom: 72px;
+  right: 425px;
+  cursor: pointer;
+}
+
+#imagegallery-extended-zoom-container{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  cursor: zoom-in;
+  z-index: 1000;
+  margin: auto;
+  cursor: grab;
+  background-size: cover;
 }

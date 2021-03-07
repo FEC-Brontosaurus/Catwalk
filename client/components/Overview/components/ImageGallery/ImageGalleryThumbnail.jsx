@@ -7,8 +7,8 @@ import noImage from '../../../../../public/static/noimage.jpg';
 import '../../styles/ImageGalleryStyles.css';
 
 const ImageGalleryThumbnail = ({
-  currentImageIndex, setCurrentImageIndex, imageArray, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
+  currentImageIndex, setCurrentImageIndex,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, currentStyle,
 }) => (
   <div id="imagegallery-thumbnail-container">
     {(thumbSplitArr.length > 1)
@@ -16,7 +16,7 @@ const ImageGalleryThumbnail = ({
         <ImageGalleryThumbnailArrows
           currentImageIndex={currentImageIndex}
           setCurrentImageIndex={setCurrentImageIndex}
-          imageArray={imageArray}
+          currentStyle={currentStyle}
           thumbSplitArr={thumbSplitArr}
           setThumbDisplayArr={setThumbDisplayArr}
           thumbDisplayArr={thumbDisplayArr}
@@ -26,26 +26,24 @@ const ImageGalleryThumbnail = ({
     <div id="imagegallery-thumbnail-slide-container">
       {thumbSplitArr[thumbDisplayArr].map((style, idx) => (
         <React.Fragment key={idx}>
-          {(style.photos[0].url !== null)
+          {(style.thumbnlail_url !== null)
             ? (
               <div
                 id="imagegallery-thumbnail-slide-image"
-                key={style.photos[0].thumbnail_url + idx}
-                style={(style === imageArray[currentImageIndex]) ? { backgroundImage: `url(${style.photos[0].thumbnail_url})`, boxShadow: '0 0 0 3px white'} : { backgroundImage: `url(${style.photos[0].thumbnail_url})`}}
+                key={idx}
+                style={(idx === currentImageIndex) ? { backgroundImage: `url(${style.thumbnail_url})`, opacity: 1 } : { backgroundImage: `url(${style.thumbnail_url})` }}
                 alt=""
                 onClick={() => {
-                  setCurrentStyle(style);
                   setCurrentImageIndex(thumbDisplayArr * 7 + idx);
                 }}
               />
             ) : (
               <div
-                key={style.photos[0].thumbnail_url + idx}
+                key={idx}
                 id="imagegallery-thumbnail-slide-image"
-                style={(style === imageArray[currentImageIndex]) ? { backgroundImage: `url(${noImage})`, boxShadow: '0 0 0 3px white'} : { backgroundImage: `url(${noImage})`}}
+                style={(idx === currentImageIndex) ? { backgroundImage: `url(${noImage})`, opacity: 1 } : { backgroundImage: `url(${noImage})` }}
                 alt=""
                 onClick={() => {
-                  setCurrentStyle(style);
                   setCurrentImageIndex(thumbDisplayArr * 7 + idx);
                 }}
               />
