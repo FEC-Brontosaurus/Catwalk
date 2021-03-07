@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import RenderStars from '../../renderStars.jsx';
+import styles from '../styles/RatingsAndReviewsStyles.css';
 
-const ProductBreakdown = ({ productMetadataObj }) => {
+const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) => {
     const [ averageRating , setAverageRating ] = useState(0);
     const [totalReviews, setTotalReviews] = useState(0);
     const currentFocusedElement5 = useRef(null);
@@ -23,9 +24,9 @@ const ProductBreakdown = ({ productMetadataObj }) => {
         setAverageRating((weightedAverageRating/totalReviews).toFixed(1));
     }
 
-    const calculateStarAverageRating = (num) => {
+    const calculateStarAverageRating = (ratingNum) => {
         var ratingsObj = productMetadataObj.ratings;
-        var total5StarVotes = Number(num);
+        var total5StarVotes = Number(ratingNum);
         var totalVotes = 0;
         for (var rating in ratingsObj) {
             totalVotes += Number(ratingsObj[rating]);
@@ -44,6 +45,12 @@ const ProductBreakdown = ({ productMetadataObj }) => {
         currentFocusedElementInput.current.focus();
         currentFocusedElementInput.current.style.backgroundColor = "transparent";
     }
+
+    //handle functions 
+    const handleStarRatingClick = (ratingNum) => {
+        // console.log(ratingNum, typeof ratingNum);
+        filterRatingReviewsDisplay(ratingNum);
+    }
     
     useEffect(() => (productMetadataObj 
         ? (calculateAverageRating(),calculateStarAverageRating())
@@ -52,26 +59,38 @@ const ProductBreakdown = ({ productMetadataObj }) => {
 
     return (
         <div>
+            {/* {console.log('productMetadataObj in ProductBreakdown: ', productMetadataObj)} */}
             <h3>ProductBreakdown</h3>
             <div>Average Rating: {averageRating}</div>
             <div>Total Reviews: {totalReviews}</div>
             <div>{RenderStars(Number(averageRating))}</div>
+            {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
             <div ref={currentFocusedElement5}
+              onClick={() => handleStarRatingClick(5)}
               onMouseOver={() => {changeHoverBackgroundColor(currentFocusedElement5)}}
               onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement5)}}
             >5 Stars<progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100"></progress></div>
             <div ref={currentFocusedElement4}
+              onClick={() => handleStarRatingClick(4)}
               onMouseOver={() => {changeHoverBackgroundColor(currentFocusedElement4)}}
-              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement4)}}>4 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[4])} max="100"></progress></div>
+              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement4)}}
+            >4 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[4])} max="100"></progress></div>
             <div ref={currentFocusedElement3}
+              onClick={() => handleStarRatingClick(3)}
               onMouseOver={() => {changeHoverBackgroundColor(currentFocusedElement3)}}
-              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement3)}}>3 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[3])} max="100"></progress></div>
+              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement3)}}
+            >3 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[3])} max="100"></progress></div>
             <div ref={currentFocusedElement2}
+              onClick={() => handleStarRatingClick(2)}
               onMouseOver={() => {changeHoverBackgroundColor(currentFocusedElement2)}}
-              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement2)}}>2 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[2])} max="100"></progress></div>
+              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement2)}}
+            >2 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[2])} max="100"></progress></div>
             <div ref={currentFocusedElement1}
+              onClick={() => handleStarRatingClick(1)}
               onMouseOver={() => {changeHoverBackgroundColor(currentFocusedElement1)}}
-              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement1)}}>1 Star <progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100"></progress></div>
+              onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement1)}}
+            >1 Star <progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100"></progress></div>
+            <button type="button">Refresh Search</button>
         </div>
     )
 }

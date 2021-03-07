@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import ProductBreakdown from './components/ProductBreakdown.jsx'
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
 
 
 const RatingsAndReviews = ({ currentProduct }) => {
+  const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
 
@@ -14,6 +15,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
       .then((results) => {
         // console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data);
+        setConstantReviewArr(results.data)
       })
       .catch((err) => console.log(err));
   };
@@ -30,12 +32,21 @@ const RatingsAndReviews = ({ currentProduct }) => {
 
   useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
 
+  //methods to change data input
+  const filterRatingReviewsDisplay = (ratingNum) => {
+    console.log('now the number is in Ratings and reviews! ', ratingNum);
+    var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
+    setProductReviewArr(result);
+
+  }
+
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
       {Object.keys(productMetadataObj).length > 0
         ? <ProductBreakdown 
             productMetadataObj={productMetadataObj}
+            filterRatingReviewsDisplay={filterRatingReviewsDisplay}
           />
         : null
       }
@@ -46,7 +57,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
             productReviewObj={productReviewObj}
           />
         ))
-      : <div>No reviews yet!</div>
+      : <div>No reviews to display</div>
     }
     </div>
   );
