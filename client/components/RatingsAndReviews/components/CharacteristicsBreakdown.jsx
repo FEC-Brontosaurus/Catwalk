@@ -6,23 +6,45 @@ const CharacteristicsBreakdown = ({characteristicsObj}) => {
         <div>
         {/* On a scale where 5 is "perfect" */}
         {characteristicsObj.Comfort 
-        ? <div><strong>Comfort</strong> Poor <progress value={characteristicsObj.Comfort.value} max="5"/> Perfect</div>
+        ? (<div>
+            <h4>Comfort</h4> 
+            <div>Poor <progress value={characteristicsObj.Comfort.value} max="5"/> Perfect</div>
+          </div>)
         : null }
         {characteristicsObj.Quality 
-        ? <div><strong>Quality</strong> Poor <progress value={characteristicsObj.Quality.value} max="5"/> Perfect</div>
+        ? (<div>
+            <h4>Quality</h4> 
+            <div>Poor <progress value={characteristicsObj.Quality.value} max="5"/> Perfect</div>
+          </div>)
         : null }
         {characteristicsObj.Fit 
-        ? <div><strong>Fit</strong> Does Not Fit <progress value={characteristicsObj.Fit.value} max="5"/> Perfect</div>
+        ? (<div>
+            <h4>Fit</h4> 
+            <div>Poor <progress value={characteristicsObj.Fit.value} max="5"/> Perfect</div>
+          </div>)
         : null }
+
         {/* Needs "Perfect" Middleground  */}
         {characteristicsObj.Size 
-        ? <div><strong>Size</strong> Too Small <progress value={characteristicsObj.Quality.value} max="5"/> Too Large</div>
+        ? (<div>
+            <h4>Size</h4>
+            <div><progress value={characteristicsObj.Size.value} max="5"/></div>
+            <div>Too Small - Perfect - Too Large</div>
+          </div>)
         : null }
         {characteristicsObj.Width 
-        ? <div><strong>Width</strong> Too Small <progress value={characteristicsObj.Width.value} max="5"/> Too Large</div>
+        ? (<div>
+            <h4>Width</h4>
+            <div><progress value={characteristicsObj.Width.value} max="5"/></div>
+            <div>Too Small - Perfect - Too Large</div>
+          </div>)
         : null }
         {characteristicsObj.Length 
-        ? <div><strong>Length</strong> Too Short <progress value={characteristicsObj.Length.value} max="5"/> Too Long</div>
+        ? (<div>
+            <h4>Length</h4>
+            <div><progress value={characteristicsObj.Length.value} max="5"/></div>
+            <div>Too Short - Perfect - Too Long</div>
+          </div>)
         : null }
         </div>
     )

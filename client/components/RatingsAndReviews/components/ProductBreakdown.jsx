@@ -81,7 +81,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
         onClick={() => filterRatingReviewsDisplay(5)}
         onMouseOver={() => changeHoverBackgroundColor(currentFocusedElement5)}
         onMouseOut={() => removeHoverBackgroundColor(currentFocusedElement5)}
-      >5 Stars<progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100" />
+      >5 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100" />
       </div>
       <div
         ref={currentFocusedElement4}
