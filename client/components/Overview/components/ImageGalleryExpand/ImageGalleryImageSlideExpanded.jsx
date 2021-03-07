@@ -10,7 +10,7 @@ import ImageGalleryExpandedZoom from './ImageGalleryExpandedZoom';
 
 const ImageGalleryImageSlideExpanded = ({
   setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
 }) => {
   const [isZoom, setIsZoom] = useState(false);
   return (
@@ -53,7 +53,6 @@ const ImageGalleryImageSlideExpanded = ({
                 id="imagegallery-extended-slide-noimage"
                 style={idx === currentImageIndex ? { backgroundImage: `url(${noImage})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${noImage})`, opacity: 0 }}
                 alt=""
-                onClick={() => setOverviewModal(true)}
               />
             ) }
         </React.Fragment>
