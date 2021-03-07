@@ -35,6 +35,16 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
         return starRatingValuePercentage.toFixed(1);
     }
 
+    const calculateRecommendedPercentage = (recommendedObj) => {
+        console.log(recommendedObj);
+        var totalVotes = 0
+        for (var recommendation in recommendedObj) {
+            totalVotes += Number(recommendedObj[recommendation])
+        }
+        var recommendedPercentage = (Number(recommendedObj[true])/totalVotes)*100;
+        return recommendedPercentage.toFixed(1);
+    }
+
     //conditional styling functions
     const changeHoverBackgroundColor = (currentFocusedElementInput) => {
         currentFocusedElementInput.current.focus();
@@ -54,7 +64,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
 
     return (
         <div>
-            {/* {console.log('productMetadataObj in ProductBreakdown: ', productMetadataObj)} */}
+            {console.log('productMetadataObj in ProductBreakdown: ', productMetadataObj)}
             <h3> Rating Breakdown</h3>
             <div>Average Rating: {averageRating}</div>
             <div>Total Reviews: {totalReviews}</div>
@@ -86,6 +96,10 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
               onMouseOver={() => {changeHoverBackgroundColor(currentFocusedElement1)}}
               onMouseOut={() => {removeHoverBackgroundColor(currentFocusedElement1)}}
             >1 Star <progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100"></progress></div>
+            {Object.keys(productMetadataObj.recommended).length > 0 
+              ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
+              : null
+            }
         </div>
     )
 }
