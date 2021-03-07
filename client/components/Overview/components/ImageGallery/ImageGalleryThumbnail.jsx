@@ -7,8 +7,8 @@ import noImage from '../../../../../public/static/noimage.jpg';
 import '../../styles/ImageGalleryStyles.css';
 
 const ImageGalleryThumbnail = ({
-  currentImageIndex, setCurrentImageIndex, imageArray, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
+  currentImageIndex, setCurrentImageIndex,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, currentStyle,
 }) => (
   <div id="imagegallery-thumbnail-container">
     {(thumbSplitArr.length > 1)
@@ -16,7 +16,7 @@ const ImageGalleryThumbnail = ({
         <ImageGalleryThumbnailArrows
           currentImageIndex={currentImageIndex}
           setCurrentImageIndex={setCurrentImageIndex}
-          imageArray={imageArray}
+          currentStyle={currentStyle}
           thumbSplitArr={thumbSplitArr}
           setThumbDisplayArr={setThumbDisplayArr}
           thumbDisplayArr={thumbDisplayArr}
@@ -25,32 +25,30 @@ const ImageGalleryThumbnail = ({
       : null }
     <div id="imagegallery-thumbnail-slide-container">
       {thumbSplitArr[thumbDisplayArr].map((style, idx) => (
-        <>
-          {(style.photos[0].url !== null)
+        <React.Fragment key={idx}>
+          {(style.thumbnlail_url !== null)
             ? (
               <div
                 id="imagegallery-thumbnail-slide-image"
-                key={style.photos[0].thumbnail_url + idx}
-                style={{ backgroundImage: `url(${style.photos[0].thumbnail_url})` }}
+                key={idx}
+                style={(idx === currentImageIndex) ? { backgroundImage: `url(${style.thumbnail_url})`, opacity: 1 } : { backgroundImage: `url(${style.thumbnail_url})` }}
                 alt=""
                 onClick={() => {
-                  setCurrentStyle(style);
                   setCurrentImageIndex(thumbDisplayArr * 7 + idx);
                 }}
               />
             ) : (
               <div
-                key={style.photos[0].thumbnail_url + idx}
+                key={idx}
                 id="imagegallery-thumbnail-slide-image"
-                style={{ backgroundImage: `url(${noImage})` }}
+                style={(idx === currentImageIndex) ? { backgroundImage: `url(${noImage})`, opacity: 1 } : { backgroundImage: `url(${noImage})` }}
                 alt=""
                 onClick={() => {
-                  setCurrentStyle(style);
                   setCurrentImageIndex(thumbDisplayArr * 7 + idx);
                 }}
               />
             ) }
-        </>
+        </React.Fragment>
       ))}
     </div>
   </div>

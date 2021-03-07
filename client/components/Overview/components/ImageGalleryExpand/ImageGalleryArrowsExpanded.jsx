@@ -5,7 +5,7 @@ import leftArrow from '../../../../../public/static/leftarrow.png';
 import rightArrow from '../../../../../public/static/rightarrow.png';
 import '../../styles/ImageGalleryStyles.css';
 
-const ImageGalleryArrows = ({
+const ImageGalleryArrowsExpanded = ({
   currentImageIndex, setCurrentImageIndex, currentStyle,
 }) => (
   <div id="imagegallery-arrows-container">
@@ -14,4 +14,4 @@ const ImageGalleryArrows = ({
   </div>
 );
 
-export default ImageGalleryArrows;
+export default ImageGalleryArrowsExpanded;
