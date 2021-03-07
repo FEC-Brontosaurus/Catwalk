@@ -120,6 +120,22 @@ app.get('/api/getAllReviews', (req, res) => {
     });
 });
 
+
+//Get the meta data for a product
+app.get('/api/getProductMetadata', (req, res) => {
+  const { id } = req.query;
+  const idNum = Number(id);
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/meta', { headers: { Authorization: API_KEY_GS}, params: {product_id: idNum} })
+    .then((results) => {
+      res.send(results.data)
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    })
+})
+
+
 //MARK REVIEW AS HELPFUL- updates a review to show it was found helpful
 app.put('/api/reviews/:review_id/helpful', (req, res) => {
   //the request will have two values: the id of what to change and the +1 incremented value of the helpfulness review (on the client side)
