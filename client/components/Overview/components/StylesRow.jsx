@@ -13,8 +13,8 @@ import noimage from '../../../../public/static/noimage.jpg';
 //  if the style id is the current styles id add a shadow effect and make the checkmark visible
 //  onclick make the style clicked the new current style
 const StylesRow = ({
-  row, currentStyle, setCurrentStyle, setCurrentSize, rowidx, styles,
-  setCurrentQuantity, setAddToCartNoSize, setValue, setCurrentImageIndex,
+  row, currentStyle, setCurrentStyle, setCurrentSize,
+  setCurrentQuantity, setAddToCartNoSize, setValue,
 }) => (
   <div id="styles-row">
     {row.map((style, styleidx) => (
@@ -22,9 +22,10 @@ const StylesRow = ({
         <img
           id="check-img"
           onClick={() => {
-            setCurrentStyle(style);
-            setCurrentImageIndex(rowidx * 4 + styleidx)
+            // setCurrentImageIndex(rowidx * 4 + styleidx)
             LogClick('img', 'Overview');
+            setCurrentStyle(style);
+            (style !== currentStyle ? null : setCurrentStyle(style));
             (style === currentStyle ? null : setAddToCartNoSize(false));
             (style === currentStyle ? null : setCurrentSize(null));
             (style === currentStyle ? null : setCurrentQuantity(null));
@@ -40,13 +41,12 @@ const StylesRow = ({
             style={(style.style_id === currentStyle.style_id) ? { boxShadow: '0px 0px 5px 3px #888888' } : null}
             src={style.photos[0].thumbnail_url}
             onClick={() => {
-              setCurrentStyle(style);
-              // {console.log(styles[rowidx][styleidx])}
-              setCurrentImageIndex(rowidx * 4 + styleidx)
               LogClick('img', 'Overview');
+              setCurrentStyle(style);
               (style === currentStyle ? null : setAddToCartNoSize(false));
               (style === currentStyle ? null : setCurrentSize(null));
               (style === currentStyle ? null : setCurrentQuantity(null));
+              (style === currentStyle ? null : setValue('DEFAULT'));
             }}
             data-testid={style.name}
             alt=""
@@ -59,6 +59,7 @@ const StylesRow = ({
             onClick={() => {
               setCurrentStyle(style);
               LogClick('img', 'Overview');
+              (style !== currentStyle ? null : setCurrentStyle(style));
               (style === currentStyle ? null : setAddToCartNoSize(false));
               (style === currentStyle ? null : setCurrentSize(null));
               (style === currentStyle ? null : setCurrentQuantity(null));
