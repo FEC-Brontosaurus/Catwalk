@@ -1,10 +1,12 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import StylesRow from './StylesRow';
 
 const Styles = ({
-  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity, setAddToCartNoSize, setValue
+  id, currentStyle, setCurrentStyle, setCurrentSize, setCurrentQuantity,
+  setAddToCartNoSize, setValue, setImageArray, setThumbSplitArr, setCurrentImageIndex,
 }) => {
   const [styles, setStyles] = useState([]);
 
@@ -12,6 +14,14 @@ const Styles = ({
   const getAllStyles = () => {
     axios.get('http://localhost:3000/api/getallstyles', { params: { id } })
       .then((results) => {
+        // //  create an array with all styles (not in rows of 4)
+        // setImageArray(results.data);
+        // //  set the number of rows for thumbnail on main image
+        // let numberOfRows = Math.ceil(results.data.length / 7);
+        // //  split the thumbnails into n arrays of length 7
+        // setThumbSplitArr([...Array(numberOfRows)]
+        //   .map((row, idx) => results.data
+        //     .slice(idx * 7, idx * 7 + 7)));
         //  makes the default style the first style
         setCurrentStyle(results.data[0]);
         // this will take all of the styles and seperate them into n arrays of length 4
@@ -38,10 +48,13 @@ const Styles = ({
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
           key={rowidx}
+          rowidx={rowidx}
           setCurrentSize={setCurrentSize}
           setCurrentQuantity={setCurrentQuantity}
           setAddToCartNoSize={setAddToCartNoSize}
           setValue={setValue}
+          styles={styles}
+          setCurrentImageIndex={setCurrentImageIndex}
         />
       ))}
     </div>

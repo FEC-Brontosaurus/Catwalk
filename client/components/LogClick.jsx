@@ -8,7 +8,15 @@ const LogClick = (element, widget) => {
   const time = new Date();
 
   //  make a post request to our server
-  axios.post('http://localhost:3000/api/interactions', { element, widget, time })
+  //  added headers to reduce the effect of spammed axios requests
+  //  still an issue if spammed long enough
+  axios.post('http://localhost:3000/api/interactions', { element, widget, time }, {
+    headers: {
+      'Cache-Control': 'no-cache',
+      Pragma: 'no-cache',
+      Expires: '0',
+    },
+  })
     .catch((err) => console.log(err));
 };
 

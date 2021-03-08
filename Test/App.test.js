@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, queryByAttribute } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import App from '../client/components/App';
+// import React from 'react';
+// import { render, queryByAttribute } from '@testing-library/react';
+// import '@testing-library/jest-dom/extend-expect';
+// import App from '../client/components/App';
 
-const getById = queryByAttribute.bind(null, 'id');
+// const getById = queryByAttribute.bind(null, 'id');
 
 //  Test to see if each component is successfully rendering to the DOM
 describe('componentsRendingToTheDOM', () => {

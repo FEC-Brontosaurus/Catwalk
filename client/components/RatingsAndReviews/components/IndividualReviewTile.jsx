@@ -1,13 +1,11 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable quote-props */
 import React, { useState } from 'react';
-// eslint-disable-next-line import/extensions
-import Modal from '../Modals/modalIndex.jsx';
+import HelpfulReviewFeedbackButton from '../components/HelpfulReviewFeedbackButton.jsx'
+import ClickedImageModal from '../Modals/ClickedImageModal.jsx';
+import RenderStars from '../../renderStars.jsx';
+import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
   const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);
-  const [isModalShowing, setIsModalShowing] = useState(false);
-  const [clickedImageSrc, setClickedImageSrc] = useState('');
 
   const reformattedDate = () => {
     const monthObj = {
@@ -42,7 +40,6 @@ const IndividualReviewTile = ({ productReviewObj }) => {
   const reformattedBody = () => {
     if (isShowingFullReviewBody) {
       return productReviewObj.body;
-    // eslint-disable-next-line no-else-return
     } else {
       const shortenedStr = productReviewObj.body.slice(0, 250);
       return `${shortenedStr}...`;
@@ -51,6 +48,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
 
   return (
     <div id="IndividualReviewTile-div">
+      <RenderStars rating={productReviewObj.rating}/>
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
       {productReviewObj.body.length >= 250
@@ -61,27 +59,30 @@ const IndividualReviewTile = ({ productReviewObj }) => {
           </div>
         )
         : <div>{productReviewObj.body}</div>}
-      {productReviewObj.photos.length > 0
-        && productReviewObj.photos.map((photoObj) => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-          <img
-            onClick={() => {
-              setIsModalShowing(true);
-              setClickedImageSrc(photoObj.url);
-            }}
-            id="IndividualReviewTile-img"
-            key={photoObj.id}
-            src={photoObj.url}
-            alt="Individual Review Tile"
-          />
-        ))}
-      <Modal
-        isModalShowing={isModalShowing} 
-        setIsModalShowing={setIsModalShowing}
-        clickedImageSrc={clickedImageSrc}
-        setClickedImageSrc={setClickedImageSrc}
-      />
-
+      {productReviewObj.photos
+        ? productReviewObj.photos.map((photoObj) => (
+          <div>
+            <ClickedImageModal 
+              id="IndividualReviewTile-img"
+              key={photoObj.id}
+              photoURL={photoObj.url}
+              alt="Individual Review Tile"
+            />
+          </div>
+        ))
+      : null}
+      <div>{productReviewObj.reviewer_name}</div>
+      {productReviewObj.response
+      ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
+      : null}
+      {productReviewObj.recommend
+        ? <div><span>&#10003;</span>I recommend this product</div>
+        : null
+      }
+      <HelpfulReviewFeedbackButton 
+        review_id={productReviewObj.review_id}
+        helpfulnessRating={productReviewObj.helpfulness}/>
+      <br></br>
     </div>
   );
 };
