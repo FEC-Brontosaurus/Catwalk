@@ -47,25 +47,11 @@ describe('Overview Tests', () => {
   it('Should render ImageGallery component to the DOM', () => {
     //  create a dummy ImageGallery constants that we can use to pass into funcitons
     const currentStyle = { photos: [] };
-    const currentImageIndex = 0;
-    const setCurrentImageIndex = jest.fn();
-    const setCurrentStyle = jest.fn();
-    const thumbSplitArr = [];
-    const thumbDisplayArr = [];
-    const setThumbDisplayArr = jest.fn();
-    const setOverviewModal = jest.fn();
 
     //  get the div that is inside of the ImageGallery function
     const { container } = render(
       <ImageGallery
-        setCurrentStyle={setCurrentStyle}
-        setCurrentImageIndex={setCurrentImageIndex}
-        currentImageIndex={currentImageIndex}
         currentStyle={currentStyle}
-        thumbDisplayArr={thumbDisplayArr}
-        thumbSplitArr={thumbSplitArr}
-        setThumbDisplayArr={setThumbDisplayArr}
-        setOverviewModal={setOverviewModal}
       />,
     );
 

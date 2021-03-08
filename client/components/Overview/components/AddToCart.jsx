@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
-import './../styles/AddToCartStyles.css';
+import '../styles/AddToCartStyles.css';
 
 const AddToCart = ({ currentQuantity, currentSize, setAddToCartNoSize }) => {
   //  handle clicking the add to cart button
