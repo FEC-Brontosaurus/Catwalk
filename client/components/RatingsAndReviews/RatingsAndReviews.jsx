@@ -10,7 +10,8 @@ import styles from './styles/RatingsAndReviewsStyles.css';
 const RatingsAndReviews = ({ currentProduct }) => {
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
-  const [productMetadataObj, setProductMetadataObj] = useState({});  
+  const [productMetadataObj, setProductMetadataObj] = useState({});
+  const [characteristicsMetadataObj, setCharacteristicsMetadataObj] = useState({});
 
 
   // given the id from the current product, make an API GET request
@@ -30,6 +31,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
       .then((results) => {
         // console.log('getProductMetaData: ', results.data);
         setProductMetadataObj(results.data)
+        setCharacteristicsMetadataObj(results.data.characteristics);
       })
       .catch((err) => console.log(err));
   }
@@ -40,6 +42,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const filterRatingReviewsDisplay = (ratingNum) => {
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
     setProductReviewArr(result);
+
 
   }
 
@@ -68,8 +71,8 @@ const RatingsAndReviews = ({ currentProduct }) => {
         ))
       : <div>No reviews to display</div>
     }
-    {Object.keys(productMetadataObj).length > 0
-      ? <SpecifiedCharacteristicsAddReviewModal />
+    {Object.keys(characteristicsMetadataObj).length > 0
+      ? <SpecifiedCharacteristicsAddReviewModal characteristicsMetadataObj={characteristicsMetadataObj}/>
       : <AddReviewModal currentProduct_id={currentProduct.id}/>
     }
     </div>
