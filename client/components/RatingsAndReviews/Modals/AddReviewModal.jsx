@@ -43,15 +43,15 @@ const AddReviewModal = () => {
                 <form>
                     <div class="rating"> 
                         <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
-                        <label for="star5" onMouseOver={() => returnStarRatingText("5")}>☆</label>
+                        <label for="star5" onMouseOver={() => returnStarRatingText(5)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
-                        <label for="star4" onMouseOver={() => returnStarRatingText("4")}>☆</label>
+                        <label for="star4" onMouseOver={() => returnStarRatingText(4)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
-                        <label for="star3" onMouseOver={() => returnStarRatingText("3")}>☆</label>
+                        <label for="star3" onMouseOver={() => returnStarRatingText(3)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
-                        <label for="star2" onMouseOver={() => returnStarRatingText("2")}>☆</label>
+                        <label for="star2" onMouseOver={() => returnStarRatingText(2)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
-                        <label for="star1" onMouseOver={() => returnStarRatingText("1")}>☆</label>
+                        <label for="star1" onMouseOver={() => returnStarRatingText(1)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <div class="clear"></div>
                     </div>
                 </form>
