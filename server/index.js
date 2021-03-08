@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const axios = require('axios');
 const API_KEY_AF = require('../config/keyAF.js');
-
+const API_KEY_GS = require('../config/keyGS.js');
 const API_KEY_BC = require('../config/keyBC.js');
 
 const PORT = 3000;
@@ -32,7 +32,7 @@ app.get('/api/allproducts', (req, res) => {
 //  post request to send click event to the API
 app.post('/api/interactions', (req, res) => {
   const { element, widget, time } = req.body;
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions', {element: element, widget: widget, time: time}, { headers: { Authorization: API_KEY_BC } })
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions', {element: element, widget: widget, time: time}, { headers: { Authorization: API_KEY_GS } })
     .then(() => res.send(201))
     .catch((err) => {
       console.log(err);
@@ -112,11 +112,11 @@ app.get('/api/getallstyles', (req, res) => {
 });
 
 //  RatingsAndReviews API Requests
+//  Get all the Reviews
 app.get('/api/getAllReviews', (req, res) => {
   const { id } = req.query;
-  // console.log(id);
   const idNum = Number(id);
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_AF }, params: { product_id: idNum } })
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_GS }, params: { product_id: idNum } })
     .then((results) => {
       // console.log(results);
       res.send(results.data.results);
@@ -126,6 +126,36 @@ app.get('/api/getAllReviews', (req, res) => {
       res.send(500);
     });
 });
+
+
+//Get the meta data for a product
+app.get('/api/getProductMetadata', (req, res) => {
+  const { id } = req.query;
+  const idNum = Number(id);
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/meta', { headers: { Authorization: API_KEY_GS}, params: {product_id: idNum} })
+    .then((results) => {
+      res.send(results.data)
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    })
+})
+
+
+//MARK REVIEW AS HELPFUL- updates a review to show it was found helpful
+app.put('/api/reviews/:review_id/helpful', (req, res) => {
+  //the request will have two values: the id of what to change and the +1 incremented value of the helpfulness review (on the client side)
+  const { review_id } = req.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/${review_id}/helpful`, {body: {review_id}}, { headers: { Authorization: API_KEY_GS}})
+    .then(() => {
+      res.send(204);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    })
+})
 
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
