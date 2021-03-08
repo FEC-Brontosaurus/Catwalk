@@ -1,0 +1,14 @@
+#Overview {
+  position: relative;
+  width: 50%;
+  margin: auto;
+  outline: 3px solid black;
+}
+
+#overview-order-container {
+  width: 35%;
+  height: 700px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}

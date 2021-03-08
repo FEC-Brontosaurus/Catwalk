@@ -33,7 +33,8 @@ const ImageGalleryThumbnail = ({
                 key={idx}
                 style={(idx === currentImageIndex) ? { backgroundImage: `url(${style.thumbnail_url})`, opacity: 1 } : { backgroundImage: `url(${style.thumbnail_url})` }}
                 alt=""
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setCurrentImageIndex(thumbDisplayArr * 7 + idx);
                 }}
               />
@@ -43,7 +44,8 @@ const ImageGalleryThumbnail = ({
                 id="imagegallery-thumbnail-slide-image"
                 style={(idx === currentImageIndex) ? { backgroundImage: `url(${noImage})`, opacity: 1 } : { backgroundImage: `url(${noImage})` }}
                 alt=""
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setCurrentImageIndex(thumbDisplayArr * 7 + idx);
                 }}
               />

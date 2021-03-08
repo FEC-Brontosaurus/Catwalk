@@ -5,6 +5,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import LogClick from '../../LogClick';
+import '../styles/ProductInformationStyles.css';
 import facebook from '../../../../public/static/facebook.png';
 import twitter from '../../../../public/static/twitter.png';
 import pinterest from '../../../../public/static/pinterest.png';
@@ -15,7 +16,7 @@ import pinterest from '../../../../public/static/pinterest.png';
 //  if there is a current price but no sale price render the current price
 //  if there is botha current price and sale price render the sale price in red followed by the current price with a line through it
 const ProductInformation = ({ currentProduct, currentStyle }) => (
-  <div id="ProductInformation">
+  <div id="productinformation-container">
     <div id="product-info-star-rating">Star Rating Placeholder</div>
     <div id="product-info-category">Category: {currentProduct.category}</div>
     <div id="product-info-title">Title: {currentProduct.name}</div>

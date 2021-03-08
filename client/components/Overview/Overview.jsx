@@ -7,6 +7,7 @@ import Quantity from './components/Quantity';
 import AddToCart from './components/AddToCart';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import ImageGalleryExpand from './components/ImageGalleryExpand/ImageGalleryExpand';
+import './styles/OverviewStyle.css';
 
 const Overview = ({ currentProduct }) => {
   //  Current selection of items to be used in specific
@@ -45,68 +46,6 @@ const Overview = ({ currentProduct }) => {
   //  unless the data required is present (used to save some time);
   return (
     <div id="Overview">
-      {(overviewModal === true) ? (
-        <ImageGalleryExpand
-          setCurrentStyle={setCurrentStyle}
-          setCurrentImageIndex={setCurrentImageIndex}
-          currentImageIndex={currentImageIndex}
-          currentStyle={currentStyle}
-          thumbDisplayArr={thumbDisplayArr}
-          thumbSplitArr={thumbSplitArr}
-          setThumbDisplayArr={setThumbDisplayArr}
-          setOverviewModal={setOverviewModal}
-        />
-      ) : null}
-      {(currentStyle) ? (
-        <ProductInformation
-          currentProduct={currentProduct}
-          currentStyle={currentStyle}
-        />
-      )
-        : null}
-      {currentProduct ? (
-        <Styles
-          id={currentProduct.id}
-          currentStyle={currentStyle}
-          setCurrentStyle={setCurrentStyle}
-          setCurrentSize={setCurrentSize}
-          setCurrentQuantity={setCurrentQuantity}
-          setAddToCartNoSize={setAddToCartNoSize}
-          setValue={setValue}
-          setThumbSplitArr={setThumbSplitArr}
-          setCurrentImageIndex={setCurrentImageIndex}
-        />
-      ) : null}
-      {currentStyle
-        ? (
-          <Sizes
-            currentStyle={currentStyle}
-            setCurrentSize={setCurrentSize}
-            setCurrentQuantity={setCurrentQuantity}
-            currentSize={currentSize}
-            addToCartNoSize={addToCartNoSize}
-            setAddToCartNoSize={setAddToCartNoSize}
-            value={value}
-            setValue={setValue}
-          />
-        ) : null }
-      {currentStyle ? (
-        <Quantity
-          currentStyle={currentStyle}
-          currentSize={currentSize}
-          setCurrentQuantity={setCurrentQuantity}
-          currentQuantity={currentQuantity}
-        />
-      )
-        : null }
-      {currentStyle ? (
-        <AddToCart
-          currentQuantity={currentQuantity}
-          currentSize={currentSize}
-          setAddToCartNoSize={setAddToCartNoSize}
-        />
-      )
-        : null }
       {(currentStyle) ? (
         <ImageGallery
           setCurrentStyle={setCurrentStyle}
@@ -119,6 +58,70 @@ const Overview = ({ currentProduct }) => {
           setOverviewModal={setOverviewModal}
         />
       ) : null}
+      {(overviewModal === true) ? (
+        <ImageGalleryExpand
+          setCurrentStyle={setCurrentStyle}
+          setCurrentImageIndex={setCurrentImageIndex}
+          currentImageIndex={currentImageIndex}
+          currentStyle={currentStyle}
+          thumbDisplayArr={thumbDisplayArr}
+          thumbSplitArr={thumbSplitArr}
+          setThumbDisplayArr={setThumbDisplayArr}
+          setOverviewModal={setOverviewModal}
+        />
+      ) : null}
+      <div id="overview-order-container">
+        {(currentStyle) ? (
+          <ProductInformation
+            currentProduct={currentProduct}
+            currentStyle={currentStyle}
+          />
+        )
+          : null}
+        {currentProduct ? (
+          <Styles
+            id={currentProduct.id}
+            currentStyle={currentStyle}
+            setCurrentStyle={setCurrentStyle}
+            setCurrentSize={setCurrentSize}
+            setCurrentQuantity={setCurrentQuantity}
+            setAddToCartNoSize={setAddToCartNoSize}
+            setValue={setValue}
+            setThumbSplitArr={setThumbSplitArr}
+            setCurrentImageIndex={setCurrentImageIndex}
+          />
+        ) : null}
+        {currentStyle
+          ? (
+            <Sizes
+              currentStyle={currentStyle}
+              setCurrentSize={setCurrentSize}
+              setCurrentQuantity={setCurrentQuantity}
+              currentSize={currentSize}
+              addToCartNoSize={addToCartNoSize}
+              setAddToCartNoSize={setAddToCartNoSize}
+              value={value}
+              setValue={setValue}
+            />
+          ) : null }
+        {currentStyle ? (
+          <Quantity
+            currentStyle={currentStyle}
+            currentSize={currentSize}
+            setCurrentQuantity={setCurrentQuantity}
+            currentQuantity={currentQuantity}
+          />
+        )
+          : null }
+        {currentStyle ? (
+          <AddToCart
+            currentQuantity={currentQuantity}
+            currentSize={currentSize}
+            setAddToCartNoSize={setAddToCartNoSize}
+          />
+        )
+          : null }
+      </div>
     </div>
   );
 };
