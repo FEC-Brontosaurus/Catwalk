@@ -3,7 +3,8 @@ import styles from '../styles/RatingsAndReviewsStyles.css';
 
 
 const AddReviewModal = () => {
-    const myModalRef = useRef(null);
+    const reviewModalRef = useRef(null);
+    // const closeModal
 
     const openReviewModal = (modal) => {
         console.log(modal.current)
@@ -15,12 +16,12 @@ const AddReviewModal = () => {
         <button 
           id="myBtn"
           onClick={() => {
-            //   console.log(myModalRef);
-              openReviewModal(myModalRef)
+            //   console.log(reviewModalRef);
+              openReviewModal(reviewModalRef)
             }}
           >Open Modal</button>
         <div 
-          ref={myModalRef}
+          ref={reviewModalRef}
           id="myModal" 
           class="modal">    
             <div class="modal-content">
