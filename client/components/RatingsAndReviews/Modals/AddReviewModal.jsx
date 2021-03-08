@@ -32,8 +32,7 @@ const AddReviewModal = () => {
 
     return (
       <div>
-        <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Open Modal</button>
-        
+        <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Add Review</button>
         <div ref={reviewModalRef} id="myModal" class="modal">
             <div class="modal-content">            
             <span class="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
@@ -59,9 +58,10 @@ const AddReviewModal = () => {
             <div>{currentStarRatingText}</div>
             <h4>Do you recommend this product?</h4>
             <form>
-              <input type="radio"/>
-              <input type="radio"/>
-
+              <input id="recommend-yes" name="recommend" type="radio" value="Yes" class="radio-btn recommend"/>
+              <label for="recommend-yes">Yes</label>
+              <input id="recommend-no" name="recommend" type="radio" value="No" class="radio-btn recommend"/>
+              <label for="recommend-no">No</label>
             </form>
           </div>
         </div>
