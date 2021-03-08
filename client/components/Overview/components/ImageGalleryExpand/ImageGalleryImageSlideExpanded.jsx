@@ -10,7 +10,7 @@ import ImageGalleryExpandedZoom from './ImageGalleryExpandedZoom';
 
 const ImageGalleryImageSlideExpanded = ({
   setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
 }) => {
   const [isZoom, setIsZoom] = useState(false);
   return (
@@ -40,20 +40,21 @@ const ImageGalleryImageSlideExpanded = ({
         <React.Fragment key={idx}>
           {(style.url !== null)
             ? (
-              <div
-                id="imagegallery-expanded-slide-image"
-                key={idx}
-                style={idx === currentImageIndex ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
-                alt=""
-                onClick={() => setIsZoom(true)}
-              />
+              <>
+                <div
+                  id="imagegallery-expanded-slide-image"
+                  key={idx}
+                  style={idx === currentImageIndex ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
+                  alt=""
+                  onClick={() => setIsZoom(true)}
+                />
+              </>
             ) : (
               <div
                 key={idx}
                 id="imagegallery-extended-slide-noimage"
                 style={idx === currentImageIndex ? { backgroundImage: `url(${noImage})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${noImage})`, opacity: 0 }}
                 alt=""
-                onClick={() => setOverviewModal(true)}
               />
             ) }
         </React.Fragment>
