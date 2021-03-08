@@ -99,6 +99,31 @@ app.post('/api/addQuestion', (req, res) => {
     });
 })
 
+app.put('/api/helpfulAnswer/:answerId', (req, res) => {
+  const { answerId } = req.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/answers/${answerId}/helpful`, req.params, {
+    headers: { Authorization: API_KEY_BC }
+  })
+    .then((result) => res.sendStatus(204))
+    .catch((err) => {
+      console.log('helpful answer API put req error', err);
+      res.sendStatus(500);
+    });
+});
+
+app.put(`/api/helpfulQuestion/:questId`, (req, res) => {
+  const { questId } = req.params;
+  console.log('question id log:', questId);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/helpful`, req.params, {
+    headers: { Authorization: API_KEY_BC },
+  })
+    .then((result) => res.sendStatus(204))
+    .catch((err) => {
+      console.log('helpful question API put request error', err);
+      res.sendStatus(500);
+    });
+})
+
 app.get('/api/getallstyles', (req, res) => {
   const { id } = req.query;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/styles`, { headers: { Authorization: API_KEY_AF } })

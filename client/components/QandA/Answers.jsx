@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/AnswerStyles.css';
 import TimeAgo from 'react-timeago';
+import AnswerHelpClick from './AnswerHelpClick';
 // import axios from 'axios';
 
 const Answers = ({ answers, loadFlag }) => {
   const [initialAnswers, setInitAnswers] = useState([]);
+  const helpClick = useRef(0);
   // const getInitialAnswers = (questionId) => {
   //   axios.get(`/api/qa/questions/${questionId}/answers`)
   //     .then((result) => {
@@ -40,6 +42,9 @@ const Answers = ({ answers, loadFlag }) => {
   };
   const smallDisplay = displayAnswers(sortAnswers(answers));
 
+
+
+
   useEffect(() => (loadFlag ? setInitAnswers(sortAnswers(answers))
     : setInitAnswers(smallDisplay)), [loadFlag]);
 
@@ -53,7 +58,7 @@ const Answers = ({ answers, loadFlag }) => {
             {answer.body}
             <span className="helpful-yes">
               Helpful?
-              <span href="#"> yes </span>
+              <span> <AnswerHelpClick ansId={answer.answer_id}/> </span>
               <span className="report-answer"> Report </span>
             </span>
           </div>
