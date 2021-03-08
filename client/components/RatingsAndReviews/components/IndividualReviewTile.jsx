@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import HelpfulReviewFeedbackButton from '../components/HelpfulReviewFeedbackButton.jsx'
-import Modal from '../Modals/modalIndex.jsx';
+import ClickedImageModal from '../Modals/ClickedImageModal.jsx';
 import RenderStars from '../../renderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const IndividualReviewTile = ({ productReviewObj }) => {
   const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);
-  const [isModalShowing, setIsModalShowing] = useState(false);
-  const [clickedImageSrc, setClickedImageSrc] = useState('');
 
   const reformattedDate = () => {
     const monthObj = {
@@ -63,24 +61,16 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         : <div>{productReviewObj.body}</div>}
       {productReviewObj.photos
         ? productReviewObj.photos.map((photoObj) => (
-          <img
-            onClick={() => {
-              setIsModalShowing(true);
-              setClickedImageSrc(photoObj.url);
-            }}
-            id="IndividualReviewTile-img"
-            key={photoObj.id}
-            src={photoObj.url}
-            alt="Individual Review Tile"
-          />
+          <div>
+            <ClickedImageModal 
+              id="IndividualReviewTile-img"
+              key={photoObj.id}
+              photoURL={photoObj.url}
+              alt="Individual Review Tile"
+            />
+          </div>
         ))
       : null}
-      <Modal
-        isModalShowing={isModalShowing} 
-        setIsModalShowing={setIsModalShowing}
-        clickedImageSrc={clickedImageSrc}
-        setClickedImageSrc={setClickedImageSrc}
-      />
       <div>{productReviewObj.reviewer_name}</div>
       {productReviewObj.response
       ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
