@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 
 const AddReviewModal = () => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
+    const [reviewBody, setReviewBody] = useState('');
     const reviewModalRef = useRef(null);
 
     //modal functions
@@ -29,6 +30,15 @@ const AddReviewModal = () => {
         setCurrentStarRatingText(starRatingTextObj[value]);
     }
 
+    const reviewBodyCharCount = (num) => {
+      var returnStatment = ''
+      if (num < 50) {
+        returnStatment = `Minimum required characters left: ${50 - num}`;
+      } else {
+        returnStatment = 'Minimum reached';
+      }
+      return returnStatment;
+    }
 
     return (
       <div>
@@ -139,14 +149,16 @@ const AddReviewModal = () => {
               <label for="characteristics-review-fit3">Perfect</label>
               <input id="characteristics-review-fit4" name="fit" type="radio" value="4" class="radio-btn charactertics"/>
               <label for="characteristics-review-fit4">Runs slightly big</label>
-              <input id="characteristics-review-fit4" name="fit" type="radio" value="5" class="radio-btn charactertics"/>
-              <label for="characteristics-review-fit4">Runs big</label>
+              <input id="characteristics-review-fit5" name="fit" type="radio" value="5" class="radio-btn charactertics"/>
+              <label for="characteristics-review-fit5">Runs big</label>
             </form>
             <h3>Review Summary</h3>
             <form>
-              <label for="review-summary-user">Review Summary: </label>
               <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!"></input>
             </form>
+            <h3>Review Body</h3>
+              <input type="text" id="review-body-user" size="70" maxLength="1000" placeholder="Why did you like this product or not?" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
+              <div>{reviewBodyCharCount(reviewBody.length)}</div>
           </div>
         </div>
       </div>
