@@ -73,7 +73,7 @@ const AddReviewModal = () => {
               <input id="recommend-no" name="recommend" type="radio" value="No" class="radio-btn recommend"/>
               <label for="recommend-no">No</label>
             </form>
-            <h3>Characteristic Review</h3>
+            {/* <h3>Characteristic Review</h3>
             <h4>Size</h4>
             <form>
               <input id="characteristics-review-size1" name="size" type="radio" value="1" class="radio-btn charactertics"/>
@@ -151,7 +151,7 @@ const AddReviewModal = () => {
               <label for="characteristics-review-fit4">Runs slightly big</label>
               <input id="characteristics-review-fit5" name="fit" type="radio" value="5" class="radio-btn charactertics"/>
               <label for="characteristics-review-fit5">Runs big</label>
-            </form>
+            </form> */}
             <h3>Review Summary</h3>
             <form>
               <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!"></input>
@@ -159,6 +159,9 @@ const AddReviewModal = () => {
             <h3>Review Body</h3>
               <input type="text" id="review-body-user" size="70" maxLength="1000" placeholder="Why did you like this product or not?" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
               <div>{reviewBodyCharCount(reviewBody.length)}</div>
+            <h3>What is your nickname?</h3>
+              <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
+              <div>For privacy reasons, do not use your full name or email address</div>
           </div>
         </div>
       </div>
