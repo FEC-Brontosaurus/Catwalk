@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import ProductBreakdown from './components/ProductBreakdown.jsx'
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
+import AddReviewModal from './Modals/AddReviewModal.jsx';
+import styles from './styles/RatingsAndReviewsStyles.css';
 
 
 const RatingsAndReviews = ({ currentProduct }) => {
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
-  const [productMetadataObj, setProductMetadataObj] = useState({});
+  const [productMetadataObj, setProductMetadataObj] = useState({});  
 
 
   // given the id from the current product, make an API GET request
@@ -40,6 +42,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
 
   }
 
+
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
@@ -64,6 +67,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
         ))
       : <div>No reviews to display</div>
     }
+    <AddReviewModal />
     </div>
   );
 };
