@@ -20,16 +20,18 @@ const Sizes = ({
   }
 
   return (
-    <SizesRender
-      styleArray={styleArray}
-      setCurrentSize={setCurrentSize}
-      setCurrentQuantity={setCurrentQuantity}
-      currentSize={currentSize}
-      addToCartNoSize={addToCartNoSize}
-      setAddToCartNoSize={setAddToCartNoSize}
-      value={value}
-      setValue={setValue}
-    />
+    <div id="sizes-container">
+      <SizesRender
+        styleArray={styleArray}
+        setCurrentSize={setCurrentSize}
+        setCurrentQuantity={setCurrentQuantity}
+        currentSize={currentSize}
+        addToCartNoSize={addToCartNoSize}
+        setAddToCartNoSize={setAddToCartNoSize}
+        value={value}
+        setValue={setValue}
+      />
+    </div>
   );
 };
 

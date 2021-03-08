@@ -1,7 +1,7 @@
 #addtocart-container {
   width: 100%;
   float: left;
-  position: absolute;
+  position: relative;
   bottom: 5%;
   left: 10%;
   margin: 5px;
@@ -22,4 +22,8 @@
   width: 100%;
   font-size: 15px;
   margin-left: 10px;
+}
+
+#addtocart-button:hover {
+  background-color: rgb(233, 233, 233);
 }
