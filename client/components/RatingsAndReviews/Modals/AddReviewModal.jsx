@@ -4,29 +4,24 @@ import styles from '../styles/RatingsAndReviewsStyles.css';
 
 const AddReviewModal = () => {
     const reviewModalRef = useRef(null);
-    // const closeModal
 
     const openReviewModal = (modal) => {
-        console.log(modal.current)
         modal.current.focus();
         modal.current.style.display = "block";
     }
+
+    const closeReviewModal = (modal) => {
+        modal.current.focus();
+        modal.current.style.display = "none";
+    }
+
     return (
     <div>
-        <button 
-          id="myBtn"
-          onClick={() => {
-            //   console.log(reviewModalRef);
-              openReviewModal(reviewModalRef)
-            }}
-          >Open Modal</button>
-        <div 
-          ref={reviewModalRef}
-          id="myModal" 
-          class="modal">    
-            <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+        <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Open Modal</button>
+        <div ref={reviewModalRef} id="myModal" class="modal">    
+            <div class="modal-content">            
+            <span class="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
+            <h3>Add Review</h3>
             </div>
         </div>
       </div>
