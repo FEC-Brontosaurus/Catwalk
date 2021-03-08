@@ -62,8 +62,8 @@ app.get('/api/qa/questions/:productId', (req, res) => {
 
 app.post('/api/qa/questions/:questId/answers', (req, res) => {
   const { questId } = req.params;
-  console.log(req.body.params);
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/answers`, req.body.params, { headers: { Authorization: API_KEY_BC },
+  //console.log(req.body.params);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/answers`, req.body, { headers: { Authorization: API_KEY_BC },
   })
     .then((result) => res.send(201))
     .catch((err) => {
@@ -88,6 +88,17 @@ app.get('/api/moreAnswers/:questId', (req, res) => {
     });
 });
 
+app.post('/api/addQuestion', (req, res) => {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions', req.body.params, {
+    headers: { Authorization: API_KEY_BC }
+  })
+    .then((result) => res.send(201))
+    .catch((err) => {
+      console.log('error in add question post', err);
+      res.sendStatus(500);
+    });
+})
+
 app.get('/api/getallstyles', (req, res) => {
   const { id } = req.query;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/styles`, { headers: { Authorization: API_KEY_AF } })
@@ -103,11 +114,11 @@ app.get('/api/getallstyles', (req, res) => {
 //  RatingsAndReviews API Requests
 app.get('/api/getAllReviews', (req, res) => {
   const { id } = req.query;
-  console.log(id);
+  // console.log(id);
   const idNum = Number(id);
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/', { headers: { Authorization: API_KEY_AF }, params: { product_id: idNum } })
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.send(results.data.results);
     })
     .catch((err) => {

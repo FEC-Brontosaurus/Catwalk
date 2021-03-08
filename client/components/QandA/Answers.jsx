@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/AnswerStyles.css';
+import TimeAgo from 'react-timeago';
 // import axios from 'axios';
 
 const Answers = ({ answers, loadFlag }) => {
@@ -50,9 +51,6 @@ const Answers = ({ answers, loadFlag }) => {
           <div className="QandA-Answer" key={answer.answer_id.toString()}>
             A:
             {answer.body}
-            <span className="username-timestamp">
-              {answer.answerer_name}
-            </span>
             <span className="helpful-yes">
               Helpful?
               <span href="#"> yes </span>
@@ -62,6 +60,7 @@ const Answers = ({ answers, loadFlag }) => {
           <div>
             {answer.photos.length > 0 ? answer.photos.map((photo) => (<img key={photo} className="answer-image" src={photo}></img>)) : null }
           </div>
+          <div className="username-timestamp"> by {answer.answerer_name}, <TimeAgo date={answer.date} /> </div>
         </div>
       ))}
     </div>

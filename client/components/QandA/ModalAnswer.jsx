@@ -76,7 +76,7 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
         <h2>Submit Your Answer</h2>
         <h3> Product: {title} </h3>
         <h3> Question: {question} </h3>
-        <h4> ID: {id} </h4>
+        {/* <h4> ID: {id} </h4> */}
         {!imageUploadToggle ? <form onSubmit={(event) => submitAnswer(event, userName, userEmail, userAnswer)}>
           <label>Username *</label>
           <input type="text" placeholder="Example: jack543!" value={userName} onInput={(event) => setUserName(event.target.value)} maxLength="60" required></input>
