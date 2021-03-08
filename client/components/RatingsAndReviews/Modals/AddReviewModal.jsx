@@ -142,6 +142,11 @@ const AddReviewModal = () => {
               <input id="characteristics-review-fit4" name="fit" type="radio" value="5" class="radio-btn charactertics"/>
               <label for="characteristics-review-fit4">Runs big</label>
             </form>
+            <h3>Review Summary</h3>
+            <form>
+              <label for="review-summary-user">Review Summary: </label>
+              <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!"></input>
+            </form>
           </div>
         </div>
       </div>
