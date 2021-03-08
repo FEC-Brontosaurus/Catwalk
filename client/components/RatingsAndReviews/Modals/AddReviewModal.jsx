@@ -40,6 +40,11 @@ const AddReviewModal = () => {
       return returnStatment;
     }
 
+    //submit review 
+    const submitReview = () => {
+      console.log('I have been clicked!')
+    }
+
     return (
       <div>
         <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Add Review</button>
@@ -160,8 +165,15 @@ const AddReviewModal = () => {
               <input type="text" id="review-body-user" size="70" maxLength="1000" placeholder="Why did you like this product or not?" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
               <div>{reviewBodyCharCount(reviewBody.length)}</div>
             <h3>What is your nickname?</h3>
-              <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
+              <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
               <div>For privacy reasons, do not use your full name or email address</div>
+            <h3>What is your email?</h3>
+              <input type="text" id="review-body-email" size="70" maxLength="60" placeholder="Example: jackson11@email.com" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
+              <div>For authentication reasons, you will not be emailed</div><br></br>
+            <button
+              type="submit"
+              onClick={() => submitReview()}
+            >Submit Review</button>
           </div>
         </div>
       </div>
