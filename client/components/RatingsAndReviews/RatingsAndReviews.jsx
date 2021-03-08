@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import ProductBreakdown from './components/ProductBreakdown.jsx'
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
+import SpecifiedCharacteristicsAddReviewModal from './Modals/SpecifiedCharacteristicsAddReviewModal.jsx';
 import AddReviewModal from './Modals/AddReviewModal.jsx';
 import styles from './styles/RatingsAndReviewsStyles.css';
 
@@ -67,7 +68,10 @@ const RatingsAndReviews = ({ currentProduct }) => {
         ))
       : <div>No reviews to display</div>
     }
-    <AddReviewModal />
+    {Object.keys(productMetadataObj).length > 0
+      ? <SpecifiedCharacteristicsAddReviewModal />
+      : <AddReviewModal currentProduct_id={currentProduct.id}/>
+    }
     </div>
   );
 };

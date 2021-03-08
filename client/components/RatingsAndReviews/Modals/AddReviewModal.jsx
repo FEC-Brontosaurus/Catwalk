@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
 
-const AddReviewModal = () => {
+const AddReviewModal = ({currentProduct_id}) => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
     const [reviewBody, setReviewBody] = useState('');
     const reviewModalRef = useRef(null);
@@ -31,7 +32,7 @@ const AddReviewModal = () => {
     }
 
     const reviewBodyCharCount = (num) => {
-      var returnStatment = ''
+      var returnStatment = '';
       if (num < 50) {
         returnStatment = `Minimum required characters left: ${50 - num}`;
       } else {
@@ -41,12 +42,17 @@ const AddReviewModal = () => {
     }
 
     //submit review 
-    const submitReview = () => {
-      console.log('I have been clicked!')
+    const submitReview = (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
+      console.log(product_id);
+      // const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
+      // axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
+      //   .catch((err) => console.log(err));
+
     }
 
     return (
       <div>
+        {console.log(currentProduct_id)}
         <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Add Review</button>
         <div ref={reviewModalRef} id="myModal" class="modal">
             <div class="modal-content">            
@@ -78,7 +84,7 @@ const AddReviewModal = () => {
               <input id="recommend-no" name="recommend" type="radio" value="No" class="radio-btn recommend"/>
               <label for="recommend-no">No</label>
             </form>
-            {/* <h3>Characteristic Review</h3>
+            <h3>Characteristic Review</h3>
             <h4>Size</h4>
             <form>
               <input id="characteristics-review-size1" name="size" type="radio" value="1" class="radio-btn charactertics"/>
@@ -156,7 +162,7 @@ const AddReviewModal = () => {
               <label for="characteristics-review-fit4">Runs slightly big</label>
               <input id="characteristics-review-fit5" name="fit" type="radio" value="5" class="radio-btn charactertics"/>
               <label for="characteristics-review-fit5">Runs big</label>
-            </form> */}
+            </form>
             <h3>Review Summary</h3>
             <form>
               <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!"></input>
@@ -171,8 +177,9 @@ const AddReviewModal = () => {
               <input type="text" id="review-body-email" size="70" maxLength="60" placeholder="Example: jackson11@email.com" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
               <div>For authentication reasons, you will not be emailed</div><br></br>
             <button
-              type="submit"
-              onClick={() => submitReview()}
+              type="button"
+              //product_id, rating, summary, body, recommend, name, email, photos, characteristics
+              onClick={() => submitReview(currentProduct_id)}
             >Submit Review</button>
           </div>
         </div>
