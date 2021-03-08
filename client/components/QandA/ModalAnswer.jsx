@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styles from './styles/ModalStyles.css';
 import axios from 'axios';
 import _, { escape } from 'underscore';
-
+import ImageUpload from './ImageUpload';
 const MODAL_STYLE = {
   position: 'fixed',
   top: '50%',
@@ -32,6 +32,8 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
+  const [imageUploadToggle, setImageUploadToggle] = useState(false);
+  const [imageFiles, setImageFiles] = useState([]);
 
   const submitAnswer = (event, name, email, answer) => {
     const answerEsc = _.escape(answer);
@@ -43,7 +45,7 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
         'body': answerEsc,
         'name': nameEsc,
         'email': emailEsc,
-        'photos': ['image@url']
+        'photos': []
       }
     })
      .then((result) => console.log('submitanswer success'))
@@ -58,6 +60,8 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
     setUserAnswer('');
     setUserEmail('');
     setUserName('');
+    setImageFiles([]);
+    setImageUploadToggle(false);
     setOpen(false);
   }
 
@@ -73,17 +77,21 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
         <h3> Product: {title} </h3>
         <h3> Question: {question} </h3>
         <h4> ID: {id} </h4>
-        <form onSubmit={(event) => submitAnswer(event, userName, userEmail, userAnswer)}>
-          <label>Username</label>
-          <input type="text" placeholder="Example: jack543!" value={userName} onInput={(event) => setUserName(event.target.value)}></input>
+        {!imageUploadToggle ? <form onSubmit={(event) => submitAnswer(event, userName, userEmail, userAnswer)}>
+          <label>Username *</label>
+          <input type="text" placeholder="Example: jack543!" value={userName} onInput={(event) => setUserName(event.target.value)} maxLength="60" required></input>
           <p>For privacy reasons, do not use your full name or email address</p>
-          <label>Answer</label>
-          <input type="text" placeholder="Answer" value={userAnswer} onInput={(event) => setUserAnswer(event.target.value)}></input>
-          <label>Email</label>
-          <input type="text" placeholder="Example: jack@email.com" value={userEmail} onInput={(event) => setUserEmail(event.target.value)}></input>
+          <label>Answer *</label>
+          <input type="text" placeholder="Answer" value={userAnswer} onInput={(event) => setUserAnswer(event.target.value)} maxLength="1000" required></input>
+          <label>Email *</label>
+          <input type="email" placeholder="Example: jack@email.com" value={userEmail} onInput={(event) => setUserEmail(event.target.value)} maxLength="60" required></input>
           <p>For authentication reasons, you will not be emailed</p>
+          <button type="button" onClick={() => setImageUploadToggle(true)}> Upload Images </button>
           <button type="Submit">Submit Answer</button>
-        </form>
+        </form> : <ImageUpload imageFiles={imageFiles} setImage={setImageFiles} toggleClose={setImageUploadToggle}/>}
+        <div>{imageFiles.length > 0 ? <div className="upload-image-div">{imageFiles.map((image) => (
+          <img className="thumbnail-image" src={image} style={{width: '100px', height: '100px'}}></img>
+        ))}</div> : null}</div>
         <button type="button" onClick={() => discardAnswer()}>Discard Answer</button>
       </div>
       </>, document.getElementById('portal')

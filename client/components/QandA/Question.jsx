@@ -28,7 +28,7 @@ const Question = ({ questions, loadFlag, title }) => {
         <div>
          {question.question_id === currentQId ? <AnswerModal open={openModal} setOpen={setOpenModal} title={title} question={question.question_body} id={question.question_id}/> : null }
           <div className="QandA-question" key={question.question_id.toString()}>
-            Q: ({question.question_id})
+            Q:
             <span>
               {question.question_body}
             </span>
