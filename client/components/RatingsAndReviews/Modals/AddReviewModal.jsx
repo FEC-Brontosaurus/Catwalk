@@ -57,7 +57,12 @@ const AddReviewModal = () => {
                 </form>
             </div>
             <div>{currentStarRatingText}</div>
+            <h4>Do you recommend this product?</h4>
+            <form>
+              <input type="radio"/>
+              <input type="radio"/>
 
+            </form>
           </div>
         </div>
       </div>
