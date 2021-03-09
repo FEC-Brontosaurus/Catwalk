@@ -44,17 +44,21 @@ const RatingsAndReviews = ({ currentProduct }) => {
     setProductReviewArr(result);
   }
 
+  const sortReviewDisplay = (sortValue) => {
+    console.log('Change! :D', sortValue)
+
+  }
+
 
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
-
       <form>
       <label htmlFor="sort">Sort by: </label>
-      <select name="cars" id="cars">
-        <option value="helpful">Helpful</option>
-        <option value="newest">Newest</option>
+      <select name="sort" id="sort-select" onChange={(event) => sortReviewDisplay(event.target.value)}>
         <option value="relevant">Relevant</option>
+        <option value="helpful" >Helpful</option>
+        <option value="newest">Newest</option>
       </select>
       </form>
 
