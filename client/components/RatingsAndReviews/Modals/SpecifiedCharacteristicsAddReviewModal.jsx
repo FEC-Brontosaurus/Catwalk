@@ -3,7 +3,40 @@ import React, {useState, useRef} from 'react';
 const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
     const [reviewBody, setReviewBody] = useState('');
+    //state to be sent in the post request 
+    const [product_idPOST, setProduct_idPOST] = useState('');
+    const [ratingPOST, setRatingPOST] = useState(null);
+    const [summaryPOST, setSummaryPOST] = useState('');
+    const [bodyPOST, setBodyPOST] = useState('');
+    const [recommendPOST, setRecommendPOST] = useState(null);
+    const [namePOST, setNamePOST] = useState('');
+    const [emailPOST, setEmailPOST] = useState('');
+    const [photosArrPOST, setPhototsArrPOST] = useState([]);
+    const [characteristicsObjPOST, setCharacteristicsObjPOST] = useState({});
+    //useRef for modal rendering
     const reviewModalRef = useRef(null);
+
+    //POST request object
+    const reviewObjPOST = {
+        product_id: product_idPOST,
+        rating: ratingPOST,
+        summary: summaryPOST,
+        body: bodyPOST,
+        recommend: recommendPOST,
+        name: namePOST,
+        email: emailPOST,
+        photos: photosArrPOST,
+        characteristics: characteristicsObjPOST
+     }
+
+    //POST request object
+    //submit review 
+    const submitReview = (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
+        // const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
+        // axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
+        //   .catch((err) => console.log(err));
+    
+        }
 
     //modal functions
     const openReviewModal = (modal) => {
@@ -86,68 +119,58 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
       return returnStatment;
     }
 
-    //submit review 
-    const submitReview = (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
-      // const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
-      // axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
-      //   .catch((err) => console.log(err));
-
-    }
-
     return (
       <div>
         {/* {console.log(characteristicsMetadataObj)} */}
         <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Add Review</button>
-        <div ref={reviewModalRef} id="myModal" class="modal">
-            <div class="modal-content">            
-            <span class="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
+        <div ref={reviewModalRef} id="myModal" className="modal">
+            <div className="modal-content">            
+            <span className="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
             <h2>Add A Review</h2> 
             <h3>Overall Rating</h3>
-            <div class="txt-center">
+            <div className="txt-center">
                 <form>
-                    <div class="rating"> 
-                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                    <div className="rating"> 
+                        <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" />
                         <label for="star5" onMouseOver={() => returnStarRatingText(5)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                        <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" />
                         <label for="star4" onMouseOver={() => returnStarRatingText(4)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                        <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" />
                         <label for="star3" onMouseOver={() => returnStarRatingText(3)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                        <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" />
                         <label for="star2" onMouseOver={() => returnStarRatingText(2)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                        <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" />
                         <label for="star1" onMouseOver={() => returnStarRatingText(1)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <div class="clear"></div>
+                        <div className="clear"></div>
                     </div>
                 </form>
             </div>
             <div>{currentStarRatingText}</div>
             <h3>Do you recommend this product?</h3>
             <form>
-              <input id="recommend-yes" name="recommend" type="radio" value="Yes" class="radio-btn recommend"/>
+              <input id="recommend-yes" name="recommend" type="radio" value="Yes" className="radio-btn recommend"/>
               <label for="recommend-yes">Yes</label>
-              <input id="recommend-no" name="recommend" type="radio" value="No" class="radio-btn recommend"/>
+              <input id="recommend-no" name="recommend" type="radio" value="No" className="radio-btn recommend"/>
               <label for="recommend-no">No</label>
             </form>
             <h3>Characteristic Review</h3>
-            {console.log(characteristicsMetadataObj)}
+            {/* {console.log(characteristicsMetadataObj)} */}
             {Object.keys(characteristicsMetadataObj).map((characteristicName) => {
               return (
-                  
-                <React.Fragment 
-                //   key={}
-                > {console.log(characteristicName)}
-                    <h4>{characteristicName}</h4>
-                    <form>
-                        <input id={`characteristics-review-${characteristicName}1`} name={characteristicName} type="radio" value="1" class="radio-btn characteristics"/>
-                        <label for={`characteristics-review-${characteristicName}1`} >{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
-                        <input id={`characteristics-review-${characteristicName}2`} name={characteristicName} type="radio" value="2" class="radio-btn characteristics"/>
-                        <label for={`characteristics-review-${characteristicName}2`} >{reformatCharacteristicRatingDescriptions(characteristicName, 2)}</label>
-                        <input id={`characteristics-review-${characteristicName}3`} name={characteristicName} type="radio" value="3" class="radio-btn characteristics"/>
-                        <label for={`characteristics-review-${characteristicName}3`} >{reformatCharacteristicRatingDescriptions(characteristicName, 3)}</label>
-                        <input id={`characteristics-review-${characteristicName}4`} name={characteristicName} type="radio" value="4" class="radio-btn characteristics"/>
-                        <label for={`characteristics-review-${characteristicName}4`} >{reformatCharacteristicRatingDescriptions(characteristicName, 4)}</label>
-                        <input id={`characteristics-review-${characteristicName}5`} name={characteristicName} type="radio" value="5" class="radio-btn characteristics"/>
-                        <label for={`characteristics-review-${characteristicName}5`} >{reformatCharacteristicRatingDescriptions(characteristicName, 5)}</label>
+                <React.Fragment > 
+                    <h4 key={`${characteristicsMetadataObj[characteristicName].id}-title`}>{characteristicName}</h4>
+                    <form key={`${characteristicsMetadataObj[characteristicName].id}-form`}>
+                        <input 
+                            key={`${characteristicsMetadataObj[characteristicName].id}-input`}
+                            id={characteristicsMetadataObj[characteristicName].id} 
+                            name={characteristicName}
+                            type="radio" 
+                            className="radio-btn characteristics" 
+                            onClick={(event) => {
+                                setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.id]: 1})
+                            }}
+                        />
+                        <label for={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
                     </form>
                 </React.Fragment>
               )
@@ -156,12 +179,15 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
             <form>
               <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!"></input>
             </form>
+
             <h3>Review Body</h3>
               <input type="text" id="review-body-user" size="70" maxLength="1000" placeholder="Why did you like this product or not?" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
               <div>{reviewBodyCharCount(reviewBody.length)}</div>
+
             <h3>What is your nickname?</h3>
               <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
               <div>For privacy reasons, do not use your full name or email address</div>
+
             <h3>What is your email?</h3>
               <input type="text" id="review-body-email" size="70" maxLength="60" placeholder="Example: jackson11@email.com" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
               <div>For authentication reasons, you will not be emailed</div><br></br>
