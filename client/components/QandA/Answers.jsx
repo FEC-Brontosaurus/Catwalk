@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/AnswerStyles.css';
 import TimeAgo from 'react-timeago';
 import AnswerHelpClick from './AnswerHelpClick';
+import AnswerReport from './AnswerReport';
 // import axios from 'axios';
 
 const Answers = ({ answers, loadFlag }) => {
@@ -49,17 +50,17 @@ const Answers = ({ answers, loadFlag }) => {
     : setInitAnswers(smallDisplay)), [loadFlag]);
 
   return (
-    <div>
-      {answers
-      && initialAnswers.map((answer) => (
-        <div>
-          <div className="QandA-Answer" key={answer.answer_id.toString()}>
+    <>
+      {initialAnswers
+      ? initialAnswers.map((answer, index) => (
+        answer ? <div>
+          <div className="QandA-Answer" key={answer.answer_id.toString() + index}>
             A:
             {answer.body}
             <span className="helpful-yes">
               Helpful?
               <span> <AnswerHelpClick ansId={answer.answer_id}/> </span>
-              <span className="report-answer"> Report </span>
+              <><AnswerReport ansId={answer.answer_id}/></>
             </span>
           </div>
           <div>
@@ -67,8 +68,10 @@ const Answers = ({ answers, loadFlag }) => {
           </div>
           <div className="username-timestamp"> by {answer.answerer_name}, <TimeAgo date={answer.date} /> </div>
         </div>
-      ))}
-    </div>
+        : null )
+      )
+    : null }
+    </>
   );
 };
 
