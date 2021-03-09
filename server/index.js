@@ -191,29 +191,27 @@ app.get('/api/getProductMetadata', (req, res) => {
     })
 })
 
-<<<<<<< HEAD
 app.post('/api/addtocart', (req, res) => {
   const { sku_id } = req.body;
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart', { sku_id }, { headers: { Authorization: API_KEY_AF } })
-=======
+  .then(() => res.send(201))
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+  })
+});
+
 //ADD A REVIEW- add a review for the given product
 app.post('/api/reviews', (req, res) => {
   const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
   // console.log(req.body);
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews', {product_id: product_id, rating: rating, summary: summary, body: body, recommend: recommend, name: name, email: email, photos: photos, characteristics: characteristics}, { headers: { Authorization: API_KEY_GS}})
->>>>>>> 0365da1aff9caa3ddea1c314afca8ea502abd317
     .then(() => res.send(201))
     .catch((err) => {
       console.log(err);
       res.send(500);
-<<<<<<< HEAD
     });
 });
-=======
-    })
-})
->>>>>>> 0365da1aff9caa3ddea1c314afca8ea502abd317
-
 
 //MARK REVIEW AS HELPFUL- updates a review to show it was found helpful
 app.put('/api/reviews/:review_id/helpful', (req, res) => {
