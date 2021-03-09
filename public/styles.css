@@ -20,7 +20,7 @@
   padding:2px;
 } */
 
-#product-info-share {
+/* #product-info-share {
   display: inline-block;
 }
 
@@ -58,7 +58,7 @@
 #sizes-select-addtocart {
   position: absolute;
   z-index: 2;
-}
+} */
 
 /* renderStarsCSS */
 .stars-outer {
@@ -66,11 +66,11 @@
   position: relative;
   font-family: FontAwesome;
 }
- 
+
 .stars-outer::before {
   content: "\f006 \f006 \f006 \f006 \f006";
 }
- 
+
 .stars-inner {
   position: absolute;
   top: 0;
@@ -79,7 +79,7 @@
   overflow: hidden;
   width: 0;
 }
- 
+
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;

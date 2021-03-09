@@ -1,0 +1,24 @@
+#Overview {
+  position: relative;
+  width: 60%;
+  margin: auto;
+  outline: 3px solid black;
+}
+
+#overview-order-container {
+  width: 35%;
+  height: 700px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#no-cart{
+  /* width: 100%; */
+  position: relative;
+  float: left;
+  margin: 5px;
+  left: 10%;
+  width: 100%;
+  display: inline-block;
+}

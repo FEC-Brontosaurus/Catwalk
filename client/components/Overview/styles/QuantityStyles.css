@@ -1,0 +1,25 @@
+#quantity-container{
+  width: 35%;
+  float: right;
+  display: inline-block;
+  margin-top: 5px;
+  left: 2%;
+  position: relative;
+  height: 60px;
+  text-align: center;
+}
+
+#quantity-select-valid, #quantity-select-invalid {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+#quantity-option-valid {
+  height: 60px;
+  width: 100%;
+}
+
+#quantity-option-valid:hover {
+  background-color: rgb(233, 233, 233);
+}

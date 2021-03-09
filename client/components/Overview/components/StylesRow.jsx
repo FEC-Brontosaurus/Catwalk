@@ -16,7 +16,7 @@ const StylesRow = ({
   row, currentStyle, setCurrentStyle, setCurrentSize,
   setCurrentQuantity, setAddToCartNoSize, setValue,
 }) => (
-  <div id="styles-row">
+  <div id="styles-row-container">
     {row.map((style, styleidx) => (
       <div id="style-div" key={style.name + styleidx}>
         <img

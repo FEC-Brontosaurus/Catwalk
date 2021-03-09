@@ -16,7 +16,6 @@ const SizesRender = ({
   if (addToCartNoSize) {
     return (
       <div id="sizes-container-addtocart">
-        <div>Please Select Size</div>
         <select
           id="sizes-select-addtocart"
           value={value}
@@ -46,7 +45,7 @@ const SizesRender = ({
   //  displayed size / current size and reset the quantity selecte
   if (currentSize === null) {
     return (
-      <div>
+      <div id="sizes-select">
         <select
           id="sizes-select"
           value="DEFAULT"
@@ -69,7 +68,7 @@ const SizesRender = ({
   //  when the user selects a different size change the
   //  displayed size / current size and reset the quantity selecte
   return (
-    <div>
+    <div id="sizes-select">
       <select
         id="sizes-select"
         value={currentSize}
