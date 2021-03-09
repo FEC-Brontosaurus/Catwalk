@@ -31,11 +31,11 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
 
     //POST request object
     //submit review 
-    const submitReview = (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
-        // const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
-        // axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
-        //   .catch((err) => console.log(err));
-    }
+    // const submitReview = ({product_id, rating, summary, body, recommend, name, email, photos, characteristics}) => {
+    //     const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
+    //     axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
+    //       .catch((err) => console.log(err));
+    // }
 
     //modal functions
     const openReviewModal = (modal) => {
@@ -295,7 +295,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
               ? <button
                   type="button"
                   onClick={() => {
-                    console.log('I was clicked!', reviewObjPOST);
                     validateOverallRating(ratingPOST);
                     validateRecommemd(recommendPOST);
                     validateCharactertics(characteristicsObjPOST);
@@ -303,7 +302,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                     validateName(namePOST);
                     validateEmail(emailPOST);
                     {canSubmitPOST 
-                      ? (setIsSubmitReviewButtonClickedIs(true), submitReview(reviewObjPOST))
+                      ? (setIsSubmitReviewButtonClickedIs(true)/*, submitReview(reviewObjPOST)*/)
                       : alert('Processing information. Please wait one a moment!');
                     }
                   }}
