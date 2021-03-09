@@ -74,7 +74,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
       <h3> Rating Breakdown</h3>
       <div>Average Rating: {averageRating}</div>
       <div>Total Reviews: {totalReviews}</div>
-      <div>{RenderStars(Number(averageRating))}</div>
+      <RenderStars rating={averageRating}/>
       {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
       <div
         ref={currentFocusedElement5}

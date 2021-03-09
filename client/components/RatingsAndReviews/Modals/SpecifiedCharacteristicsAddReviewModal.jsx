@@ -101,7 +101,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
         <div ref={reviewModalRef} id="myModal" class="modal">
             <div class="modal-content">            
             <span class="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
-            <h2>Add Review</h2> 
+            <h2>Add A Review</h2> 
             <h3>Overall Rating</h3>
             <div class="txt-center">
                 <form>
@@ -129,9 +129,13 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
               <label for="recommend-no">No</label>
             </form>
             <h3>Characteristic Review</h3>
+            {console.log(characteristicsMetadataObj)}
             {Object.keys(characteristicsMetadataObj).map((characteristicName) => {
               return (
-                <React.Fragment>
+                  
+                <React.Fragment 
+                //   key={}
+                > {console.log(characteristicName)}
                     <h4>{characteristicName}</h4>
                     <form>
                         <input id={`characteristics-review-${characteristicName}1`} name={characteristicName} type="radio" value="1" class="radio-btn characteristics"/>
