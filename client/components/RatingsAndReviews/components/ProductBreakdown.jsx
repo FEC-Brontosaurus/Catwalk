@@ -12,7 +12,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import RenderStars from '../../renderStars.jsx';
 // import styles from '../styles/RatingsAndReviewsStyles.css';
 import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
-const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) => {
+const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setOverviewAverage }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
   const currentFocusedElement5 = useRef(null);
@@ -31,6 +31,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
     }
     setTotalReviews(totalReviews);
     setAverageRating((weightedAverageRating / totalReviews).toFixed(1));
+    setOverviewAverage((weightedAverageRating / totalReviews).toFixed(1))
   };
 
   const calculateStarAverageRating = (ratingNum) => {
@@ -114,8 +115,8 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay }) =>
       {Object.keys(productMetadataObj.recommended).length > 0
         ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
         : null}
-        {Object.keys(productMetadataObj.characteristics).length > 0 
-          ? <CharacteristicsBreakdown 
+        {Object.keys(productMetadataObj.characteristics).length > 0
+          ? <CharacteristicsBreakdown
               characteristicsObj={productMetadataObj.characteristics}
             />
           : <div>No characteristics to display</div>

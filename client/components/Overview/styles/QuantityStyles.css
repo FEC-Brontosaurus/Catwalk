@@ -1,0 +1,18 @@
+#quantity-container{
+  width: 30%;
+  left: 10%;
+  display: inline-block;
+  margin: 5px;
+  position: relative;
+  height: 60px;
+}
+
+#quantity-select-valid, #quantity-select-invalid {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+#quantity-option-valid {
+  height: 60px;
+}

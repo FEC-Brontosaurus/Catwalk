@@ -41,22 +41,24 @@ const Styles = ({
   //  then will render each row by calling styles row equal to the amount of rows present
   return (
     <div id="styles-div">
-      {currentStyle ? <div>{currentStyle.name}</div> : null}
+      {currentStyle ? <div id="style-title"><b>Style > </b>{currentStyle.name}</div> : null}
+      <div id="styles-thumbnail-container">
       {styles.map((row, rowidx) => (
         <StylesRow
-          row={row}
-          currentStyle={currentStyle}
-          setCurrentStyle={setCurrentStyle}
-          key={rowidx}
-          rowidx={rowidx}
-          setCurrentSize={setCurrentSize}
-          setCurrentQuantity={setCurrentQuantity}
-          setAddToCartNoSize={setAddToCartNoSize}
-          setValue={setValue}
-          styles={styles}
-          setCurrentImageIndex={setCurrentImageIndex}
+        row={row}
+        currentStyle={currentStyle}
+        setCurrentStyle={setCurrentStyle}
+        key={rowidx}
+        rowidx={rowidx}
+        setCurrentSize={setCurrentSize}
+        setCurrentQuantity={setCurrentQuantity}
+        setAddToCartNoSize={setAddToCartNoSize}
+        setValue={setValue}
+        styles={styles}
+        setCurrentImageIndex={setCurrentImageIndex}
         />
-      ))}
+        ))}
+        </div>
     </div>
   );
 };

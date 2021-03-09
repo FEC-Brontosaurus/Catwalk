@@ -6,10 +6,10 @@ import AddReviewModal from './Modals/AddReviewModal.jsx';
 import styles from './styles/RatingsAndReviewsStyles.css';
 
 
-const RatingsAndReviews = ({ currentProduct }) => {
+const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll }) => {
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
-  const [productMetadataObj, setProductMetadataObj] = useState({});  
+  const [productMetadataObj, setProductMetadataObj] = useState({});
 
 
   // given the id from the current product, make an API GET request
@@ -44,21 +44,22 @@ const RatingsAndReviews = ({ currentProduct }) => {
 
 
   return (
-    <div id="RatingsAndReviews">
+    <div id="RatingsAndReviews" ref={reviewScroll}>
       <h3>Ratings and Reviews</h3>
       {(productReviewArr.length === constantReviewArr.length )
         ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
         : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
       }
       {Object.keys(productMetadataObj).length > 0
-        ? 
-            <ProductBreakdown 
+        ?
+            <ProductBreakdown
             productMetadataObj={productMetadataObj}
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
+            setOverviewAverage={setOverviewAverage}
             />
         : null
       }
-      {productReviewArr.length > 0 
+      {productReviewArr.length > 0
         ? productReviewArr.map((productReviewObj) => (
           <IndividualReviewTile
             key={productReviewObj.review_id}

@@ -1,6 +1,6 @@
 #Overview {
   position: relative;
-  width: 50%;
+  width: 60%;
   margin: auto;
   outline: 3px solid black;
 }
@@ -11,4 +11,8 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
+}
+
+#no-cart{
+  width: 100%;
 }

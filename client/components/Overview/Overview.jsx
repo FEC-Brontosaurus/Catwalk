@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import ProductInformation from './components/ProductInformation';
@@ -7,9 +9,14 @@ import Quantity from './components/Quantity';
 import AddToCart from './components/AddToCart';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import ImageGalleryExpand from './components/ImageGalleryExpand/ImageGalleryExpand';
+import LogClick from '../LogClick';
+import './styles/ProductInformationStyles.css';
+import facebook from '../../../public/static/facebook.png';
+import twitter from '../../../public/static/twitter.png';
+import pinterest from '../../../public/static/pinterest.png';
 import './styles/OverviewStyle.css';
 
-const Overview = ({ currentProduct }) => {
+const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
   //  Current selection of items to be used in specific
   //  components that rely on others existing e.g. size depends on current style
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -73,8 +80,10 @@ const Overview = ({ currentProduct }) => {
       <div id="overview-order-container">
         {(currentStyle) ? (
           <ProductInformation
+            overviewAverage={overviewAverage}
             currentProduct={currentProduct}
             currentStyle={currentStyle}
+            reviewScroll={reviewScroll}
           />
         )
           : null}
@@ -91,6 +100,7 @@ const Overview = ({ currentProduct }) => {
             setCurrentImageIndex={setCurrentImageIndex}
           />
         ) : null}
+        {(addToCartNoSize) ? <div id="no-cart">Please Select Size</div> : <div id="no-cart"> </div>}
         {currentStyle
           ? (
             <Sizes
@@ -122,6 +132,20 @@ const Overview = ({ currentProduct }) => {
         )
           : null }
       </div>
+      {currentProduct
+        ? (
+          <>
+            <div id="product-info-overview">
+              Overview:
+              {currentProduct.description}
+            </div>
+            <div id="product-info-share">
+              <img id="product-info-share-facebook" src={facebook} alt="" onClick={() => LogClick('img', 'Overview')} />
+              <img id="product-info-share-twitter" src={twitter} alt="" onClick={() => LogClick('img', 'Overview')} />
+              <img id="product-info-share-pinterest" src={pinterest} alt="" onClick={() => LogClick('img', 'Overview')} />
+            </div>
+          </>
+        ) : null}
     </div>
   );
 };

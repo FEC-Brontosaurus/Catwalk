@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
 import SizesRender from './SizesRender';
+import '../styles/SizesStyles.css';
 
 //
 const Sizes = ({
