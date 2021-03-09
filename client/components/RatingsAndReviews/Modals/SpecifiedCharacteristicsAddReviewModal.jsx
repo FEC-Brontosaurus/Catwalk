@@ -3,6 +3,7 @@ import React, {useState, useRef} from 'react';
 const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, currentProduct_id}) => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
     //state to be sent in the post request 
+    const [canSubmitPOST, setCanSubmitPOST] = useState(false);
     const [ratingPOST, setRatingPOST] = useState(null);
     const [summaryPOST, setSummaryPOST] = useState('');
     const [reviewBody, setReviewBody] = useState('');
@@ -118,11 +119,50 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
       return returnStatment;
     }
 
+    //validation functions
+    const validateOverallRating = (ratingNum) => {
+        if (!ratingNum) {
+            alert('Please enter Overall Rating on the star bar');
+            setRatingPOST(null);
+            return setCanSubmitPOST(false);
+        }
+        return ratingNum;
+    }
+
+    const validateRecommemd = (recommendBool) => {
+        if (recommendBool === null) {
+            alert('Please enter a recommendation for this product');
+            setRecommendPOST(null);
+            return setCanSubmitPOST(false);
+        }
+        return recommendBool;
+    }
+
+    const validateCharactertics = (characteristicsObj) => {
+        if (Object.keys(characteristicsObj).length !== Object.keys(characteristicsMetadataObj).length) {
+            alert('Please enter a rating for all characteristics');
+            setRecommendPOST({});
+            return setCanSubmitPOST(false);
+        }
+        return characteristicsObj;
+    }
+
+    const validateName = (name) => {
+        if (name.length === 0) {
+            alert('Please enter a nickname');
+            setNamePOST('');
+            return setCanSubmitPOST(false);
+        }
+        return name;
+    }
     const validateEmail = (email) => {
         const re = /\S+@\S+\.\S+/;
         if (!re.test(email)) {
             alert('Please enter valid email');
-            return setEmailPOST('');
+            setEmailPOST('');
+            return setCanSubmitPOST(false);
+        } else {
+            setCanSubmitPOST(true);
         }
         return re.test(email);
     }
@@ -236,6 +276,8 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
               <input type="text" id="review-body-user" size="70" maxLength="1000" placeholder="Why did you like this product or not?" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
               <div>{reviewBodyCharCount(reviewBody.length)}</div>
 
+              <h3>COME BACK HERE FOR PHOTOS COMPONENT</h3>
+
             <h3>What is your nickname?</h3>
               <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" value={namePOST} onChange={(event) => {setNamePOST(event.target.value)}}></input>
               <div>For privacy reasons, do not use your full name or email address</div>
@@ -249,6 +291,10 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
               //product_id, rating, summary, body, recommend, name, email, photos, characteristics
               onClick={() => {
                   console.log('I was clicked!', reviewObjPOST);
+                  validateOverallRating(ratingPOST);
+                  validateRecommemd(recommendPOST);
+                  validateCharactertics(characteristicsObjPOST);
+                  validateName(namePOST);
                   validateEmail(emailPOST);
                 }}
             >Submit Review</button>
