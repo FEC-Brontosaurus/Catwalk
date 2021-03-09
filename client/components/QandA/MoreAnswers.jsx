@@ -3,21 +3,20 @@ import styles from './styles/AnswerStyles.css';
 import TimeAgo from 'react-timeago';
 import AnswerHelpClick from './AnswerHelpClick';
 import AnswerReport from './AnswerReport';
-// import axios from 'axios';
+import axios from 'axios';
 
-const Answers = ({ answers, loadFlag }) => {
+const MoreAnswers = ({ questId }) => {
   const [initialAnswers, setInitAnswers] = useState([]);
   const helpClick = useRef(0);
-  // const getInitialAnswers = (questionId) => {
-  //   axios.get(`/api/qa/questions/${questionId}/answers`)
-  //     .then((result) => {
-  //       setInitAnswers(result.data.results);
-  //       console.log(result.data.results);
-  //     })
-  //     .catch((err) => { console.log('error in answers get req', err); });
-  // };
+  const getInitialAnswers = (questionId) => {
+    axios.get(`/api/moreAnswers/${questionId}`)
+      .then((result) => {
+        sortAnswers(result.data.results);
+      })
+      .catch((err) => { console.log('error in answers get req', err); });
+  };
 
-  // useEffect(() => (questId ? getInitialAnswers(questId) : null), [questId]);
+  useEffect(() => (questId ? getInitialAnswers(questId) : null), [questId]);
 
   const sortAnswers = (unsortedAnswers) => {
     const tempArr = [];
@@ -38,23 +37,23 @@ const Answers = ({ answers, loadFlag }) => {
      return answer.answerer_name.toLowerCase() !== 'seller';
     })
     const helpSort = buyers.sort((a, b) => b.helpfulness - a.helpfulness);
-    return sellers.concat(buyers);
+    setInitAnswers(sellers.concat(buyers));
   };
 
-  const displayAnswers = (sortedArr) => {
-    const tempArr = [];
-    for (let i = 0; i < 2; i += 1) {
-      tempArr.push(sortedArr[i]);
-    }
-    return tempArr;
-  };
-  const smallDisplay = displayAnswers(sortAnswers(answers));
+  // const displayAnswers = (sortedArr) => {
+  //   const tempArr = [];
+  //   for (let i = 0; i < 2; i += 1) {
+  //     tempArr.push(sortedArr[i]);
+  //   }
+  //   return tempArr;
+  // };
+  // const smallDisplay = displayAnswers(sortAnswers(answers));
 
 
 
 
-  useEffect(() => (sortAnswers(answers) ? setInitAnswers(smallDisplay)
-    : null ), [answers]);
+  // useEffect(() => (loadFlag ? setInitAnswers(sortAnswers(answers))
+  //   : setInitAnswers(smallDisplay)), [loadFlag]);
 
   return (
     <>
@@ -82,4 +81,4 @@ const Answers = ({ answers, loadFlag }) => {
   );
 };
 
-export default Answers;
+export default MoreAnswers;
