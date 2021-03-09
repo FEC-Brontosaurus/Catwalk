@@ -100,7 +100,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
             setCurrentImageIndex={setCurrentImageIndex}
           />
         ) : null}
-        {(addToCartNoSize) ? <div id="no-cart">Please Select Size</div> : <div id="no-cart"> </div>}
+        {(addToCartNoSize) ? <div id="no-cart">Please Select Size</div> : <div id="no-cart" />}
         {currentStyle
           ? (
             <Sizes
