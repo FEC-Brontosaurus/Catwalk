@@ -161,18 +161,68 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                     <h4 key={`${characteristicsMetadataObj[characteristicName].id}-title`}>{characteristicName}</h4>
                     <form key={`${characteristicsMetadataObj[characteristicName].id}-form`}>
                         <input 
-                            key={`${characteristicsMetadataObj[characteristicName].id}-input`}
-                            id={characteristicsMetadataObj[characteristicName].id} 
+                            key={`${characteristicsMetadataObj[characteristicName].id}-input-1`}
+                            className={characteristicsMetadataObj[characteristicName].id} 
                             name={characteristicName}
                             type="radio" 
-                            className="radio-btn characteristics" 
-                            onClick={(event) => {
-                                setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.id]: 1})
-                            }}
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 1})}}
                         />
                         <label 
-                          key={`${characteristicsMetadataObj[characteristicName].id}-label`}
-                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
+                          key={`${characteristicsMetadataObj[characteristicName].id}-label-1`}
+                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}
+                        </label>
+
+                        <input 
+                            key={`${characteristicsMetadataObj[characteristicName].id}-input-2`}
+                            className={characteristicsMetadataObj[characteristicName].id} 
+                            name={characteristicName}
+                            type="radio" 
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 2})}}
+                        />
+                        <label 
+                          key={`${characteristicsMetadataObj[characteristicName].id}-label-2`}
+                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 2)}
+                        </label>
+
+                        <input 
+                            key={`${characteristicsMetadataObj[characteristicName].id}-input-3`}
+                            className={characteristicsMetadataObj[characteristicName].id} 
+                            name={characteristicName}
+                            type="radio" 
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 3})}}
+                        />
+                        <label 
+                          key={`${characteristicsMetadataObj[characteristicName].id}-label-3`}
+                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 3)}
+                        </label>
+
+                        <input 
+                            key={`${characteristicsMetadataObj[characteristicName].id}-input-4`}
+                            className={characteristicsMetadataObj[characteristicName].id} 
+                            name={characteristicName}
+                            type="radio" 
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 4})}}
+                        />
+                        <label 
+                          key={`${characteristicsMetadataObj[characteristicName].id}-label-4`}
+                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 4)}
+                        </label>
+
+
+
+                        <input 
+                            key={`${characteristicsMetadataObj[characteristicName].id}-input-5`}
+                            className={characteristicsMetadataObj[characteristicName].id} 
+                            name={characteristicName}
+                            type="radio" 
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 5})}}
+                        />
+                        <label 
+                          key={`${characteristicsMetadataObj[characteristicName].id}-label-5`}
+                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 5)}
+                        </label>
+
+
                     </form>
                 </React.Fragment>
               )
