@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div id="App-div">
       {(currentProduct) ? <Overview currentProduct={currentProduct} /> : null}
-      {(currentProduct) ? <QandA id={currentProduct.id} /> : null}
+      {(currentProduct) ? <QandA id={currentProduct.id} title={currentProduct.name} /> : null}
       {(currentProduct) ? <RatingsAndReviews currentProduct={currentProduct} /> : null}
     </div>
   );

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers';
+import AnswerModal from './ModalAnswer';
 
-const Question = ({ questions, loadFlag }) => {
-  const [moreAnswers, setMoreAnswers] = useState([]);
+const Question = ({ questions, loadFlag, title }) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [currentQId, setCurrentQId] = useState(0);
 
   // const handleMoreAnswers = (e, value) => {
   //   e.preventDefault();
@@ -14,11 +16,17 @@ const Question = ({ questions, loadFlag }) => {
   //     })
   //     .catch((err) => { console.log('error in handle more answers', err); });
   // };
-  console.log(questions);
+  const handleAddAnswer = (e, clickId) => {
+    e.preventDefault();
+    setCurrentQId(clickId);
+    setOpenModal(true);
+  }
+
   return (
     <div>
-      {questions && questions.map((question) => (
+      {questions ? questions.map((question) => (
         <div>
+         {question.question_id === currentQId ? <AnswerModal open={openModal} setOpen={setOpenModal} title={title} question={question.question_body} id={question.question_id}/> : null }
           <div className="QandA-question" key={question.question_id.toString()}>
             Q:
             <span>
@@ -30,12 +38,12 @@ const Question = ({ questions, loadFlag }) => {
                 yes
               </span>
             </span>
-            <span className="add-an-answer"> Add an Answer + </span>
+            <button  className="add-an-answer" onClick={(e) => handleAddAnswer(e, question.question_id)}> Add an Answer + </button>
           </div>
           {Object.keys(question.answers).length > 0
             && <Answers loadFlag={loadFlag} answers={question.answers} /> }
         </div>
-      )) }
+      )) : null }
     </div>
   );
 };
