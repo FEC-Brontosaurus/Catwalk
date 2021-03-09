@@ -66,7 +66,7 @@ const Answers = ({ answers, loadFlag }) => {
             {answer.body}
             <span className="helpful-yes">
               Helpful?
-              <span> <AnswerHelpClick ansId={answer.answer_id}/> </span>
+              <span> <AnswerHelpClick ansId={answer.answer_id}/> <span> ({answer.helpfulness})</span> </span>
               <><AnswerReport ansId={answer.answer_id}/></>
             </span>
           </div>

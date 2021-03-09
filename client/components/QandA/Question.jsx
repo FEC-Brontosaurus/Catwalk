@@ -49,6 +49,7 @@ const Question = ({ questions, loadFlag, title }) => {
               <>
                 <QuestionHelpClick questId={question.question_id}/>
               </>
+              ({question.question_helpfulness})
             </span>
             <span className="report-style">
               <QuestionReport questId={question.question_id} />
