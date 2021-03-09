@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import _, { sortBy } from 'underscore';
 import ProductBreakdown from './components/ProductBreakdown.jsx'
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
+import SpecifiedCharacteristicsAddReviewModal from './Modals/SpecifiedCharacteristicsAddReviewModal.jsx';
 import AddReviewModal from './Modals/AddReviewModal.jsx';
 import styles from './styles/RatingsAndReviewsStyles.css';
 
@@ -9,7 +11,9 @@ import styles from './styles/RatingsAndReviewsStyles.css';
 const RatingsAndReviews = ({ currentProduct }) => {
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
-  const [productMetadataObj, setProductMetadataObj] = useState({});  
+  const [productMetadataObj, setProductMetadataObj] = useState({});
+  const [characteristicsMetadataObj, setCharacteristicsMetadataObj] = useState({});
+  const [isSorted, setIsSorted] = useState(false);
 
 
   // given the id from the current product, make an API GET request
@@ -29,6 +33,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
       .then((results) => {
         // console.log('getProductMetaData: ', results.data);
         setProductMetadataObj(results.data)
+        setCharacteristicsMetadataObj(results.data.characteristics);
       })
       .catch((err) => console.log(err));
   }
@@ -39,23 +44,45 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const filterRatingReviewsDisplay = (ratingNum) => {
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
     setProductReviewArr(result);
+  }
 
+  const sortReviewDisplay = (sortValue) => {
+    if (sortValue === 'helpful') {
+      const helpfulSortArr = _.sortBy(constantReviewArr, 'helpfulness');
+      setProductReviewArr(helpfulSortArr.reverse());
+    } else if (sortValue === 'newest') {
+      const newestSortArr = _.sortBy(constantReviewArr, 'date');
+      setProductReviewArr(newestSortArr.reverse()); 
+    } else {
+      const relevantSortArrByDate = _.sortBy(constantReviewArr, 'date');
+      const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless')
+      setProductReviewArr(relevanceSortArr);    
+    } 
   }
 
 
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
+      <form>
+      <label htmlFor="sort">Sort by: </label>
+      <select name="sort" id="sort-select" onChange={(event) => {getAllReviews(), sortReviewDisplay(event.target.value), setIsSorted(true);}}>
+        {isSorted ? null : <option value="start">Select option</option>}
+        <option value="relevant">Relevant</option>
+        <option value="helpful">Helpful</option>
+        <option value="newest">Newest</option>
+      </select>
+      </form>
+
       {(productReviewArr.length === constantReviewArr.length )
         ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
         : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
       }
       {Object.keys(productMetadataObj).length > 0
-        ? 
-            <ProductBreakdown 
+        ? <ProductBreakdown 
             productMetadataObj={productMetadataObj}
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
-            />
+          />
         : null
       }
       {productReviewArr.length > 0 
@@ -67,7 +94,14 @@ const RatingsAndReviews = ({ currentProduct }) => {
         ))
       : <div>No reviews to display</div>
     }
-    <AddReviewModal />
+    {Object.keys(characteristicsMetadataObj).length > 0
+      ? <SpecifiedCharacteristicsAddReviewModal 
+          characteristicsMetadataObj={characteristicsMetadataObj}
+          currentProduct_id={currentProduct.id}
+        />
+      // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
+      : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
+    }
     </div>
   );
 };

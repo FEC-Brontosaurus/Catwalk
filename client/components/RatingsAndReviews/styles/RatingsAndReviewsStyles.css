@@ -1,4 +1,4 @@
-#IndividualReviewTile-div {
+.IndividualReviewTile-div {
   background-color: cadetblue;
 }
 
@@ -18,15 +18,14 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  /* flex-direction: column; */
+  flex-direction: column;
   z-index: 3; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
+  max-height: 800px;
   width: 100%; /* Full width */
-  /* height: 100%; Full height */
-  height: 700px; /*Full height */
-  overflow: scroll; /* Enable scroll if needed */
+  overflow: scroll; 
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
