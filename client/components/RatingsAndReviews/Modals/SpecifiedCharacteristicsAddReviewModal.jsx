@@ -140,10 +140,18 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
     const validateCharactertics = (characteristicsObj) => {
         if (Object.keys(characteristicsObj).length !== Object.keys(characteristicsMetadataObj).length) {
             alert('Please enter a rating for all characteristics');
-            setRecommendPOST({});
+            setCharacteristicsObjPOST({});
             return setCanSubmitPOST(false);
         }
         return characteristicsObj;
+    }
+
+    const validateBody = (body) => {
+        if (body.length < 50) {
+            alert('Please write a review of at least 50 characters');
+            return setCanSubmitPOST(false);
+        }
+        return body;
     }
 
     const validateName = (name) => {
@@ -291,6 +299,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                     validateOverallRating(ratingPOST);
                     validateRecommemd(recommendPOST);
                     validateCharactertics(characteristicsObjPOST);
+                    validateBody(reviewBody);
                     validateName(namePOST);
                     validateEmail(emailPOST);
                     {canSubmitPOST 
