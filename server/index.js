@@ -193,10 +193,11 @@ app.get('/api/getProductMetadata', (req, res) => {
 
 //ADD A REVIEW- add a review for the given product
 app.post('/api/reviews', (req, res) => {
-  const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
+  // const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body.params;
   // console.log(req.body);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews', {product_id: product_id, rating: rating, summary: summary, body: body, recommend: recommend, name: name, email: email, photos: photos, characteristics: characteristics}, { headers: { Authorization: API_KEY_GS}})
-    .then(() => res.send(201))
+  // axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews', {product_id: product_id, rating: rating, summary: summary, body: body, recommend: recommend, name: name, email: email, photos: photos, characteristics: characteristics}, { headers: { Authorization: API_KEY_GS}})
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews', req.body,  { headers: { Authorization: API_KEY_GS}})
+  .then(() => res.send(201))
     .catch((err) => {
       console.log(err);
       res.send(500);
