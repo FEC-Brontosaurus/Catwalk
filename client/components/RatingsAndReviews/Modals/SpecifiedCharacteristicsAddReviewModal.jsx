@@ -21,7 +21,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
         rating: ratingPOST,
         summary: summaryPOST,
         body: reviewBody,
-        // body: bodyPOST
         recommend: recommendPOST,
         name: namePOST,
         email: emailPOST,
@@ -35,8 +34,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
         // const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
         // axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
         //   .catch((err) => console.log(err));
-    
-        }
+    }
 
     //modal functions
     const openReviewModal = (modal) => {
@@ -146,7 +144,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
         }
         return characteristicsObj;
     }
-
+    
     const validateName = (name) => {
         if (name.length === 0) {
             alert('Please enter a nickname');
@@ -155,6 +153,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
         }
         return name;
     }
+
     const validateEmail = (email) => {
         const re = /\S+@\S+\.\S+/;
         if (!re.test(email)) {
@@ -296,6 +295,11 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                   validateCharactertics(characteristicsObjPOST);
                   validateName(namePOST);
                   validateEmail(emailPOST);
+                  {canSubmitPOST 
+                    ? console.log('I can be submitted as a POST request!')
+                    : alert('Processing information. Please wait one a moment!');
+                  }
+
                 }}
             >Submit Review</button>
           </div>
