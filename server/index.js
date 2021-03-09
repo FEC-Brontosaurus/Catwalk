@@ -40,57 +40,57 @@ app.post('/api/interactions', (req, res) => {
     });
 });
 
-// app.get('/api/qa/questions/:productId', (req, res) => {
-//   const { productId } = req.params;
-//   const numId = Number(productId);
-//   // console.log(numId);
-//   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions', {
-//     headers: { Authorization: API_KEY_BC },
-//     params: {
-//       product_id: numId,
-//       page: 2,
-//       count: 5,
-//     },
+app.get('/api/qa/questions/:productId', (req, res) => {
+  const { productId } = req.params;
+  const numId = Number(productId);
+  // console.log(numId);
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions', {
+    headers: { Authorization: API_KEY_BC },
+    params: {
+      product_id: numId,
+      page: 2,
+      count: 5,
+    },
 
-//   })
-//     .then((results) => res.send(results.data))
-//     .catch((err) => {
-//       console.log(err);
-//       res.sendStatus(500);
-//     });
-// });
+  })
+    .then((results) => res.send(results.data))
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
 
-// app.get('/api/qa/questions/:questId/answers', (req, res) => {
-//   const { questId } = req.params;
-//   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
-//     headers: { Authorization: API_KEY_BC },
-//     params: {
-//       page: 1,
-//       count: 2,
-//     },
-//   })
-//     .then((result) => res.send(result.data))
-//     .catch((err) => {
-//       console.log('error in api get answers req', err);
-//       res.sendStatus(500);
-//     });
-// });
+app.get('/api/qa/questions/:questId/answers', (req, res) => {
+  const { questId } = req.params;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
+    headers: { Authorization: API_KEY_BC },
+    params: {
+      page: 1,
+      count: 2,
+    },
+  })
+    .then((result) => res.send(result.data))
+    .catch((err) => {
+      console.log('error in api get answers req', err);
+      res.sendStatus(500);
+    });
+});
 
-// app.get('/api/moreAnswers/:questId', (req, res) => {
-//   const { questId } = req.params;
-//   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
-//     headers: { Authorization: API_KEY_BC },
-//     params: {
-//       page: 1,
-//       count: 4,
-//     },
-//   })
-//     .then((result) => res.send(result.data))
-//     .catch((err) => {
-//       console.log('error in api get more answers req', err);
-//       res.sendStatus(500);
-//     });
-// });
+app.get('/api/moreAnswers/:questId', (req, res) => {
+  const { questId } = req.params;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
+    headers: { Authorization: API_KEY_BC },
+    params: {
+      page: 1,
+      count: 4,
+    },
+  })
+    .then((result) => res.send(result.data))
+    .catch((err) => {
+      console.log('error in api get more answers req', err);
+      res.sendStatus(500);
+    });
+});
 
 app.get('/api/getallstyles', (req, res) => {
   const { id } = req.query;
