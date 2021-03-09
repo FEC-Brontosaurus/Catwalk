@@ -81,4 +81,112 @@ describe('Style Tests', () => {
     //  expect that the current state should only be one style
     await expect(currentStyle).toStrictEqual({ style_id: 110042, name: 'Blue', photos: [{ thumbnail_url: 'test2' }] });
   });
+
+  it('If there is an image and the image is clicked required fucntions should be called', async () => {
+    //  create dummy variables to simulate render
+    const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };
+    const row = [
+      { style_id: 110041, name: 'Cyan', photos: [{ thumbnail_url: 'test1' }] },
+      { style_id: 110042, name: 'Blue', photos: [{ thumbnail_url: 'test2' }] },
+      { style_id: 110043, name: 'Purple', photos: [{ thumbnail_url: 'test3' }] },
+      { style_id: 110044, name: 'Red', photos: [{ thumbnail_url: 'test4' }] }];
+    const setAddToCartNoSize = jest.fn();
+    const setCurrentQuantity = jest.fn();
+    const setCurrentSize = jest.fn();
+    const setValue = jest.fn();
+    const setCurrentStyle = jest.fn();
+
+    //  simulate what is rendering to the screen
+    render(<StylesRow
+      setCurrentStyle={setCurrentStyle}
+      currentStyle={currentStyle}
+      row={row}
+      setCurrentSize={setCurrentSize}
+      setAddToCartNoSize={setAddToCartNoSize}
+      setCurrentQuantity={setCurrentQuantity}
+      setValue={setValue}
+    />);
+
+    //  simulate a click on one of the images
+    await fireEvent.click(screen.getByTestId('Blue'));
+
+    //  expect that the current state should only be one style
+    await expect(setCurrentStyle).toBeCalled();
+    await expect(setAddToCartNoSize).toBeCalled();
+    await expect(setCurrentSize).toBeCalled();
+    await expect(setCurrentQuantity).toBeCalled();
+    await expect(setValue).toBeCalled();
+  });
+
+  it('If the image checkmark is clicked required functions should be called', async () => {
+    //  create dummy variables to simulate render
+    const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };
+    const row = [
+      { style_id: 110041, name: 'Cyan', photos: [{ thumbnail_url: 'test1' }] },
+      { style_id: 110042, name: 'Blue', photos: [{ thumbnail_url: 'test2' }] },
+      { style_id: 110043, name: 'Purple', photos: [{ thumbnail_url: 'test3' }] },
+      { style_id: 110044, name: 'Red', photos: [{ thumbnail_url: 'test4' }] }];
+    const setAddToCartNoSize = jest.fn();
+    const setCurrentQuantity = jest.fn();
+    const setCurrentSize = jest.fn();
+    const setValue = jest.fn();
+    const setCurrentStyle = jest.fn();
+
+    //  simulate what is rendering to the screen
+    render(<StylesRow
+      setCurrentStyle={setCurrentStyle}
+      currentStyle={currentStyle}
+      row={row}
+      setCurrentSize={setCurrentSize}
+      setAddToCartNoSize={setAddToCartNoSize}
+      setCurrentQuantity={setCurrentQuantity}
+      setValue={setValue}
+    />);
+
+    //  simulate a click on one of the images
+    await fireEvent.click(screen.getByTestId('thumbnailcheckBlue'));
+
+    //  expect that the current state should only be one style
+    await expect(setCurrentStyle).toBeCalled();
+    await expect(setAddToCartNoSize).toBeCalled();
+    await expect(setCurrentSize).toBeCalled();
+    await expect(setCurrentQuantity).toBeCalled();
+    await expect(setValue).toBeCalled();
+  });
+
+  it('If there is no image and the image is clicked required functions should be called', async () => {
+    //  create dummy variables to simulate render
+    const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };
+    const row = [
+      { style_id: 110041, name: 'Cyan', photos: [{ thumbnail_url: 'test1' }] },
+      { style_id: 110042, name: 'Blue', photos: [{ thumbnail_url: null }] },
+      { style_id: 110043, name: 'Purple', photos: [{ thumbnail_url: 'test3' }] },
+      { style_id: 110044, name: 'Red', photos: [{ thumbnail_url: 'test4' }] }];
+    const setAddToCartNoSize = jest.fn();
+    const setCurrentQuantity = jest.fn();
+    const setCurrentSize = jest.fn();
+    const setValue = jest.fn();
+    const setCurrentStyle = jest.fn();
+
+    //  simulate what is rendering to the screen
+    render(<StylesRow
+      setCurrentStyle={setCurrentStyle}
+      currentStyle={currentStyle}
+      row={row}
+      setCurrentSize={setCurrentSize}
+      setAddToCartNoSize={setAddToCartNoSize}
+      setCurrentQuantity={setCurrentQuantity}
+      setValue={setValue}
+    />);
+
+    //  simulate a click on one of the images
+    await fireEvent.click(screen.getByTestId('noimageBlue'));
+
+    //  expect that the current state should only be one style
+    await expect(setCurrentStyle).toBeCalled();
+    await expect(setAddToCartNoSize).toBeCalled();
+    await expect(setCurrentSize).toBeCalled();
+    await expect(setCurrentQuantity).toBeCalled();
+    await expect(setValue).toBeCalled();
+  });
 });
