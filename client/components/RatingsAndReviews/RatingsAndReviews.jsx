@@ -42,8 +42,6 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const filterRatingReviewsDisplay = (ratingNum) => {
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
     setProductReviewArr(result);
-
-
   }
 
 
