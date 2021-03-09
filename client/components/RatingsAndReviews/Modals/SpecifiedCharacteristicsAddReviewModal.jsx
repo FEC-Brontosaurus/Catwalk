@@ -7,7 +7,9 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
     const [product_idPOST, setProduct_idPOST] = useState('');
     const [ratingPOST, setRatingPOST] = useState(null);
     const [summaryPOST, setSummaryPOST] = useState('');
-    const [bodyPOST, setBodyPOST] = useState('');
+    // const [bodyPOST, setBodyPOST] = useState('');
+    // const [reviewBody, setReviewBody] = useState('');
+
     const [recommendPOST, setRecommendPOST] = useState(null);
     const [namePOST, setNamePOST] = useState('');
     const [emailPOST, setEmailPOST] = useState('');
@@ -21,7 +23,8 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
         product_id: product_idPOST,
         rating: ratingPOST,
         summary: summaryPOST,
-        body: bodyPOST,
+        body: reviewBody,
+        // body: bodyPOST
         recommend: recommendPOST,
         name: namePOST,
         email: emailPOST,
@@ -126,20 +129,20 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
         <div ref={reviewModalRef} id="myModal" className="modal">
             <div className="modal-content">            
             <span className="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
-            <h2>Add A Review</h2> 
+            <h2>Add a Review</h2> 
             <h3>Overall Rating</h3>
             <div className="txt-center">
                 <form>
                     <div className="rating"> 
-                        <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" />
+                        <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" onClick={() => setRatingPOST(5)}/>
                         <label htmlFor="star5" onMouseOver={() => returnStarRatingText(5)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" />
+                        <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => setRatingPOST(4)}/>
                         <label htmlFor="star4" onMouseOver={() => returnStarRatingText(4)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" />
+                        <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => setRatingPOST(3)}/>
                         <label htmlFor="star3" onMouseOver={() => returnStarRatingText(3)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" />
+                        <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => setRatingPOST(2)}/>
                         <label htmlFor="star2" onMouseOver={() => returnStarRatingText(2)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" />
+                        <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => setRatingPOST(1)}/>
                         <label htmlFor="star1" onMouseOver={() => returnStarRatingText(1)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <div className="clear"></div>
                     </div>
@@ -171,7 +174,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-1`}
                           htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}
                         </label>
-
                         <input 
                             key={`${characteristicsMetadataObj[characteristicName].id}-input-2`}
                             className={characteristicsMetadataObj[characteristicName].id} 
@@ -183,7 +185,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-2`}
                           htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 2)}
                         </label>
-
                         <input 
                             key={`${characteristicsMetadataObj[characteristicName].id}-input-3`}
                             className={characteristicsMetadataObj[characteristicName].id} 
@@ -195,7 +196,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-3`}
                           htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 3)}
                         </label>
-
                         <input 
                             key={`${characteristicsMetadataObj[characteristicName].id}-input-4`}
                             className={characteristicsMetadataObj[characteristicName].id} 
@@ -207,9 +207,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-4`}
                           htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 4)}
                         </label>
-
-
-
                         <input 
                             key={`${characteristicsMetadataObj[characteristicName].id}-input-5`}
                             className={characteristicsMetadataObj[characteristicName].id} 
@@ -221,8 +218,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-5`}
                           htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 5)}
                         </label>
-
-
                     </form>
                 </React.Fragment>
               )
@@ -246,7 +241,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
             <button
               type="button"
               //product_id, rating, summary, body, recommend, name, email, photos, characteristics
-              onClick={() => console.log('I was clicked!')}
+              onClick={() => console.log('I was clicked!', reviewObjPOST)}
             >Submit Review</button>
           </div>
         </div>
