@@ -73,7 +73,8 @@ const RatingsAndReviews = ({ currentProduct }) => {
           characteristicsMetadataObj={characteristicsMetadataObj}
           currentProduct_id={currentProduct.id}
         />
-      : <AddReviewModal currentProduct_id={currentProduct.id}/>
+      // : <AddReviewModal currentProduct_id={currentProduct.id}/>
+      : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
     }
     </div>
   );
