@@ -60,18 +60,14 @@ app.get('/api/qa/questions/:productId', (req, res) => {
     });
 });
 
-app.get('/api/qa/questions/:questId/answers', (req, res) => {
+app.post('/api/qa/questions/:questId/answers', (req, res) => {
   const { questId } = req.params;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${Number(questId)}/answers`, {
-    headers: { Authorization: API_KEY_BC },
-    params: {
-      page: 1,
-      count: 2,
-    },
+  //console.log(req.body.params);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/answers`, req.body, { headers: { Authorization: API_KEY_BC },
   })
-    .then((result) => res.send(result.data))
+    .then((result) => res.send(201))
     .catch((err) => {
-      console.log('error in api get answers req', err);
+      console.log('error in api post answers req', err);
       res.sendStatus(500);
     });
 });
@@ -91,6 +87,66 @@ app.get('/api/moreAnswers/:questId', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+app.post('/api/addQuestion', (req, res) => {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions', req.body.params, {
+    headers: { Authorization: API_KEY_BC }
+  })
+    .then((result) => res.send(201))
+    .catch((err) => {
+      console.log('error in add question post', err);
+      res.sendStatus(500);
+    });
+})
+
+app.put('/api/helpfulAnswer/:answerId', (req, res) => {
+  const { answerId } = req.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/answers/${answerId}/helpful`, req.params, {
+    headers: { Authorization: API_KEY_BC }
+  })
+    .then((result) => res.sendStatus(204))
+    .catch((err) => {
+      console.log('helpful answer API put req error', err);
+      res.sendStatus(500);
+    });
+});
+
+app.put(`/api/helpfulQuestion/:questId`, (req, res) => {
+  const { questId } = req.params;
+  console.log('question id log:', questId);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/helpful`, req.params, {
+    headers: { Authorization: API_KEY_BC },
+  })
+    .then((result) => res.sendStatus(204))
+    .catch((err) => {
+      console.log('helpful question API put request error', err);
+      res.sendStatus(500);
+    });
+})
+
+app.put('/api/reportAnswer/:answerId', (req, res) => {
+  const { answerId } = req.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/answers/${answerId}/report`, req.params, {
+    headers: { Authorization: API_KEY_BC },
+  })
+  .then((result) => res.sendStatus(204))
+  .catch((err) => {
+    console.log('Report answer API put request error', err);
+    res.sendStatus(500);
+  });
+})
+
+app.put('/api/reportQuestion/:questionId', (req, res) => {
+  const { questionId } = req.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/answers/${questionId}/report`, req.params, {
+    headers: { Authorization: API_KEY_BC },
+  })
+  .then((result) => res.sendStatus(204))
+  .catch((err) => {
+    console.log('Report question API put request error', err);
+    res.sendStatus(500);
+  });
+})
 
 app.get('/api/getallstyles', (req, res) => {
   const { id } = req.query;
