@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import axios from 'axios';
 import _, { escape } from 'underscore';
 
 const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, currentProduct_id}) => {
@@ -31,12 +32,10 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
      }
 
     //POST request object
-    //submit review 
-    // const submitReview = ({product_id, rating, summary, body, recommend, name, email, photos, characteristics}) => {
-    //     const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
-    //     axios.post('http://localhost:3000/api/reviews', { product_id, rating, summary, body, recommend, name, email, photos, characteristics })
-    //       .catch((err) => console.log(err));
-    // }
+    const submitReview = () => {
+      axios.post('http://localhost:3000/api/reviews', reviewObjPOST)
+        .catch((err) => console.log(err));
+    }
 
     //modal functions
     const openReviewModal = (modal) => {
@@ -303,8 +302,8 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                     validateName(namePOST);
                     validateEmail(emailPOST);
                     {canSubmitPOST 
-                      ? (setIsSubmitReviewButtonClickedIs(true)/*, submitReview(reviewObjPOST)*/)
-                      : alert('Processing information. Please wait one a moment!');
+                      ? (setIsSubmitReviewButtonClickedIs(true), submitReview())
+                      : alert('Processing information. Please wait one a moment!')
                     }
                   }}
                 >Submit Review</button>
