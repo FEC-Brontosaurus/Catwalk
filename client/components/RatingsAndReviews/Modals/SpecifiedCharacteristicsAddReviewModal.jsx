@@ -167,7 +167,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
         if (!re.test(email)) {
             alert('Please enter valid email');
             setEmailPOST('');
-            return setCanSubmitPOST(false);
+            setCanSubmitPOST(false);
         } else {
           const emailEsc = _.escape(email);
           setEmailPOST(emailEsc);
@@ -301,13 +301,11 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                     validateBody(reviewBody);
                     validateName(namePOST);
                     validateEmail(emailPOST);
-                    {canSubmitPOST 
-                      ? (setIsSubmitReviewButtonClickedIs(true), submitReview())
-                      : alert('Processing information. Please wait one a moment!')
-                    }
+                    setIsSubmitReviewButtonClickedIs(true);
                   }}
-                >Submit Review</button>
-              : <button type="button" style={{color: "#a6a6a6"}}>Submit Review</button>
+                >Submit review for processing?</button>
+              : <button type="button" 
+                  onClick={() => {canSubmitPOST ? submitReview() : null}}>Submit Review</button>
             }
           </div>
         </div>
