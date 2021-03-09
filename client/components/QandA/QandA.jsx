@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Question from './Question';
 import Search from './Search';
+import QuestionModal from './QuestionModal';
 
-const QandA = ({ id }) => {
+const QandA = ({ id, title }) => {
   const [initialQuestions, setInitQuestions] = useState([]);
   const [loadMoreQuestions, setLoadMoreQuestions] = useState(false);
   const [masterList, setMasterList] = useState([]);
+  const [questionModalToggle, setQuestionModalToggle] = useState(false);
 
   const sortInitialQuestions = (initial) => {
     //  takes initial questions array
     // sorts by helpfulness
     const sorted = initial.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
-    console.log('sorted questions log', sorted);
     return sorted;
   };
 
@@ -46,7 +47,6 @@ const QandA = ({ id }) => {
 
   const displaySearchResults = (searchTerm) => {
     setInitQuestions(masterList);
-    console.log('initial questions inside displaySearchREsults', initialQuestions);
     let tempArr = [];
     for (let i = 0; i < initialQuestions.length; i+= 1) {
       if (initialQuestions[i].question_body.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -66,6 +66,7 @@ const QandA = ({ id }) => {
         {initialQuestions.length > 0
         ? (
         <Question
+          title={title}
           loadFlag={loadMoreQuestions}
           questions={(!loadMoreQuestions ? setDisplayQuestions(initialQuestions)
             : initialQuestions)}
@@ -76,8 +77,9 @@ const QandA = ({ id }) => {
         {(!loadMoreQuestions
           ? <button type="button" onClick={() => setLoadMoreQuestions(true)}> More Answered Questions </button>
           : <button type="button" onClick={() => setLoadMoreQuestions(false)}> Less Questions </button>)}
-        <button type="button"> Add a Question </button>
+        <button type="button" onClick={() => setQuestionModalToggle(true)}> Add a Question </button>
       </form>
+      <QuestionModal title={title} id={id} setOpen={setQuestionModalToggle} open={questionModalToggle}/>
     </div>
   );
 };

@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/AnswerStyles.css';
+import TimeAgo from 'react-timeago';
+import AnswerHelpClick from './AnswerHelpClick';
+import AnswerReport from './AnswerReport';
 // import axios from 'axios';
 
 const Answers = ({ answers, loadFlag }) => {
   const [initialAnswers, setInitAnswers] = useState([]);
+  const helpClick = useRef(0);
   // const getInitialAnswers = (questionId) => {
   //   axios.get(`/api/qa/questions/${questionId}/answers`)
   //     .then((result) => {
@@ -39,32 +43,35 @@ const Answers = ({ answers, loadFlag }) => {
   };
   const smallDisplay = displayAnswers(sortAnswers(answers));
 
+
+
+
   useEffect(() => (loadFlag ? setInitAnswers(sortAnswers(answers))
     : setInitAnswers(smallDisplay)), [loadFlag]);
 
   return (
-    <div>
-      {answers
-      && initialAnswers.map((answer) => (
-        <div>
-          <div className="QandA-Answer" key={answer.answer_id.toString()}>
+    <>
+      {initialAnswers
+      ? initialAnswers.map((answer, index) => (
+        answer ? <div>
+          <div className="QandA-Answer" key={answer.answer_id.toString() + index}>
             A:
             {answer.body}
-            <span className="username-timestamp">
-              {answer.answerer_name}
-            </span>
             <span className="helpful-yes">
               Helpful?
-              <span href="#"> yes </span>
-              <span className="report-answer"> Report </span>
+              <span> <AnswerHelpClick ansId={answer.answer_id}/> </span>
+              <><AnswerReport ansId={answer.answer_id}/></>
             </span>
           </div>
           <div>
             {answer.photos.length > 0 ? answer.photos.map((photo) => (<img key={photo} className="answer-image" src={photo}></img>)) : null }
           </div>
+          <div className="username-timestamp"> by {answer.answerer_name}, <TimeAgo date={answer.date} /> </div>
         </div>
-      ))}
-    </div>
+        : null )
+      )
+    : null }
+    </>
   );
 };
 
