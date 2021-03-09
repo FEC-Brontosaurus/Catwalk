@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 import StylesRow from '../../../client/components/Overview/components/StylesRow';
 
 //  Test to see if each component is successfully rendering to the DOM
-describe('Style Tests', () => {
+describe('Style Row Tests', () => {
   it('Default style should be first in the list', () => {
     //  create a dummy current product that we can use to pass into funcitons
     const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };

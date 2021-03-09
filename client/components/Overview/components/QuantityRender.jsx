@@ -11,7 +11,7 @@ import '../styles/QuantityStyles.css';
 const QuantityRender = ({
   quantityArray, setCurrentQuantity, currentSize, currentQuantity,
 }) => (
-  <div id="quantity-container">
+  <div id="quantity-container" data-testid="quantity-container">
     {(currentSize)
       ? (
         <select
