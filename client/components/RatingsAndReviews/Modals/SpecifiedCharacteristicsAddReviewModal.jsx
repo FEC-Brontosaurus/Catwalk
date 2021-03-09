@@ -151,9 +151,9 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
             <div>{currentStarRatingText}</div>
             <h3>Do you recommend this product?</h3>
             <form>
-              <input id="recommend-yes" name="recommend" type="radio" value="Yes" className="radio-btn recommend"/>
+              <input id="recommend-yes" name="recommend" type="radio" value="Yes" className="radio-btn recommend" onClick={() => setRecommendPOST(true)}/>
               <label htmlFor="recommend-yes">Yes</label>
-              <input id="recommend-no" name="recommend" type="radio" value="No" className="radio-btn recommend"/>
+              <input id="recommend-no" name="recommend" type="radio" value="No" className="radio-btn recommend" onClick={() => setRecommendPOST(false)}/>
               <label htmlFor="recommend-no">No</label>
             </form>
             <h3>Characteristic Review</h3>
