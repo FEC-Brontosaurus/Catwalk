@@ -23,9 +23,10 @@ const ProductInformation = ({
       </div>
       <div
         id="review-text"
+        data-testid="review-text"
         onClick={
-        () => reviewScroll.current.scrollIntoView({ behavior: 'smooth' })
-      }
+          () => reviewScroll.current.scrollIntoView({ behavior: 'smooth' })
+        }
       >read all reviews
       </div>
     </div>
@@ -44,7 +45,7 @@ const ProductInformation = ({
         </div>
       )
       : <div id="product-info-price">${currentProduct.default_price}</div>
-      : <div id="product-info-price">${currentProduct.default_price}</div>}
+      : null}
   </div>
 );
 
