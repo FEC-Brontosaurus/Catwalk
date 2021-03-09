@@ -1,15 +1,11 @@
 import React, {useState, useRef} from 'react';
 
-const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) => {
+const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, currentProduct_id}) => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
-    const [reviewBody, setReviewBody] = useState('');
     //state to be sent in the post request 
-    const [product_idPOST, setProduct_idPOST] = useState('');
     const [ratingPOST, setRatingPOST] = useState(null);
     const [summaryPOST, setSummaryPOST] = useState('');
-    // const [bodyPOST, setBodyPOST] = useState('');
-    // const [reviewBody, setReviewBody] = useState('');
-
+    const [reviewBody, setReviewBody] = useState('');
     const [recommendPOST, setRecommendPOST] = useState(null);
     const [namePOST, setNamePOST] = useState('');
     const [emailPOST, setEmailPOST] = useState('');
@@ -20,7 +16,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
 
     //POST request object
     const reviewObjPOST = {
-        product_id: product_idPOST,
+        product_id: currentProduct_id,
         rating: ratingPOST,
         summary: summaryPOST,
         body: reviewBody,
@@ -224,7 +220,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
             })}
             <h3>Review Summary</h3>
             <form>
-              <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!"></input>
+              <input type="text" id="review-summary-user" size="70" maxLength="60" placeholder="Example: Best purchase ever!" value={summaryPOST} onChange={(event) => {setSummaryPOST(event.target.value)}}></input>
             </form>
 
             <h3>Review Body</h3>
@@ -232,12 +228,13 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
               <div>{reviewBodyCharCount(reviewBody.length)}</div>
 
             <h3>What is your nickname?</h3>
-              <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
+              <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" value={namePOST} onChange={(event) => {setNamePOST(event.target.value)}}></input>
               <div>For privacy reasons, do not use your full name or email address</div>
 
             <h3>What is your email?</h3>
-              <input type="text" id="review-body-email" size="70" maxLength="60" placeholder="Example: jackson11@email.com" /*value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}*/></input>
+              <input type="text" id="review-body-email" size="70" maxLength="60" placeholder="Example: jackson11@email.com" value={emailPOST} onChange={(event) => {setEmailPOST(event.target.value)}}></input>
               <div>For authentication reasons, you will not be emailed</div><br></br>
+
             <button
               type="button"
               //product_id, rating, summary, body, recommend, name, email, photos, characteristics

@@ -71,7 +71,10 @@ const RatingsAndReviews = ({ currentProduct }) => {
       : <div>No reviews to display</div>
     }
     {Object.keys(characteristicsMetadataObj).length > 0
-      ? <SpecifiedCharacteristicsAddReviewModal characteristicsMetadataObj={characteristicsMetadataObj}/>
+      ? <SpecifiedCharacteristicsAddReviewModal 
+          characteristicsMetadataObj={characteristicsMetadataObj}
+          currentProduct_id={currentProduct.id}
+        />
       : <AddReviewModal currentProduct_id={currentProduct.id}/>
     }
     </div>
