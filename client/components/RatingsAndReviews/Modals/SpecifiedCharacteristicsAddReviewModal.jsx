@@ -169,7 +169,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
 
     return (
       <div>
-        {/* {console.log(characteristicsMetadataObj)} */}
         <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Add Review</button>
         <div ref={reviewModalRef} id="myModal" className="modal">
             <div className="modal-content">            
@@ -202,12 +201,11 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
               <label htmlFor="recommend-no">No</label>
             </form>
             <h3>Characteristic Review</h3>
-            {/* {console.log(characteristicsMetadataObj)} */}
             {Object.keys(characteristicsMetadataObj).map((characteristicName) => {
               return (
                 <React.Fragment key={`${characteristicName}-fragment`}> 
                     <h4 key={`${characteristicsMetadataObj[characteristicName].id}-title`}>{characteristicName}</h4>
-                    <form key={`${characteristicsMetadataObj[characteristicName].id}-form`}>
+                    <fieldset key={`${characteristicsMetadataObj[characteristicName].id}-form`} required>
                         <input 
                             key={`${characteristicsMetadataObj[characteristicName].id}-input-1`}
                             className={characteristicsMetadataObj[characteristicName].id} 
@@ -263,7 +261,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-5`}
                           htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 5)}
                         </label>
-                    </form>
+                    </fieldset>
                 </React.Fragment>
               )
             })}
@@ -276,7 +274,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
               <input type="text" id="review-body-user" size="70" maxLength="1000" placeholder="Why did you like this product or not?" value={reviewBody} onChange={(event) => {setReviewBody(event.target.value)}}></input>
               <div>{reviewBodyCharCount(reviewBody.length)}</div>
 
-              <h3>COME BACK HERE FOR PHOTOS COMPONENT</h3>
+            <h3>COME BACK HERE FOR PHOTOS COMPONENT</h3>
 
             <h3>What is your nickname?</h3>
               <input type="text" id="review-body-nickname" size="70" maxLength="60" placeholder="Example: jackson11!" value={namePOST} onChange={(event) => {setNamePOST(event.target.value)}}></input>
@@ -288,7 +286,6 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
             {!isSubmitReviewButtonClicked
               ? <button
                   type="button"
-                  //product_id, rating, summary, body, recommend, name, email, photos, characteristics
                   onClick={() => {
                     console.log('I was clicked!', reviewObjPOST);
                     validateOverallRating(ratingPOST);
