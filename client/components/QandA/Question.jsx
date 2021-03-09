@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers';
 import AnswerModal from './ModalAnswer';
+import QuestionHelpClick from './QuestionHelpClick';
 
 const Question = ({ questions, loadFlag, title }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -34,9 +35,9 @@ const Question = ({ questions, loadFlag, title }) => {
             </span>
             <span className="helpful-yes">
               Helpful?
-              <span href="#">
-                yes
-              </span>
+              <>
+                <QuestionHelpClick questId={question.question_id}/>
+              </>
             </span>
             <button  className="add-an-answer" onClick={(e) => handleAddAnswer(e, question.question_id)}> Add an Answer + </button>
           </div>
