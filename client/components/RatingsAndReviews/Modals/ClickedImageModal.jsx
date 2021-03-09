@@ -16,11 +16,11 @@ const ClickedImageModal = ({photoURL}) => {
 
     return (
       <div>
-        <img src={photoURL} className="IndividualReviewTile-img" alt="Individual Review Tile"onClick={() => openReviewModal(reviewModalRef)}/>
-        <div ref={reviewModalRef} id="myModal" class="modal">
-            <div class="modal-content">            
+        <img src={photoURL} className="IndividualReviewTile-img" alt="Individual Review Tile" onClick={() => openReviewModal(reviewModalRef)}/>
+        <div ref={reviewModalRef} id="myModal" className="modal">
+            <div className="modal-content">            
               <img src={photoURL} className="IndividualReviewTileInsideModal-img" alt="Individual Review Tile" onClick={() => openReviewModal(reviewModalRef)}/>
-              <span class="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
+              <span className="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
             </div>
         </div>
       </div>
