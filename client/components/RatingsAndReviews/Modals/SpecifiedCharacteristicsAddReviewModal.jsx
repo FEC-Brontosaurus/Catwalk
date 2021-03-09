@@ -118,6 +118,15 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
       return returnStatment;
     }
 
+    const validateEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        if (!re.test(email)) {
+            alert('Please enter valid email');
+            return setEmailPOST('');
+        }
+        return re.test(email);
+    }
+
     return (
       <div>
         {/* {console.log(characteristicsMetadataObj)} */}
@@ -238,7 +247,10 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
             <button
               type="button"
               //product_id, rating, summary, body, recommend, name, email, photos, characteristics
-              onClick={() => console.log('I was clicked!', reviewObjPOST)}
+              onClick={() => {
+                  console.log('I was clicked!', reviewObjPOST);
+                  validateEmail(emailPOST);
+                }}
             >Submit Review</button>
           </div>
         </div>
