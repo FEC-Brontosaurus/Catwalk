@@ -128,6 +128,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
             currentQuantity={currentQuantity}
             currentSize={currentSize}
             setAddToCartNoSize={setAddToCartNoSize}
+            currentStyle={currentStyle}
           />
         )
           : null }

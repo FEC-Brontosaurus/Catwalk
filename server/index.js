@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -120,7 +121,6 @@ app.get('/api/getAllReviews', (req, res) => {
     });
 });
 
-
 //Get the meta data for a product
 app.get('/api/getProductMetadata', (req, res) => {
   const { id } = req.query;
@@ -134,6 +134,16 @@ app.get('/api/getProductMetadata', (req, res) => {
       res.send(500);
     })
 })
+
+app.post('/api/addtocart', (req, res) => {
+  const { sku_id } = req.body;
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart', { sku_id }, { headers: { Authorization: API_KEY_AF } })
+    .then(() => res.send(201))
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    });
+});
 
 
 //MARK REVIEW AS HELPFUL- updates a review to show it was found helpful

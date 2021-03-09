@@ -2,15 +2,23 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
 import '../styles/AddToCartStyles.css';
+import axios from 'axios';
 
-const AddToCart = ({ currentQuantity, currentSize, setAddToCartNoSize }) => {
+const AddToCart = ({
+  currentQuantity, currentSize, setAddToCartNoSize, currentStyle,
+}) => {
   //  handle clicking the add to cart button
   const handleAddToCart = () => {
     if (!currentSize) {
       setAddToCartNoSize(true);
     }
     if (currentQuantity && currentSize) {
-      console.log('ADDED TO CART');
+      for (const sku_id in currentStyle.skus) {
+        if (currentStyle.skus[sku_id].size === currentSize) {
+          axios.post('http://localhost:3000/api/addtocart', { sku_id })
+            .catch((err) => console.log(err));
+        }
+      }
     }
   };
 
