@@ -48,6 +48,16 @@ const RatingsAndReviews = ({ currentProduct }) => {
   return (
     <div id="RatingsAndReviews">
       <h3>Ratings and Reviews</h3>
+
+      <form>
+      <label htmlFor="sort">Sort by: </label>
+      <select name="cars" id="cars">
+        <option value="helpful">Helpful</option>
+        <option value="newest">Newest</option>
+        <option value="relevant">Relevant</option>
+      </select>
+      </form>
+
       {(productReviewArr.length === constantReviewArr.length )
         ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
         : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
