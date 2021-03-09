@@ -191,10 +191,21 @@ app.get('/api/getProductMetadata', (req, res) => {
     })
 })
 
+//ADD A REVIEW- add a review for the given product
+app.post('/api/reviews', (req, res) => {
+  const { product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
+  // console.log(req.body);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews', {product_id: product_id, rating: rating, summary: summary, body: body, recommend: recommend, name: name, email: email, photos: photos, characteristics: characteristics}, { headers: { Authorization: API_KEY_GS}})
+    .then(() => res.send(201))
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    })
+})
+
 
 //MARK REVIEW AS HELPFUL- updates a review to show it was found helpful
 app.put('/api/reviews/:review_id/helpful', (req, res) => {
-  //the request will have two values: the id of what to change and the +1 incremented value of the helpfulness review (on the client side)
   const { review_id } = req.params;
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/${review_id}/helpful`, {body: {review_id}}, { headers: { Authorization: API_KEY_GS}})
     .then(() => {

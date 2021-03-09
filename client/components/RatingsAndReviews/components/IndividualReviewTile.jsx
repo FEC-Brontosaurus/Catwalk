@@ -47,7 +47,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
   };
 
   return (
-    <div id="IndividualReviewTile-div">
+    <div className="IndividualReviewTile-div">
       <RenderStars rating={productReviewObj.rating}/>
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
@@ -61,7 +61,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         : <div>{productReviewObj.body}</div>}
       {productReviewObj.photos
         ? productReviewObj.photos.map((photoObj) => (
-          <div>
+          <div key={`${photoObj.id}-div`}>
             <ClickedImageModal 
               id="IndividualReviewTile-img"
               key={photoObj.id}
