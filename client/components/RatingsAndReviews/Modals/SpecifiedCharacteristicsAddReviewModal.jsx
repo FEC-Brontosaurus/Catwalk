@@ -132,15 +132,15 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                 <form>
                     <div className="rating"> 
                         <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" />
-                        <label for="star5" onMouseOver={() => returnStarRatingText(5)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
+                        <label htmlFor="star5" onMouseOver={() => returnStarRatingText(5)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" />
-                        <label for="star4" onMouseOver={() => returnStarRatingText(4)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
+                        <label htmlFor="star4" onMouseOver={() => returnStarRatingText(4)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" />
-                        <label for="star3" onMouseOver={() => returnStarRatingText(3)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
+                        <label htmlFor="star3" onMouseOver={() => returnStarRatingText(3)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" />
-                        <label for="star2" onMouseOver={() => returnStarRatingText(2)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
+                        <label htmlFor="star2" onMouseOver={() => returnStarRatingText(2)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" />
-                        <label for="star1" onMouseOver={() => returnStarRatingText(1)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
+                        <label htmlFor="star1" onMouseOver={() => returnStarRatingText(1)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <div className="clear"></div>
                     </div>
                 </form>
@@ -149,9 +149,9 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
             <h3>Do you recommend this product?</h3>
             <form>
               <input id="recommend-yes" name="recommend" type="radio" value="Yes" className="radio-btn recommend"/>
-              <label for="recommend-yes">Yes</label>
+              <label htmlFor="recommend-yes">Yes</label>
               <input id="recommend-no" name="recommend" type="radio" value="No" className="radio-btn recommend"/>
-              <label for="recommend-no">No</label>
+              <label htmlFor="recommend-no">No</label>
             </form>
             <h3>Characteristic Review</h3>
             {/* {console.log(characteristicsMetadataObj)} */}
@@ -170,7 +170,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                                 setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.id]: 1})
                             }}
                         />
-                        <label for={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
+                        <label htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
                     </form>
                 </React.Fragment>
               )
