@@ -47,7 +47,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
   };
 
   return (
-    <div id="IndividualReviewTile-div">
+    <div className="IndividualReviewTile-div">
       <RenderStars rating={productReviewObj.rating}/>
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
