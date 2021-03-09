@@ -13,6 +13,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
   const [characteristicsMetadataObj, setCharacteristicsMetadataObj] = useState({});
+  const [isSorted, setIsSorted] = useState(false);
 
 
   // given the id from the current product, make an API GET request
@@ -46,13 +47,17 @@ const RatingsAndReviews = ({ currentProduct }) => {
   }
 
   const sortReviewDisplay = (sortValue) => {
-    console.log('Change! :D', typeof sortValue)
     if (sortValue === 'helpful') {
       const helpfulSortArr = _.sortBy(constantReviewArr, 'helpfulness');
-      setProductReviewArr(_.sortBy(helpfulSortArr.reverse()));
-    }
-
-
+      setProductReviewArr(helpfulSortArr.reverse());
+    } else if (sortValue === 'newest') {
+      const newestSortArr = _.sortBy(constantReviewArr, 'date');
+      setProductReviewArr(newestSortArr.reverse()); 
+    } else {
+      const relevantSortArrByDate = _.sortBy(constantReviewArr, 'date');
+      const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless')
+      setProductReviewArr(relevanceSortArr);    
+    } 
   }
 
 
@@ -61,9 +66,10 @@ const RatingsAndReviews = ({ currentProduct }) => {
       <h3>Ratings and Reviews</h3>
       <form>
       <label htmlFor="sort">Sort by: </label>
-      <select name="sort" id="sort-select" onChange={(event) => sortReviewDisplay(event.target.value)}>
+      <select name="sort" id="sort-select" onChange={(event) => {getAllReviews(), sortReviewDisplay(event.target.value), setIsSorted(true);}}>
+        {isSorted ? null : <option value="start">Select option</option>}
         <option value="relevant">Relevant</option>
-        <option value="helpful" >Helpful</option>
+        <option value="helpful">Helpful</option>
         <option value="newest">Newest</option>
       </select>
       </form>
@@ -93,7 +99,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
           characteristicsMetadataObj={characteristicsMetadataObj}
           currentProduct_id={currentProduct.id}
         />
-      // : <AddReviewModal currentProduct_id={currentProduct.id}/>
+      // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
       : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
     }
     </div>
