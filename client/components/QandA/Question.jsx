@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Answers from './Answers';
 import AnswerModal from './ModalAnswer';
 import QuestionHelpClick from './QuestionHelpClick';
+import QuestionReport from './QuestionReport';
 
 const Question = ({ questions, loadFlag, title }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -25,8 +26,8 @@ const Question = ({ questions, loadFlag, title }) => {
 
   return (
     <div>
-      {questions ? questions.map((question) => (
-        <div>
+      {questions ? questions.map((question, index) => (
+        question ? <div key={question.question_id.toString() + index}>
          {question.question_id === currentQId ? <AnswerModal open={openModal} setOpen={setOpenModal} title={title} question={question.question_body} id={question.question_id}/> : null }
           <div className="QandA-question" key={question.question_id.toString()}>
             Q:
@@ -39,11 +40,14 @@ const Question = ({ questions, loadFlag, title }) => {
                 <QuestionHelpClick questId={question.question_id}/>
               </>
             </span>
+            <span className="report-style">
+              <QuestionReport questId={question.question_id} />
+            </span>
             <button  className="add-an-answer" onClick={(e) => handleAddAnswer(e, question.question_id)}> Add an Answer + </button>
           </div>
           {Object.keys(question.answers).length > 0
             && <Answers loadFlag={loadFlag} answers={question.answers} /> }
-        </div>
+        </div> : null
       )) : null }
     </div>
   );
