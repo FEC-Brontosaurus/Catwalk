@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import LogClick from '../../LogClick';
+import '../styles/QuantityStyles.css';
 
 //  made to render to the screen
 //  if there is no valid current size it will render ------ and nothing else in list

@@ -8,7 +8,7 @@ import AddReviewModal from './Modals/AddReviewModal.jsx';
 import styles from './styles/RatingsAndReviewsStyles.css';
 
 
-const RatingsAndReviews = ({ currentProduct }) => {
+const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll }) => {
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
@@ -61,7 +61,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
 
 
   return (
-    <div id="RatingsAndReviews">
+    <div id="RatingsAndReviews" ref={reviewScroll}>
       <h3>Ratings and Reviews</h3>
       <form>
       <label htmlFor="sort">Sort by: </label>
@@ -77,13 +77,15 @@ const RatingsAndReviews = ({ currentProduct }) => {
         : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
       }
       {Object.keys(productMetadataObj).length > 0
-        ? <ProductBreakdown 
+        ?
+            <ProductBreakdown
             productMetadataObj={productMetadataObj}
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
-          />
+            setOverviewAverage={setOverviewAverage}
+            />
         : null
       }
-      {productReviewArr.length > 0 
+      {productReviewArr.length > 0
         ? productReviewArr.map((productReviewObj) => (
           <IndividualReviewTile
             key={productReviewObj.review_id}

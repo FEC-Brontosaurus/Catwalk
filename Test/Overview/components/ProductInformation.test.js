@@ -31,20 +31,12 @@ describe('ProductInformation Tests', () => {
     const title = getById(container, 'product-info-title');
     const price = getById(container, 'product-info-price');
     const salePrice = getById(container, 'product-info-price-discount');
-    const overview = getById(container, 'product-info-overview');
-    const facebook = getById(container, 'product-info-share-facebook');
-    const twitter = getById(container, 'product-info-share-twitter');
-    const pinterest = getById(container, 'product-info-share-pinterest');
 
     //  Everything should exist except the sale price since none exists
     expect(category).toBeInTheDocument();
     expect(title).toBeInTheDocument();
     expect(price).toBeInTheDocument();
     expect(salePrice).toBeNull();
-    expect(overview).toBeInTheDocument();
-    expect(facebook).toBeInTheDocument();
-    expect(twitter).toBeInTheDocument();
-    expect(pinterest).toBeInTheDocument();
   });
 
   it('Should render the sale price and the slashed price to the DOM', () => {

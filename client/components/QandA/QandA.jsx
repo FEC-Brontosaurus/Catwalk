@@ -20,7 +20,7 @@ const QandA = ({ id, title }) => {
   const getInitialQuestions = () => {
     axios.get(`/api/qa/questions/${id}`)
       .then((result) => {
-        console.log(result.data);
+        // console.log(result.data);
         setInitQuestions(sortInitialQuestions(result.data.results));
         setMasterList(sortInitialQuestions(result.data.results));
       })

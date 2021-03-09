@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
 import SizesRender from './SizesRender';
+import '../styles/SizesStyles.css';
 
 //
 const Sizes = ({
@@ -20,16 +21,18 @@ const Sizes = ({
   }
 
   return (
-    <SizesRender
-      styleArray={styleArray}
-      setCurrentSize={setCurrentSize}
-      setCurrentQuantity={setCurrentQuantity}
-      currentSize={currentSize}
-      addToCartNoSize={addToCartNoSize}
-      setAddToCartNoSize={setAddToCartNoSize}
-      value={value}
-      setValue={setValue}
-    />
+    <div id="sizes-container">
+      <SizesRender
+        styleArray={styleArray}
+        setCurrentSize={setCurrentSize}
+        setCurrentQuantity={setCurrentQuantity}
+        currentSize={currentSize}
+        addToCartNoSize={addToCartNoSize}
+        setAddToCartNoSize={setAddToCartNoSize}
+        value={value}
+        setValue={setValue}
+      />
+    </div>
   );
 };
 
