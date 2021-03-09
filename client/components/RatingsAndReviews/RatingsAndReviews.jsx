@@ -13,7 +13,6 @@ const RatingsAndReviews = ({ currentProduct }) => {
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
   const [characteristicsMetadataObj, setCharacteristicsMetadataObj] = useState({});
-  const [isSorted, setIsSorted] = useState(false);
 
 
   // given the id from the current product, make an API GET request
@@ -22,7 +21,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
       .then((results) => {
         // console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data);
-        setConstantReviewArr(results.data)
+        setConstantReviewArr(results.data);
       })
       .catch((err) => console.log(err));
   };
@@ -52,13 +51,12 @@ const RatingsAndReviews = ({ currentProduct }) => {
       setProductReviewArr(helpfulSortArr.reverse());
     } else if (sortValue === 'newest') {
       const newestSortArr = _.sortBy(constantReviewArr, 'date');
-      setProductReviewArr(newestSortArr.reverse()); 
+      setProductReviewArr(newestSortArr); 
     } else {
       const relevantSortArrByDate = _.sortBy(constantReviewArr, 'date');
       const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless');
       setProductReviewArr(relevanceSortArr);    
     } 
-    console.log(productReviewArr)
   }
 
 
@@ -67,8 +65,7 @@ const RatingsAndReviews = ({ currentProduct }) => {
       <h3>Ratings and Reviews</h3>
       <form>
       <label htmlFor="sort">Sort by: </label>
-      <select name="sort" id="sort-select" onChange={(event) => {getAllReviews(), sortReviewDisplay(event.target.value), setIsSorted(true);}}>
-        {isSorted ? null : <option value="start">Select option</option>}
+      <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value)}}>
         <option value="relevant">Relevant</option>
         <option value="helpful">Helpful</option>
         <option value="newest">Newest</option>
