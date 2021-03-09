@@ -157,7 +157,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
             {/* {console.log(characteristicsMetadataObj)} */}
             {Object.keys(characteristicsMetadataObj).map((characteristicName) => {
               return (
-                <React.Fragment > 
+                <React.Fragment key={`${characteristicName}-fragment`}> 
                     <h4 key={`${characteristicsMetadataObj[characteristicName].id}-title`}>{characteristicName}</h4>
                     <form key={`${characteristicsMetadataObj[characteristicName].id}-form`}>
                         <input 
@@ -170,7 +170,9 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj}) =>
                                 setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.id]: 1})
                             }}
                         />
-                        <label htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
+                        <label 
+                          key={`${characteristicsMetadataObj[characteristicName].id}-label`}
+                          htmlFor={characteristicsMetadataObj[characteristicName].id}>{reformatCharacteristicRatingDescriptions(characteristicName, 1)}</label>
                     </form>
                 </React.Fragment>
               )

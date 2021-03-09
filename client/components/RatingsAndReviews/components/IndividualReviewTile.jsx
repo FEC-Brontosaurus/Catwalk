@@ -61,7 +61,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
         : <div>{productReviewObj.body}</div>}
       {productReviewObj.photos
         ? productReviewObj.photos.map((photoObj) => (
-          <div>
+          <div key={`${photoObj.id}-div`}>
             <ClickedImageModal 
               id="IndividualReviewTile-img"
               key={photoObj.id}

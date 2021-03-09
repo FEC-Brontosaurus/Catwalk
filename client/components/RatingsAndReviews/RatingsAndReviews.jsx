@@ -55,11 +55,10 @@ const RatingsAndReviews = ({ currentProduct }) => {
         : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
       }
       {Object.keys(productMetadataObj).length > 0
-        ? 
-            <ProductBreakdown 
+        ? <ProductBreakdown 
             productMetadataObj={productMetadataObj}
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
-            />
+          />
         : null
       }
       {productReviewArr.length > 0 
