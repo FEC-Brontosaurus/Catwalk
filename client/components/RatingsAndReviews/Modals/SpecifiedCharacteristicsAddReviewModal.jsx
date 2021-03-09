@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import _, { escape } from 'underscore';
 
 const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, currentProduct_id}) => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
@@ -123,44 +124,43 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
         if (!ratingNum) {
             alert('Please enter Overall Rating on the star bar');
             setRatingPOST(null);
-            return setCanSubmitPOST(false);
+            setCanSubmitPOST(false);
         }
-        return ratingNum;
     }
 
-    const validateRecommemd = (recommendBool) => {
+    const validateRecommend = (recommendBool) => {
         if (recommendBool === null) {
             alert('Please enter a recommendation for this product');
             setRecommendPOST(null);
-            return setCanSubmitPOST(false);
+            setCanSubmitPOST(false);
         }
-        return recommendBool;
     }
 
     const validateCharactertics = (characteristicsObj) => {
         if (Object.keys(characteristicsObj).length !== Object.keys(characteristicsMetadataObj).length) {
             alert('Please enter a rating for all characteristics');
             setCharacteristicsObjPOST({});
-            return setCanSubmitPOST(false);
+            setCanSubmitPOST(false);
         }
-        return characteristicsObj;
     }
 
     const validateBody = (body) => {
         if (body.length < 50) {
             alert('Please write a review of at least 50 characters');
-            return setCanSubmitPOST(false);
+            setCanSubmitPOST(false);
         }
-        return body;
+        const bodyEsc = _.escape(body);
+        setReviewBody(bodyEsc);
     }
 
     const validateName = (name) => {
         if (name.length === 0) {
             alert('Please enter a nickname');
             setNamePOST('');
-            return setCanSubmitPOST(false);
+            setCanSubmitPOST(false);
         }
-        return name;
+        const nameEsc = _.escape(name);
+        setNamePOST(nameEsc)
     }
 
     const validateEmail = (email) => {
@@ -170,9 +170,10 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
             setEmailPOST('');
             return setCanSubmitPOST(false);
         } else {
-            setCanSubmitPOST(true);
+          const emailEsc = _.escape(email);
+          setEmailPOST(emailEsc);
+          setCanSubmitPOST(true);
         }
-        return re.test(email);
     }
 
     return (
@@ -296,7 +297,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                   type="button"
                   onClick={() => {
                     validateOverallRating(ratingPOST);
-                    validateRecommemd(recommendPOST);
+                    validateRecommend(recommendPOST);
                     validateCharactertics(characteristicsObjPOST);
                     validateBody(reviewBody);
                     validateName(namePOST);

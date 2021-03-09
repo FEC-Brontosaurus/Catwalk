@@ -55,9 +55,10 @@ const RatingsAndReviews = ({ currentProduct }) => {
       setProductReviewArr(newestSortArr.reverse()); 
     } else {
       const relevantSortArrByDate = _.sortBy(constantReviewArr, 'date');
-      const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless')
+      const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless');
       setProductReviewArr(relevanceSortArr);    
     } 
+    console.log(productReviewArr)
   }
 
 
