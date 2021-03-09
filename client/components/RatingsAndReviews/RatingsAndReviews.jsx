@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import _, { sortBy } from 'underscore';
 import ProductBreakdown from './components/ProductBreakdown.jsx'
 import IndividualReviewTile from './components/IndividualReviewTile.jsx';
 import SpecifiedCharacteristicsAddReviewModal from './Modals/SpecifiedCharacteristicsAddReviewModal.jsx';
@@ -45,7 +46,12 @@ const RatingsAndReviews = ({ currentProduct }) => {
   }
 
   const sortReviewDisplay = (sortValue) => {
-    console.log('Change! :D', sortValue)
+    console.log('Change! :D', typeof sortValue)
+    if (sortValue === 'helpful') {
+      const helpfulSortArr = _.sortBy(constantReviewArr, 'helpfulness');
+      setProductReviewArr(_.sortBy(helpfulSortArr.reverse()));
+    }
+
 
   }
 
