@@ -43,10 +43,8 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
     
   useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
     
-  //methods to change data input
+  //methods to change the reviews on that page and how they display
   const renderTwoMoreReviewTiles = () => {
-    console.log('I have been clicked!', constantReviewArr, productReviewArr);
-    //when invoked, this function should add two elements from the constantReviewArr to the productReviewArr to be displayed
     if (productReviewArr.length !== constantReviewArr.length) {
       const elementsToBeAddedToDisplay = constantReviewArr.slice(currentProductReviewArrIndex, (currentProductReviewArrIndex + 2));
       setProductReviewArr(productReviewArr.concat(elementsToBeAddedToDisplay));
@@ -121,7 +119,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         }
       </div>
 
-      
+
       {Object.keys(characteristicsMetadataObj).length > 0
         ? <SpecifiedCharacteristicsAddReviewModal 
             characteristicsMetadataObj={characteristicsMetadataObj}
