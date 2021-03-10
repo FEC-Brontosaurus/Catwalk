@@ -21,6 +21,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         // console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data);
         setConstantReviewArr(results.data);
+        // renderTwoMoreReviewTiles();
       })
       .catch((err) => console.log(err));
   };
@@ -34,17 +35,19 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         setCharacteristicsMetadataObj(results.data.characteristics);
       })
       .catch((err) => console.log(err));
-  }
+    }
+    
+    useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
+    
+    //methods to change data input
+    const renderTwoMoreReviewTiles = () => {
+      console.log('I have been clicked!', constantReviewArr, productReviewArr)
+      // while (constantReviewArr.length)
 
-  useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
-
-  //methods to change data input
-
-  const renderTwoMoreReviewTiles = () => {
-    console.log('I have been clicked!')
-
-  }
-
+  
+    }
+    
+    
   const filterRatingReviewsDisplay = (ratingNum) => {
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
     setProductReviewArr(result);
@@ -70,13 +73,18 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
       <div className="RatingsAndReviews-sidebar">
         <h3>Ratings and Reviews</h3>
         <form>
-        <label htmlFor="sort">Sort by: </label>
-        <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value), LogClick('select', 'RatingsAndReviews')}}>
-          <option value="relevant">Relevant</option>
-          <option value="helpful">Helpful</option>
-          <option value="newest">Newest</option>
-        </select>
+          <label htmlFor="sort">Sort by: </label>
+          <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value), LogClick('select', 'RatingsAndReviews')}}>
+            <option value="relevant">Relevant</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+          </select>
         </form>
+        <br></br>
+      {(productReviewArr.length === constantReviewArr.length )
+        ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
+        : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
+      }
         {Object.keys(productMetadataObj).length > 0
         ?<ProductBreakdown
             productMetadataObj={productMetadataObj}
@@ -86,39 +94,33 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
           />
         : null
       }
-      {(productReviewArr.length === constantReviewArr.length )
-        ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
-        : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
-      }
       </div>
 
       <div className="RatingsAndReviews-content">
       {productReviewArr.length > 0
         ? productReviewArr.map((productReviewObj) => (
-          <div>
           <IndividualReviewTile
             key={productReviewObj.review_id}
             productReviewObj={productReviewObj}
             LogClick={LogClick}
           />
-          <button onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
-          </div>
         ))
       : <div>No reviews to display</div>
-    }
-    </div>
+      }
+      </div>
+      {Object.keys(characteristicsMetadataObj).length > 0
+        ? <SpecifiedCharacteristicsAddReviewModal 
+            characteristicsMetadataObj={characteristicsMetadataObj}
+            currentProduct_id={currentProduct.id}
+            LogClick={LogClick}
+          />
+        // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
+        // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
+        : null
+      }
 
-    {Object.keys(characteristicsMetadataObj).length > 0
-      ? <SpecifiedCharacteristicsAddReviewModal 
-          characteristicsMetadataObj={characteristicsMetadataObj}
-          currentProduct_id={currentProduct.id}
-          LogClick={LogClick}
-        />
-      // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
-      // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
-      : null
-    }
-    </div>
+      <button onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
+      </div>
     </div>
   );
 };
