@@ -8,7 +8,11 @@ import '@testing-library/jest-dom/extend-expect';
 import ImageGalleryArrows from '../../../../client/components/Overview/components/ImageGallery/ImageGalleryArrows';
 import ImageGalleryThumbnailArrows from '../../../../client/components/Overview/components/ImageGallery/ImageGalleryThumbnailArrows';
 
-/**********************************     ImageGallery Arrow Test     **********************************/
+/*****************************************************************************************************
+***********************************                                 **********************************
+***********************************    ImageGallery Arrow Tests     **********************************
+***********************************                                 **********************************
+*******************************************************************************************************/
 
 describe('ImageGallery Arrow Tests', () => {
   it('Should render left and right arrow to the DOM if image index is not on the ends of the current style photos array', () => {
@@ -207,5 +211,29 @@ describe('ImageGallery Thumbnail Arrow Tests', () => {
     //  check to make sure that the first style is the current style
     expect(setThumbDisplayArr).toBeCalled();
     expect(LogClick).toBeCalled();
+  });
+});
+
+
+
+/**********************************     ImageGallery Thumbnail Arrow Test     **********************************/
+
+describe('ImageGallery Thumbnail Images Tests', () => {
+  it('Should render left and right arrow to the DOM if image index is not on the ends of the current style photos array', () => {
+    //  create a dummy current product that we can use to pass into funcitons
+
+    const thumbDisplayArr = 1;
+    const setThumbDisplayArr = jest.fn();
+    const thumbSplitArr = [[], [], []];
+
+    render(<ImageGalleryThumbnailArrows
+      setThumbDisplayArr={setThumbDisplayArr}
+      thumbSplitArr={thumbSplitArr}
+      thumbDisplayArr={thumbDisplayArr}
+    />);
+
+    //  check to make sure that the first style is the current style
+    expect(screen.queryByTestId('imagegallery-thumbnail-leftarrow')).toBeInTheDocument();
+    expect(screen.queryByTestId('imagegallery-thumbnail-rightarrow')).toBeInTheDocument();
   });
 });
