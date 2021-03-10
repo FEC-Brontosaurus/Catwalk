@@ -2,11 +2,12 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
 import SizesRender from './SizesRender';
+import '../styles/SizesStyles.css';
 
 //
 const Sizes = ({
   currentStyle, setCurrentSize, setCurrentQuantity, currentSize,
-  addToCartNoSize, setAddToCartNoSize, value, setValue,
+  addToCartNoSize, setAddToCartNoSize, value, setValue, LogClick,
 }) => {
   //  for loop to make the sku property an array rather than multiple objects
   //  this makes it able to be mapped in SizesRender function
@@ -20,16 +21,19 @@ const Sizes = ({
   }
 
   return (
-    <SizesRender
-      styleArray={styleArray}
-      setCurrentSize={setCurrentSize}
-      setCurrentQuantity={setCurrentQuantity}
-      currentSize={currentSize}
-      addToCartNoSize={addToCartNoSize}
-      setAddToCartNoSize={setAddToCartNoSize}
-      value={value}
-      setValue={setValue}
-    />
+    <div id="sizes-container" data-testid="sizes-container">
+      <SizesRender
+        LogClick={LogClick}
+        styleArray={styleArray}
+        setCurrentSize={setCurrentSize}
+        setCurrentQuantity={setCurrentQuantity}
+        currentSize={currentSize}
+        addToCartNoSize={addToCartNoSize}
+        setAddToCartNoSize={setAddToCartNoSize}
+        value={value}
+        setValue={setValue}
+      />
+    </div>
   );
 };
 

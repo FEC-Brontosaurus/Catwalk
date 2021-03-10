@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _, { unescape } from 'underscore';
 import HelpfulReviewFeedbackButton from '../components/HelpfulReviewFeedbackButton.jsx'
 import ClickedImageModal from '../Modals/ClickedImageModal.jsx';
 import RenderStars from '../../renderStars.jsx';
@@ -27,27 +28,31 @@ const IndividualReviewTile = ({ productReviewObj }) => {
     return `${date[1]} ${date[2]}, ${date[0]}`;
   };
 
-  const reformattedSummary = () => {
-    if (productReviewObj.summary.length === 0) {
+  const reformattedSummary = (summary) => {
+    const summaryUnescaped = _.unescape(summary);
+
+    if (summaryUnescaped.length === 0) {
       return '[No summary provided]';
     }
-    if (productReviewObj.summary.length >= 60) {
-      return productReviewObj.summary.slice(0, 60);
+    if (summaryUnescaped.length >= 60) {
+      return summaryUnescaped.slice(0, 60);
     }
-    return productReviewObj.summary;
+    return summaryUnescaped;
   };
 
-  const reformattedBody = () => {
+  const reformattedBody = (body) => {
+    const bodyUnescaped = _.unescape(body)
+
     if (isShowingFullReviewBody) {
-      return productReviewObj.body;
+      return bodyUnescaped;
     } else {
-      const shortenedStr = productReviewObj.body.slice(0, 250);
+      const shortenedStr = bodyUnescaped.slice(0, 250);
       return `${shortenedStr}...`;
     }
   };
 
   return (
-    <div id="IndividualReviewTile-div">
+    <div className="IndividualReviewTile-div">
       <RenderStars rating={productReviewObj.rating}/>
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
@@ -58,10 +63,10 @@ const IndividualReviewTile = ({ productReviewObj }) => {
             <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
-        : <div>{productReviewObj.body}</div>}
+        : <div>{reformattedBody(productReviewObj.body)}</div>}
       {productReviewObj.photos
         ? productReviewObj.photos.map((photoObj) => (
-          <div>
+          <div key={`${photoObj.id}-div`}>
             <ClickedImageModal 
               id="IndividualReviewTile-img"
               key={photoObj.id}
@@ -71,9 +76,9 @@ const IndividualReviewTile = ({ productReviewObj }) => {
           </div>
         ))
       : null}
-      <div>{productReviewObj.reviewer_name}</div>
+      <div>{_.unescape(productReviewObj.reviewer_name)}</div>
       {productReviewObj.response
-      ? <div>Response from seller: <i>{productReviewObj.response}</i></div>
+      ? <div>Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>
       : null}
       {productReviewObj.recommend
         ? <div><span>&#10003;</span>I recommend this product</div>

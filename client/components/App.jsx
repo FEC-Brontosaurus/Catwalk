@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Overview from './Overview/Overview';
 import QandA from './QandA/QandA';
@@ -7,6 +7,8 @@ import LogClick from './LogClick';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [overviewAverage, setOverviewAverage] = useState(0);
+  const reviewScroll = useRef(null);
 
   //  Function to get all products.
   //  Makes a get request to the server
@@ -16,7 +18,7 @@ const App = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[3]);
+        setCurrentProduct(results.data[1]);
       })
       .catch((err) => console.log(err));
   };
@@ -27,9 +29,23 @@ const App = () => {
 
   return (
     <div id="App-div">
-      {(currentProduct) ? <Overview currentProduct={currentProduct} /> : null}
+
+      {(currentProduct) ? (
+        <Overview
+          currentProduct={currentProduct}
+          overviewAverage={overviewAverage}
+          reviewScroll={reviewScroll}
+          LogClick={LogClick}
+        />
+      ) : null}
       {(currentProduct) ? <QandA logClick={LogClick} id={currentProduct.id} title={currentProduct.name} /> : null}
-      {(currentProduct) ? <RatingsAndReviews currentProduct={currentProduct} /> : null}
+      {(currentProduct) ? (
+        <RatingsAndReviews
+          currentProduct={currentProduct}
+          setOverviewAverage={setOverviewAverage}
+          reviewScroll={reviewScroll}
+        />
+      ) : null}
     </div>
   );
 };

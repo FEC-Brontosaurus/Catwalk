@@ -9,10 +9,10 @@ import ImageGalleryThumbnail from './ImageGalleryThumbnail';
 
 const ImageGalleryImageSlide = ({
   setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal, LogClick,
 }) => (
   <div id="imagegallery-mainimage-container">
-    {thumbSplitArr.length > 0 ? (
+    {/* {thumbSplitArr.length > 0 ? (
       <>
         <ImageGalleryArrows
           currentImageIndex={currentImageIndex}
@@ -29,7 +29,7 @@ const ImageGalleryImageSlide = ({
           setThumbDisplayArr={setThumbDisplayArr}
         />
       </>
-    ) : null }
+    ) : null } */}
     {currentStyle.photos.map((style, idx) => (
       <React.Fragment key={idx}>
         {(style.url !== null)
@@ -40,7 +40,28 @@ const ImageGalleryImageSlide = ({
               style={currentImageIndex === idx ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
               alt=""
               onClick={() => setOverviewModal(true)}
-            />
+            >
+              {thumbSplitArr.length > 0 ? (
+                <>
+                  <ImageGalleryArrows
+                    currentImageIndex={currentImageIndex}
+                    setCurrentImageIndex={setCurrentImageIndex}
+                    currentStyle={currentStyle}
+                    LogClick={LogClick}
+                  />
+                  <ImageGalleryThumbnail
+                    currentStyle={currentStyle}
+                    currentImageIndex={currentImageIndex}
+                    setCurrentImageIndex={setCurrentImageIndex}
+                    setCurrentStyle={setCurrentStyle}
+                    thumbDisplayArr={thumbDisplayArr}
+                    thumbSplitArr={thumbSplitArr}
+                    setThumbDisplayArr={setThumbDisplayArr}
+                    LogClick={LogClick}
+                  />
+                </>
+              ) : null }
+            </div>
           ) : (
             <div
               key={idx}
@@ -48,7 +69,28 @@ const ImageGalleryImageSlide = ({
               style={currentStyle === style ? { backgroundImage: `url(${noImage})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${noImage})`, opacity: 0 }}
               alt=""
               onClick={() => setOverviewModal(true)}
-            />
+            >
+              {thumbSplitArr.length > 0 ? (
+                <>
+                  <ImageGalleryArrows
+                    currentImageIndex={currentImageIndex}
+                    setCurrentImageIndex={setCurrentImageIndex}
+                    currentStyle={currentStyle}
+                    LogClick={LogClick}
+                  />
+                  <ImageGalleryThumbnail
+                    currentStyle={currentStyle}
+                    currentImageIndex={currentImageIndex}
+                    setCurrentImageIndex={setCurrentImageIndex}
+                    setCurrentStyle={setCurrentStyle}
+                    thumbDisplayArr={thumbDisplayArr}
+                    thumbSplitArr={thumbSplitArr}
+                    setThumbDisplayArr={setThumbDisplayArr}
+                    LogClick={LogClick}
+                  />
+                </>
+              ) : null }
+            </div>
           ) }
       </React.Fragment>
     ))}
