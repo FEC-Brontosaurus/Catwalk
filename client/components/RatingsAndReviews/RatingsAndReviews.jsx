@@ -8,12 +8,11 @@ import AddReviewModal from './Modals/AddReviewModal.jsx';
 import styles from './styles/RatingsAndReviewsStyles.css';
 
 
-const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll }) => {
+const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, LogClick }) => {
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
   const [characteristicsMetadataObj, setCharacteristicsMetadataObj] = useState({});
-
 
   // given the id from the current product, make an API GET request
   const getAllReviews = () => {
@@ -65,7 +64,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll })
       <h3>Ratings and Reviews</h3>
       <form>
       <label htmlFor="sort">Sort by: </label>
-      <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value)}}>
+      <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value), LogClick('select', 'RatingsAndReviews')}}>
         <option value="relevant">Relevant</option>
         <option value="helpful">Helpful</option>
         <option value="newest">Newest</option>
@@ -74,15 +73,15 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll })
 
       {(productReviewArr.length === constantReviewArr.length )
         ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
-        : <button type="button" onClick={() => setProductReviewArr(constantReviewArr)}>Remove All Filters</button>
+        : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
       }
       {Object.keys(productMetadataObj).length > 0
-        ?
-            <ProductBreakdown
+        ?<ProductBreakdown
             productMetadataObj={productMetadataObj}
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
             setOverviewAverage={setOverviewAverage}
-            />
+            LogClick={LogClick}
+          />
         : null
       }
       {productReviewArr.length > 0
@@ -90,6 +89,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll })
           <IndividualReviewTile
             key={productReviewObj.review_id}
             productReviewObj={productReviewObj}
+            LogClick={LogClick}
           />
         ))
       : <div>No reviews to display</div>
@@ -98,6 +98,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll })
       ? <SpecifiedCharacteristicsAddReviewModal 
           characteristicsMetadataObj={characteristicsMetadataObj}
           currentProduct_id={currentProduct.id}
+          LogClick={LogClick}
         />
       // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
       : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
