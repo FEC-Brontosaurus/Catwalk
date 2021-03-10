@@ -7,16 +7,21 @@
 #RatingsAndReviews-grid{
   display: grid;
   border: 2px solid black;
-  max-width: 1000px;
+  max-width: 1500px;
   grid-template-columns: 2fr 6fr;
   grid-gap: 20px;
   padding: 20px;
 }
 
-.IndividualReviewTile-content, .RatingsAndReviews-content{
-  border: 2px black;
+.IndividualReviewTile-content{
+  width: 100%;
+  padding: 30px;
+  margin-bottom: 40px;
+  display: block;
+  
 }
 
+/* , .RatingsAndReviews-content{ */
 
 .IndividualReviewTile-img {
     width: 100px;
