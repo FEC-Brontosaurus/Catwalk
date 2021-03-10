@@ -63,17 +63,15 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
     if (sortValue === 'helpful') {
       const helpfulSortArr = _.sortBy(constantReviewArr, 'helpfulness');
       setProductReviewArr(helpfulSortArr.reverse());
-      setIsDisplayingAllReviews(true);
     } else if (sortValue === 'newest') {
       const newestSortArr = _.sortBy(constantReviewArr, 'date');
       setProductReviewArr(newestSortArr.reverse());
-      setIsDisplayingAllReviews(true);
     } else {
       const relevantSortArrByDate = _.sortBy(constantReviewArr, 'date');
       const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless');
       setProductReviewArr(relevanceSortArr.reverse());
-      setIsDisplayingAllReviews(true); 
     } 
+    setIsDisplayingAllReviews(true); 
   }
 
   return (
@@ -105,7 +103,6 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
       }
       </div>
 
-
       <div className="RatingsAndReviews-content">
         {productReviewArr.length > 0
           ? productReviewArr.map((productReviewObj) => (
@@ -119,7 +116,6 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         }
       </div>
 
-
       {Object.keys(characteristicsMetadataObj).length > 0
         ? <SpecifiedCharacteristicsAddReviewModal 
             characteristicsMetadataObj={characteristicsMetadataObj}
@@ -130,6 +126,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
         : null
       }
+
       {isDisplayingAllReviews 
         ? <button type="button" style={{color: "#a6a6a6"}}>More Reviews</button>
         : <button type="button" onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>

@@ -11,6 +11,8 @@
   grid-template-columns: 2fr 6fr;
   grid-gap: 20px;
   padding: 20px;
+  max-height: 1000px;
+  overflow: scroll; 
 }
 
 .RatingsAndReviews-content{
@@ -22,7 +24,7 @@
   padding: 30px;
   margin-bottom: 40px;
   display: block;
-  
+
 }
 
 /* , .RatingsAndReviews-content{ */
