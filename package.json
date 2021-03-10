@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server",
     "build": "webpack --config webpack.config.js --watch",
+    "build:prod": "webpack --config webpack.config.js",
     "test": "jest --silent --coverage"
   },
   "repository": {
