@@ -193,7 +193,7 @@
   cursor: zoom-in;
   z-index: 1000;
   margin: auto;
-  cursor: grab;
+  cursor: zoom-out;
   background-size: cover;
   background-repeat: no-repeat;
 }

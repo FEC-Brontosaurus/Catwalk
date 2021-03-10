@@ -7,7 +7,7 @@ import '../styles/SizesStyles.css';
 //
 const Sizes = ({
   currentStyle, setCurrentSize, setCurrentQuantity, currentSize,
-  addToCartNoSize, setAddToCartNoSize, value, setValue,
+  addToCartNoSize, setAddToCartNoSize, value, setValue, LogClick,
 }) => {
   //  for loop to make the sku property an array rather than multiple objects
   //  this makes it able to be mapped in SizesRender function
@@ -21,8 +21,9 @@ const Sizes = ({
   }
 
   return (
-    <div id="sizes-container">
+    <div id="sizes-container" data-testid="sizes-container">
       <SizesRender
+        LogClick={LogClick}
         styleArray={styleArray}
         setCurrentSize={setCurrentSize}
         setCurrentQuantity={setCurrentQuantity}

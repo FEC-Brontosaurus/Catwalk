@@ -34,6 +34,7 @@ const App = () => {
           currentProduct={currentProduct}
           overviewAverage={overviewAverage}
           reviewScroll={reviewScroll}
+          LogClick={LogClick}
         />
       ) : null}
       {(currentProduct) ? <QandA id={currentProduct.id} /> : null}

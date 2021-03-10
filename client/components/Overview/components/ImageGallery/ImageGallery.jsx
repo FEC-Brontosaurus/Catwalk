@@ -3,7 +3,7 @@ import '../../styles/ImageGalleryStyles.css';
 import ImageGalleryImageSlide from './ImageGalleryImageSlide';
 
 const ImageGallery = ({
-  currentImageIndex, setCurrentImageIndex, currentStyle,
+  currentImageIndex, setCurrentImageIndex, currentStyle, LogClick,
   setCurrentStyle, thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
 }) => (
   <div id="imagegallery-container">
@@ -16,6 +16,7 @@ const ImageGallery = ({
       thumbSplitArr={thumbSplitArr}
       setThumbDisplayArr={setThumbDisplayArr}
       setOverviewModal={setOverviewModal}
+      LogClick={LogClick}
     />
   </div>
 );
