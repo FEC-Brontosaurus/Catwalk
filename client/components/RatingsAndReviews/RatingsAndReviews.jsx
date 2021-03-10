@@ -9,17 +9,21 @@ import styles from './styles/RatingsAndReviewsStyles.css';
 
 
 const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, LogClick }) => {
+  //Data sets to refer to
   const [constantReviewArr, setConstantReviewArr ] = useState([]);
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [productMetadataObj, setProductMetadataObj] = useState({});
   const [characteristicsMetadataObj, setCharacteristicsMetadataObj] = useState({});
+  //Display state for 'More Reviews' button 
+  const [currentProductReviewArrIndex, setCurrentProductReviewArrIndex] = useState(2);
+  const [isDisplayingAllReviews, setIsDisplayingAllReviews] = useState(false);
 
   // given the id from the current product, make an API GET request
   const getAllReviews = () => {
     axios.get('http://localhost:3000/api/getAllReviews', { params: { 'id': currentProduct.id } })
       .then((results) => {
         // console.log('getAllReviews: ', results.data);
-        setProductReviewArr(results.data);
+        setProductReviewArr(results.data.slice(0, 2));
         setConstantReviewArr(results.data);
         // renderTwoMoreReviewTiles();
       })
@@ -37,16 +41,20 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
       .catch((err) => console.log(err));
     }
     
-    useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
+  useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
     
-    //methods to change data input
-    const renderTwoMoreReviewTiles = () => {
-      console.log('I have been clicked!', constantReviewArr, productReviewArr)
-      // while (constantReviewArr.length)
-
-  
+  //methods to change data input
+  const renderTwoMoreReviewTiles = () => {
+    console.log('I have been clicked!', constantReviewArr, productReviewArr);
+    //when invoked, this function should add two elements from the constantReviewArr to the productReviewArr to be displayed
+    if (productReviewArr.length !== constantReviewArr.length) {
+      const elementsToBeAddedToDisplay = constantReviewArr.slice(currentProductReviewArrIndex, (currentProductReviewArrIndex + 2));
+      setProductReviewArr(productReviewArr.concat(elementsToBeAddedToDisplay));
+      setCurrentProductReviewArrIndex(currentProductReviewArrIndex);
+    } else {
+      setIsDisplayingAllReviews(true);
     }
-    
+  }
     
   const filterRatingReviewsDisplay = (ratingNum) => {
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
@@ -57,13 +65,16 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
     if (sortValue === 'helpful') {
       const helpfulSortArr = _.sortBy(constantReviewArr, 'helpfulness');
       setProductReviewArr(helpfulSortArr.reverse());
+      setIsDisplayingAllReviews(true);
     } else if (sortValue === 'newest') {
       const newestSortArr = _.sortBy(constantReviewArr, 'date');
-      setProductReviewArr(newestSortArr); 
+      setProductReviewArr(newestSortArr.reverse());
+      setIsDisplayingAllReviews(true);
     } else {
       const relevantSortArrByDate = _.sortBy(constantReviewArr, 'date');
       const relevanceSortArr = _.sortBy(relevantSortArrByDate, 'helpfuless');
-      setProductReviewArr(relevanceSortArr);    
+      setProductReviewArr(relevanceSortArr.reverse());
+      setIsDisplayingAllReviews(true); 
     } 
   }
 
@@ -81,10 +92,10 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
           </select>
         </form>
         <br></br>
-      {(productReviewArr.length === constantReviewArr.length )
-        ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
-        : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
-      }
+        {(productReviewArr.length === constantReviewArr.length )
+          ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
+          : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
+        }
         {Object.keys(productMetadataObj).length > 0
         ?<ProductBreakdown
             productMetadataObj={productMetadataObj}
@@ -96,18 +107,21 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
       }
       </div>
 
+
       <div className="RatingsAndReviews-content">
-      {productReviewArr.length > 0
-        ? productReviewArr.map((productReviewObj) => (
-          <IndividualReviewTile
-            key={productReviewObj.review_id}
-            productReviewObj={productReviewObj}
-            LogClick={LogClick}
-          />
-        ))
-      : <div>No reviews to display</div>
-      }
+        {productReviewArr.length > 0
+          ? productReviewArr.map((productReviewObj) => (
+            <IndividualReviewTile
+              key={productReviewObj.review_id}
+              productReviewObj={productReviewObj}
+              LogClick={LogClick}
+            />
+          ))
+        : <div>No reviews to display</div>
+        }
       </div>
+
+      
       {Object.keys(characteristicsMetadataObj).length > 0
         ? <SpecifiedCharacteristicsAddReviewModal 
             characteristicsMetadataObj={characteristicsMetadataObj}
@@ -118,8 +132,10 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
         : null
       }
-
-      <button onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
+      {isDisplayingAllReviews 
+        ? <button type="button" style={{color: "#a6a6a6"}}>More Reviews</button>
+        : <button type="button" onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
+      }
       </div>
     </div>
   );
