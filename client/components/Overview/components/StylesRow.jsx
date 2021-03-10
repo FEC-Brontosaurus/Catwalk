@@ -16,7 +16,7 @@ const StylesRow = ({
   row, currentStyle, setCurrentStyle, setCurrentSize,
   setCurrentQuantity, setAddToCartNoSize, setValue,
 }) => (
-  <div id="styles-row-container">
+  <div id="styles-row-container" data-testid="styles-row-container">
     {row.map((style, styleidx) => (
       <div id="style-div" key={style.name + styleidx}>
         <img
@@ -34,10 +34,12 @@ const StylesRow = ({
           src={checkmark}
           style={(style.style_id === currentStyle.style_id) ? { opacity: 1 } : { opacity: 0 }}
           alt=""
+          data-testid={`thumbnailcheck${style.name}`}
         />
         {(style.photos[0].thumbnail_url) ? (
           <img
             id="style-img"
+            title="imagethumbnail"
             style={(style.style_id === currentStyle.style_id) ? { boxShadow: '0px 0px 5px 3px #888888' } : null}
             src={style.photos[0].thumbnail_url}
             onClick={() => {
@@ -54,6 +56,7 @@ const StylesRow = ({
         ) : (
           <img
             id="style-img"
+            title="imagethumbnail"
             style={(style.style_id === currentStyle.style_id) ? { boxShadow: '0px 0px 5px 3px #888888' } : null}
             src={noimage}
             onClick={() => {
@@ -63,8 +66,9 @@ const StylesRow = ({
               (style === currentStyle ? null : setAddToCartNoSize(false));
               (style === currentStyle ? null : setCurrentSize(null));
               (style === currentStyle ? null : setCurrentQuantity(null));
+              (style === currentStyle ? null : setValue('DEFAULT'));
             }}
-            data-testid={style.name}
+            data-testid={`noimage${style.name}`}
             alt=""
           />
         )}

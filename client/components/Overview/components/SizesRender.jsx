@@ -2,11 +2,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import LogClick from '../../LogClick';
 
 const SizesRender = ({
   styleArray, setCurrentSize, setCurrentQuantity, currentSize,
-  addToCartNoSize, setAddToCartNoSize, value, setValue,
+  addToCartNoSize, setAddToCartNoSize, value, setValue, LogClick,
 }) => {
   //  remove any sizes from the array to render that are out of stock
   styleArray = styleArray.filter((size) => size.quantity > 0);
@@ -18,6 +17,7 @@ const SizesRender = ({
       <div id="sizes-container-addtocart">
         <select
           id="sizes-select-addtocart"
+          data-testid="sizes-select-addtocart"
           value={value}
           style={{ overflow: 'hidden' }}
           size={styleArray.length + 1}
@@ -29,9 +29,9 @@ const SizesRender = ({
             LogClick('select', 'Overview');
           }}
         >
-          <option value="DEFAULT">Select Size</option>
+          <option data-testid="option" value="DEFAULT">Select Size</option>
           {styleArray.map((size, idx) => (
-            <option id="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
+            <option id="size-option-valid" data-testid="option" key={size + idx} value={size.size}>{size.size}</option>
           ))}
         </select>
       </div>
@@ -48,6 +48,7 @@ const SizesRender = ({
       <div id="sizes-select">
         <select
           id="sizes-select"
+          data-testid="sizes-select-nocurrent"
           value="DEFAULT"
           onChange={(event) => {
             setValue(event.target.value);
@@ -58,7 +59,7 @@ const SizesRender = ({
         >
           <option disabled hidden value="DEFAULT">Select Size</option>
           {styleArray.map((size, idx) => (
-            <option id="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
+            <option id="size-option-valid" data-testid="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
           ))}
         </select>
       </div>
@@ -71,6 +72,7 @@ const SizesRender = ({
     <div id="sizes-select">
       <select
         id="sizes-select"
+        data-testid="sizes-select-current"
         value={currentSize}
         onChange={(event) => {
           setValue(event.target.value);
@@ -81,7 +83,7 @@ const SizesRender = ({
       >
         <option disabled hidden value="DEFAULT">Select Size</option>
         {styleArray.map((size, idx) => (
-          <option id="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
+          <option id="size-option-valid" data-testid="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
         ))}
       </select>
     </div>

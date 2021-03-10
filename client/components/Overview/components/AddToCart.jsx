@@ -1,23 +1,32 @@
+/* eslint-disable camelcase */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
 import '../styles/AddToCartStyles.css';
+import axios from 'axios';
 
-const AddToCart = ({ currentQuantity, currentSize, setAddToCartNoSize }) => {
+const AddToCart = ({
+  currentQuantity, currentSize, setAddToCartNoSize, currentStyle,
+}) => {
   //  handle clicking the add to cart button
   const handleAddToCart = () => {
     if (!currentSize) {
       setAddToCartNoSize(true);
     }
     if (currentQuantity && currentSize) {
-      console.log('ADDED TO CART');
+      for (const sku_id in currentStyle.skus) {
+        if (currentStyle.skus[sku_id].size === currentSize) {
+          axios.post('http://localhost:3000/api/addtocart', { sku_id })
+            .catch((err) => console.log(err));
+        }
+      }
     }
   };
 
   //  render the button as long as the current size is in stock
   return (
     <div id="addtocart-container">
-      {(currentSize === 'OUT OF STOCK') ? null : <button id="addtocart-button" type="button" onClick={handleAddToCart}><div id="addtocart-text">Add to Cart</div></button>}
+      {(currentSize === 'OUT OF STOCK') ? null : <button data-testid="addtocart" id="addtocart-button" type="button" onClick={handleAddToCart}><div id="addtocart-text">Add to Cart</div></button>}
     </div>
   );
 };

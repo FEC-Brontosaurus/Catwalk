@@ -9,7 +9,7 @@ import ImageGalleryThumbnail from './ImageGalleryThumbnail';
 
 const ImageGalleryImageSlide = ({
   setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal, LogClick,
 }) => (
   <div id="imagegallery-mainimage-container">
     {/* {thumbSplitArr.length > 0 ? (
@@ -47,6 +47,7 @@ const ImageGalleryImageSlide = ({
                     currentImageIndex={currentImageIndex}
                     setCurrentImageIndex={setCurrentImageIndex}
                     currentStyle={currentStyle}
+                    LogClick={LogClick}
                   />
                   <ImageGalleryThumbnail
                     currentStyle={currentStyle}
@@ -56,6 +57,7 @@ const ImageGalleryImageSlide = ({
                     thumbDisplayArr={thumbDisplayArr}
                     thumbSplitArr={thumbSplitArr}
                     setThumbDisplayArr={setThumbDisplayArr}
+                    LogClick={LogClick}
                   />
                 </>
               ) : null }
@@ -74,6 +76,7 @@ const ImageGalleryImageSlide = ({
                     currentImageIndex={currentImageIndex}
                     setCurrentImageIndex={setCurrentImageIndex}
                     currentStyle={currentStyle}
+                    LogClick={LogClick}
                   />
                   <ImageGalleryThumbnail
                     currentStyle={currentStyle}
@@ -83,6 +86,7 @@ const ImageGalleryImageSlide = ({
                     thumbDisplayArr={thumbDisplayArr}
                     thumbSplitArr={thumbSplitArr}
                     setThumbDisplayArr={setThumbDisplayArr}
+                    LogClick={LogClick}
                   />
                 </>
               ) : null }
