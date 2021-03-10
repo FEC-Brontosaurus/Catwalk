@@ -3,7 +3,7 @@ import axios from 'axios';
 import Overview from './Overview/Overview';
 import QandA from './QandA/QandA';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
-import LogClick from './LogClick';
+import LogClick from './LogClick.jsx';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -18,7 +18,7 @@ const App = () => {
     axios.get('http://localhost:3000/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[1]);
+        setCurrentProduct(results.data[2]);
       })
       .catch((err) => console.log(err));
   };
@@ -44,6 +44,7 @@ const App = () => {
           currentProduct={currentProduct}
           setOverviewAverage={setOverviewAverage}
           reviewScroll={reviewScroll}
+          LogClick={LogClick}
         />
       ) : null}
     </div>

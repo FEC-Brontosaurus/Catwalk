@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react';
 import axios from 'axios';
 import _, { escape } from 'underscore';
 
-const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, currentProduct_id}) => {
+const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, currentProduct_id, LogClick}) => {
     const [currentStarRatingText, setCurrentStarRatingText]= useState(null);
     const [isSubmitReviewButtonClicked, setIsSubmitReviewButtonClickedIs] = useState(false);
     //state to be sent in the post request 
@@ -177,24 +177,24 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
 
     return (
       <div>
-        <button type="button "id="myBtn" onClick={() => openReviewModal(reviewModalRef)}>Add Review</button>
+        <button type="button "id="myBtn" onClick={() => {openReviewModal(reviewModalRef), LogClick('button', 'RatingsAndReviews')}}>Add Review</button>
         <div ref={reviewModalRef} id="myModal" className="modal">
             <div className="modal-content">            
-            <span className="close" onClick={() => closeReviewModal(reviewModalRef)}>&times;</span>
+            <span className="close" onClick={() => {closeReviewModal(reviewModalRef), LogClick('span', 'RatingsAndReviews')}}>&times;</span>
             <h2>Add a Review</h2> 
             <h3>Overall Rating</h3>
             <div className="txt-center">
                 <form>
                     <div className="rating"> 
-                        <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" onClick={() => setRatingPOST(5)}/>
+                        <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" onClick={() => {setRatingPOST(5), LogClick('input', 'RatingsAndReviews')}}/>
                         <label htmlFor="star5" onMouseOver={() => returnStarRatingText(5)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => setRatingPOST(4)}/>
+                        <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => {setRatingPOST(4), LogClick('input', 'RatingsAndReviews')}}/>
                         <label htmlFor="star4" onMouseOver={() => returnStarRatingText(4)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => setRatingPOST(3)}/>
+                        <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => {setRatingPOST(3), LogClick('input', 'RatingsAndReviews')}}/>
                         <label htmlFor="star3" onMouseOver={() => returnStarRatingText(3)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => setRatingPOST(2)}/>
+                        <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => {setRatingPOST(2), LogClick('input', 'RatingsAndReviews')}}/>
                         <label htmlFor="star2" onMouseOver={() => returnStarRatingText(2)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
-                        <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => setRatingPOST(1)}/>
+                        <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => {setRatingPOST(1), LogClick('input', 'RatingsAndReviews')}}/>
                         <label htmlFor="star1" onMouseOver={() => returnStarRatingText(1)} onMouseOut={() => setCurrentStarRatingText(null)}>☆</label>
                         <div className="clear"></div>
                     </div>
@@ -203,9 +203,9 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
             <div>{currentStarRatingText}</div>
             <h3>Do you recommend this product?</h3>
             <form>
-              <input id="recommend-yes" name="recommend" type="radio" value="Yes" className="radio-btn recommend" onClick={() => setRecommendPOST(true)}/>
+              <input id="recommend-yes" name="recommend" type="radio" value="Yes" className="radio-btn recommend" onClick={() => {setRecommendPOST(true), LogClick('input', 'RatingsAndReviews')}}/>
               <label htmlFor="recommend-yes">Yes</label>
-              <input id="recommend-no" name="recommend" type="radio" value="No" className="radio-btn recommend" onClick={() => setRecommendPOST(false)}/>
+              <input id="recommend-no" name="recommend" type="radio" value="No" className="radio-btn recommend" onClick={() => {setRecommendPOST(false), LogClick('input', 'RatingsAndReviews')}}/>
               <label htmlFor="recommend-no">No</label>
             </form>
             <h3>Characteristic Review</h3>
@@ -219,7 +219,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                             className={characteristicsMetadataObj[characteristicName].id} 
                             name={characteristicName}
                             type="radio" 
-                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 1})}}
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 1}), LogClick('input', 'RatingsAndReviews')}}
                         />
                         <label 
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-1`}
@@ -230,7 +230,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                             className={characteristicsMetadataObj[characteristicName].id} 
                             name={characteristicName}
                             type="radio" 
-                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 2})}}
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 2}), LogClick('input', 'RatingsAndReviews')}}
                         />
                         <label 
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-2`}
@@ -241,7 +241,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                             className={characteristicsMetadataObj[characteristicName].id} 
                             name={characteristicName}
                             type="radio" 
-                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 3})}}
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 3}), LogClick('input', 'RatingsAndReviews')}}
                         />
                         <label 
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-3`}
@@ -252,7 +252,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                             className={characteristicsMetadataObj[characteristicName].id} 
                             name={characteristicName}
                             type="radio" 
-                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 4})}}
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 4}), LogClick('input', 'RatingsAndReviews')}}
                         />
                         <label 
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-4`}
@@ -263,7 +263,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                             className={characteristicsMetadataObj[characteristicName].id} 
                             name={characteristicName}
                             type="radio" 
-                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 5})}}
+                            onClick={(event) => {setCharacteristicsObjPOST({...characteristicsObjPOST, [event.target.className]: 5}), LogClick('input', 'RatingsAndReviews')}}
                         />
                         <label 
                           key={`${characteristicsMetadataObj[characteristicName].id}-label-5`}
@@ -295,6 +295,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
               ? <button
                   type="button"
                   onClick={() => {
+                    LogClick('input', 'RatingsAndReviews')
                     validateOverallRating(ratingPOST);
                     validateRecommend(recommendPOST);
                     validateCharactertics(characteristicsObjPOST);
@@ -305,7 +306,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
                   }}
                 >Submit review for processing?</button>
               : <button type="button" 
-                  onClick={() => {canSubmitPOST ? submitReview() : null}}>Submit Review</button>
+                  onClick={() => {canSubmitPOST ? (submitReview(), LogClick('input', 'RatingsAndReviews')) : null}}>Submit Review</button>
             }
           </div>
         </div>
