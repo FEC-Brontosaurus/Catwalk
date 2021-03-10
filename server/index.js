@@ -48,8 +48,8 @@ app.get('/api/qa/questions/:productId', (req, res) => {
     headers: { Authorization: API_KEY_BC },
     params: {
       product_id: numId,
-      page: 2,
-      count: 5,
+      page: 1,
+      count: 8,
     },
 
   })
@@ -63,7 +63,7 @@ app.get('/api/qa/questions/:productId', (req, res) => {
 app.post('/api/qa/questions/:questId/answers', (req, res) => {
   const { questId } = req.params;
   //console.log(req.body.params);
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/answers`, req.body, { headers: { Authorization: API_KEY_BC },
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/answers`, req.body.params, { headers: { Authorization: API_KEY_BC },
   })
     .then((result) => res.send(201))
     .catch((err) => {
@@ -113,7 +113,7 @@ app.put('/api/helpfulAnswer/:answerId', (req, res) => {
 
 app.put(`/api/helpfulQuestion/:questId`, (req, res) => {
   const { questId } = req.params;
-  console.log('question id log:', questId);
+  // console.log('question id log:', questId);
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/qa/questions/${questId}/helpful`, req.params, {
     headers: { Authorization: API_KEY_BC },
   })

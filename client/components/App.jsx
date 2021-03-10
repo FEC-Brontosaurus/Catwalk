@@ -3,6 +3,7 @@ import axios from 'axios';
 import Overview from './Overview/Overview';
 import QandA from './QandA/QandA';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
+import LogClick from './LogClick';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <div id="App-div">
       {(currentProduct) ? <Overview currentProduct={currentProduct} /> : null}
-      {(currentProduct) ? <QandA id={currentProduct.id} title={currentProduct.name} /> : null}
+      {(currentProduct) ? <QandA logClick={LogClick} id={currentProduct.id} title={currentProduct.name} /> : null}
       {(currentProduct) ? <RatingsAndReviews currentProduct={currentProduct} /> : null}
     </div>
   );

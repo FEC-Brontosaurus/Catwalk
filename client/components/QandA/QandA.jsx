@@ -3,12 +3,14 @@ import axios from 'axios';
 import Question from './Question';
 import Search from './Search';
 import QuestionModal from './QuestionModal';
+import styles from './styles/QandAStyles.css';
 
-const QandA = ({ id, title }) => {
+const QandA = ({ id, title, logClick }) => {
   const [initialQuestions, setInitQuestions] = useState([]);
   const [loadMoreQuestions, setLoadMoreQuestions] = useState(false);
   const [masterList, setMasterList] = useState([]);
   const [questionModalToggle, setQuestionModalToggle] = useState(false);
+  const [reRenderToggle, setReRenderToggle] = useState(false);
 
   const sortInitialQuestions = (initial) => {
     //  takes initial questions array
@@ -28,6 +30,8 @@ const QandA = ({ id, title }) => {
   };
 
   useEffect(() => (id ? getInitialQuestions() : null), [id]);
+
+  useEffect(() => (reRenderToggle ? getInitialQuestions() : null), [reRenderToggle]);
 
   const setDisplayQuestions = (sortedInitial) => {
     // set a display array from sorted initial questions
@@ -58,14 +62,17 @@ const QandA = ({ id, title }) => {
 
   return (
     <div id="QandA">
-      <h3> Questions and Answers </h3>
+      <h3>{ 'Questions & Answers' }</h3>
       <div id="QandA-Search">
-       {initialQuestions && <Search searchResults={displaySearchResults} setQuestions={setInitQuestions} masterList={setDisplayQuestions(masterList)}/> }
+       {initialQuestions && <Search logClick={logClick} searchResults={displaySearchResults} setQuestions={setInitQuestions} masterList={setDisplayQuestions(masterList)}/> }
       </div>
-      <div>
+      <div id="questions-container">
         {initialQuestions.length > 0
         ? (
         <Question
+          render={reRenderToggle}
+          reRender={setReRenderToggle}
+          logClick={logClick}
           title={title}
           loadFlag={loadMoreQuestions}
           questions={(!loadMoreQuestions ? setDisplayQuestions(initialQuestions)
@@ -79,7 +86,7 @@ const QandA = ({ id, title }) => {
           : <button type="button" onClick={() => setLoadMoreQuestions(false)}> Less Questions </button>)}
         <button type="button" onClick={() => setQuestionModalToggle(true)}> Add a Question </button>
       </form>
-      <QuestionModal title={title} id={id} setOpen={setQuestionModalToggle} open={questionModalToggle}/>
+      <QuestionModal render={reRenderToggle} reRender={setReRenderToggle} logClick={logClick} title={title} id={id} setOpen={setQuestionModalToggle} open={questionModalToggle}/>
     </div>
   );
 };
