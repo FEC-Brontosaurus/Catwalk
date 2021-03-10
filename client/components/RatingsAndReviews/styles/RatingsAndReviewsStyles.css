@@ -1,6 +1,22 @@
-.IndividualReviewTile-div {
-  background-color: cadetblue;
+/* Organization is from parent top parent component down */
+#RatingsAndReviews-wrapper{
+  display: flex;
+  justify-content: center;
 }
+
+#RatingsAndReviews-grid{
+  display: grid;
+  border: 2px solid black;
+  max-width: 1000px;
+  grid-template-columns: 2fr 6fr;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.IndividualReviewTile-content, .RatingsAndReviews-content{
+  border: 2px black;
+}
+
 
 .IndividualReviewTile-img {
     width: 100px;

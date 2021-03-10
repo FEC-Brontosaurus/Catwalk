@@ -52,7 +52,7 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
   };
 
   return (
-    <div className="IndividualReviewTile-div">
+    <div className="IndividualReviewTile-content">
       <RenderStars 
         rating={productReviewObj.rating}
       />
