@@ -6,28 +6,32 @@ import rightArrow from '../../../../../public/static/rightarrow.png';
 import '../../styles/ImageGalleryStyles.css';
 
 const ImageGalleryArrows = ({
-  currentImageIndex, setCurrentImageIndex, currentStyle,
+  currentImageIndex, setCurrentImageIndex, currentStyle, LogClick,
 }) => (
   <div id="imagegallery-arrows-container">
     {currentImageIndex === 0 ? null : (
       <img
         id="imagegallery-leftarrow"
+        data-testid="leftarrow"
         src={leftArrow}
         alt=""
         onClick={(e) => {
           e.stopPropagation();
           setCurrentImageIndex((currentImageIndex - 1));
+          LogClick('img', 'Overview');
         }}
       />
     )}
     {currentImageIndex === currentStyle.photos.length - 1 ? null : (
       <img
         id="imagegallery-rightarrow"
+        data-testid="rightarrow"
         src={rightArrow}
         alt=""
         onClick={(e) => {
           e.stopPropagation();
           setCurrentImageIndex((currentImageIndex + 1));
+          LogClick('img', 'Overview');
         }}
       />
     )}

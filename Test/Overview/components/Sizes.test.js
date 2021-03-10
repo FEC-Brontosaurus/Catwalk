@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  render, fireEvent, screen, simulate,
+  render, fireEvent, screen,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Sizes from '../../../client/components/Overview/components/Sizes';

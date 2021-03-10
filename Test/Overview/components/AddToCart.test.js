@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  render, fireEvent, screen, queryByAttribute,
+  render, fireEvent, screen,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import AddToCart from '../../../client/components/Overview/components/AddToCart';
