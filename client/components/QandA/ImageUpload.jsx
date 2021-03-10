@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-const ImageUpload = ({ imageFiles, setImage, toggleClose }) => {
+const ImageUpload = ({ imageFiles, setImage, toggleClose, logClick }) => {
   const [tempImageArr, setTempImageArr] = useState([]);
   const uploadedImage = useRef({});
 

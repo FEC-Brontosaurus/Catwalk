@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import _, { escape } from 'underscore';
 import axios from 'axios';
 
-const QuestionModal = ({ open, setOpen, title, id }) => {
+const QuestionModal = ({ open, setOpen, title, id, logClick, reRender, render }) => {
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [userQuestion, setUserQuestion] = useState('');
@@ -34,6 +34,7 @@ const QuestionModal = ({ open, setOpen, title, id }) => {
   }
 
   const discardQuestion = () => {
+    logClick('discard new question', 'QandA');
     setUserEmail('');
     setUserName('');
     setUserQuestion('');
@@ -45,7 +46,7 @@ const QuestionModal = ({ open, setOpen, title, id }) => {
     const nameEsc = _.escape(userName);
     const questionEsc = _.escape(userQuestion);
     e.preventDefault();
-    console.log(`name: ${userName}, email: ${userEmail}, question: ${userQuestion}`);
+    // console.log(`name: ${userName}, email: ${userEmail}, question: ${userQuestion}`);
     discardQuestion();
     postQuestion(nameEsc, emailEsc, questionEsc);
   }
@@ -59,6 +60,8 @@ const QuestionModal = ({ open, setOpen, title, id }) => {
         'product_id': id
       }
     })
+      .then((result) => reRender(!render))
+      .catch((err) => console.log('error in post new question post req:', err));
 
   }
 
