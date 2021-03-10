@@ -39,6 +39,12 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
   useEffect(() => (currentProduct ? (getAllReviews(), getProductMetadata()) : null), [currentProduct]);
 
   //methods to change data input
+
+  const renderTwoMoreReviewTiles = () => {
+    console.log('I have been clicked!')
+
+  }
+
   const filterRatingReviewsDisplay = (ratingNum) => {
     var result = constantReviewArr.filter(reviewObj => (reviewObj.rating === ratingNum))
     setProductReviewArr(result);
@@ -89,11 +95,14 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
       <div className="RatingsAndReviews-content">
       {productReviewArr.length > 0
         ? productReviewArr.map((productReviewObj) => (
+          <div>
           <IndividualReviewTile
             key={productReviewObj.review_id}
             productReviewObj={productReviewObj}
             LogClick={LogClick}
           />
+          <button onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
+          </div>
         ))
       : <div>No reviews to display</div>
     }

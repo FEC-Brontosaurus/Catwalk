@@ -13,6 +13,10 @@
   padding: 20px;
 }
 
+.RatingsAndReviews-content{
+  border: 2px blue
+}
+
 .IndividualReviewTile-content{
   width: 100%;
   padding: 30px;
