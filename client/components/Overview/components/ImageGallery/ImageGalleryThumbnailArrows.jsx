@@ -8,7 +8,7 @@ import '../../styles/ImageGalleryStyles.css';
 const ImageGalleryThumbnailArrows = ({
   setThumbDisplayArr, thumbDisplayArr, thumbSplitArr, LogClick,
 }) => (
-  <div id="imagegallery-thumbnail-arrows-container">
+  <div id="imagegallery-thumbnail-arrows-container" data-testid="imagegallery-thumbnail-arrows-container">
     {thumbDisplayArr === 0 ? null : (
       <img
         id="imagegallery-thumbnail-leftarrow"

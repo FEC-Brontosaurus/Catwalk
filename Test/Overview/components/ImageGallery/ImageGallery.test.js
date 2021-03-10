@@ -7,11 +7,12 @@ import {
 import '@testing-library/jest-dom/extend-expect';
 import ImageGalleryArrows from '../../../../client/components/Overview/components/ImageGallery/ImageGalleryArrows';
 import ImageGalleryThumbnailArrows from '../../../../client/components/Overview/components/ImageGallery/ImageGalleryThumbnailArrows';
+import ImageGalleryThumbnail from '../../../../client/components/Overview/components/ImageGallery/ImageGalleryThumbnail';
 
-/*****************************************************************************************************
-***********************************                                 **********************************
-***********************************    ImageGallery Arrow Tests     **********************************
-***********************************                                 **********************************
+/******************************************************************************************************
+***********************************                                 ***********************************
+***********************************    ImageGallery Arrow Tests     ***********************************
+***********************************                                 ***********************************
 *******************************************************************************************************/
 
 describe('ImageGallery Arrow Tests', () => {
@@ -113,7 +114,11 @@ describe('ImageGallery Arrow Tests', () => {
   });
 });
 
-/**********************************     ImageGallery Thumbnail Arrow Test     **********************************/
+/******************************************************************************************************
+*******************************                                          ******************************
+*******************************    ImageGallery Thumbnail Arrow Test     ******************************
+*******************************                                          ******************************
+*******************************************************************************************************/
 
 describe('ImageGallery Thumbnail Arrow Tests', () => {
   it('Should render left and right arrow to the DOM if image index is not on the ends of the current style photos array', () => {
@@ -214,26 +219,132 @@ describe('ImageGallery Thumbnail Arrow Tests', () => {
   });
 });
 
+/******************************************************************************************************
+***********************************                                 ***********************************
+***********************************    ImageGallery Slide Tests     ***********************************
+***********************************                                 ***********************************
+*******************************************************************************************************/
 
+/******************************************************************************************************
+*******************************                                          ******************************
+*******************************    ImageGallery Thumbnail Image Test     ******************************
+*******************************                                          ******************************
+*******************************************************************************************************/
 
-/**********************************     ImageGallery Thumbnail Arrow Test     **********************************/
-
+//   currentImageIndex, setCurrentImageIndex, LogClick,
+//   thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, currentStyle,
 describe('ImageGallery Thumbnail Images Tests', () => {
-  it('Should render left and right arrow to the DOM if image index is not on the ends of the current style photos array', () => {
+  it('Should not render thumbnail arrows if only one array', () => {
     //  create a dummy current product that we can use to pass into funcitons
-
-    const thumbDisplayArr = 1;
+    const thumbSplitArr = [[{ thumbnail_url: 'url 1' }, { thumbnail_url: 'url 2' }, { thumbnail_url: 'url 3' }]];
     const setThumbDisplayArr = jest.fn();
-    const thumbSplitArr = [[], [], []];
+    const setCurrentImageIndex = jest.fn();
+    const currentImageIndex = 0;
+    const thumbDisplayArr = 0;
 
-    render(<ImageGalleryThumbnailArrows
-      setThumbDisplayArr={setThumbDisplayArr}
+    render(<ImageGalleryThumbnail
       thumbSplitArr={thumbSplitArr}
+      setThumbDisplayArr={setThumbDisplayArr}
+      setCurrentImageIndex={setCurrentImageIndex}
+      currentImageIndex={currentImageIndex}
       thumbDisplayArr={thumbDisplayArr}
     />);
 
     //  check to make sure that the first style is the current style
-    expect(screen.queryByTestId('imagegallery-thumbnail-leftarrow')).toBeInTheDocument();
-    expect(screen.queryByTestId('imagegallery-thumbnail-rightarrow')).toBeInTheDocument();
+    expect(screen.queryByTestId('imagegallery-thumbnail-arrows-container')).not.toBeInTheDocument();
+  });
+
+  it('Should render thumbnail arrows if more than one array', () => {
+    //  create a dummy current product that we can use to pass into funcitons
+    const thumbSplitArr = [[{ thumbnail_url: 'url 1' }, { thumbnail_url: 'url 2' }], [{ thumbnail_url: 'url 3' }]];
+    const setThumbDisplayArr = jest.fn();
+    const setCurrentImageIndex = jest.fn();
+    const currentImageIndex = 0;
+    const thumbDisplayArr = 0;
+
+    render(<ImageGalleryThumbnail
+      thumbSplitArr={thumbSplitArr}
+      setThumbDisplayArr={setThumbDisplayArr}
+      setCurrentImageIndex={setCurrentImageIndex}
+      currentImageIndex={currentImageIndex}
+      thumbDisplayArr={thumbDisplayArr}
+    />);
+
+    //  check to make sure that the first style is the current style
+    expect(screen.queryByTestId('imagegallery-thumbnail-arrows-container')).toBeInTheDocument();
+  });
+
+  it('on click should call set curr image index and log click when style has images', () => {
+    //  create a dummy current product that we can use to pass into funcitons
+    const thumbSplitArr = [[{ thumbnail_url: 'url 1' }, { thumbnail_url: 'url 2' }], [{ thumbnail_url: 'url 3' }]];
+    const setThumbDisplayArr = jest.fn();
+    const setCurrentImageIndex = jest.fn();
+    const currentImageIndex = 0;
+    const thumbDisplayArr = 0;
+    const LogClick = jest.fn();
+
+    render(<ImageGalleryThumbnail
+      thumbSplitArr={thumbSplitArr}
+      setThumbDisplayArr={setThumbDisplayArr}
+      setCurrentImageIndex={setCurrentImageIndex}
+      currentImageIndex={currentImageIndex}
+      thumbDisplayArr={thumbDisplayArr}
+      LogClick={LogClick}
+    />);
+
+    fireEvent.click(screen.queryByTestId('imagegallery-thumbnail-slide-image1'));
+
+    //  check to make sure that the first style is the current style
+    expect(LogClick).toBeCalled();
+    expect(setCurrentImageIndex).toBeCalled();
+  });
+
+  it('on click should call set curr image index and log click when style has no image', () => {
+    //  create a dummy current product that we can use to pass into funcitons
+    const thumbSplitArr = [[{ thumbnail_url: 'url 1' }, { }], [{ thumbnail_url: 'url 3' }]];
+    const setThumbDisplayArr = jest.fn();
+    const setCurrentImageIndex = jest.fn();
+    const currentImageIndex = 0;
+    const thumbDisplayArr = 0;
+    const LogClick = jest.fn();
+
+    render(<ImageGalleryThumbnail
+      thumbSplitArr={thumbSplitArr}
+      setThumbDisplayArr={setThumbDisplayArr}
+      setCurrentImageIndex={setCurrentImageIndex}
+      currentImageIndex={currentImageIndex}
+      thumbDisplayArr={thumbDisplayArr}
+      LogClick={LogClick}
+    />);
+
+    fireEvent.click(screen.queryByTestId('imagegallery-thumbnail-slide-noimage1'));
+
+    //  check to make sure that the first style is the current style
+    expect(LogClick).toBeCalled();
+    expect(setCurrentImageIndex).toBeCalled();
+  });
+
+  it('on click should render no image with 0 opacity when the imag is not the curr image and it has no image', () => {
+    //  create a dummy current product that we can use to pass into funcitons
+    const thumbSplitArr = [[{ thumbnail_url: 'url 1' }, { }], [{ thumbnail_url: 'url 3' }]];
+    const setThumbDisplayArr = jest.fn();
+    const setCurrentImageIndex = jest.fn();
+    const currentImageIndex = 1;
+    const thumbDisplayArr = 0;
+    const LogClick = jest.fn();
+
+    render(<ImageGalleryThumbnail
+      thumbSplitArr={thumbSplitArr}
+      setThumbDisplayArr={setThumbDisplayArr}
+      setCurrentImageIndex={setCurrentImageIndex}
+      currentImageIndex={currentImageIndex}
+      thumbDisplayArr={thumbDisplayArr}
+      LogClick={LogClick}
+    />);
+
+    fireEvent.click(screen.queryByTestId('imagegallery-thumbnail-slide-noimage1'));
+
+    //  check to make sure that the first style is the current style
+    expect(screen.queryByTestId('imagegallery-thumbnail-slide-noimage1')).toBeInTheDocument();
   });
 });
