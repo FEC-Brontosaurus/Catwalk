@@ -29,6 +29,7 @@ const App = () => {
 
   return (
     <div id="App-div">
+
       {(currentProduct) ? (
         <Overview
           currentProduct={currentProduct}
@@ -37,7 +38,7 @@ const App = () => {
           LogClick={LogClick}
         />
       ) : null}
-      {(currentProduct) ? <QandA id={currentProduct.id} /> : null}
+      {(currentProduct) ? <QandA logClick={LogClick} id={currentProduct.id} title={currentProduct.name} /> : null}
       {(currentProduct) ? (
         <RatingsAndReviews
           currentProduct={currentProduct}

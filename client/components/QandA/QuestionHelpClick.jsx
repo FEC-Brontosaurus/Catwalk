@@ -1,22 +1,23 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
 
-const QuestionHelpClick = ({ questId }) => {
+const QuestionHelpClick = ({ questId, logClick, render, reRender }) => {
   const [helpClick, setHelpClick] = useState(0);
 
   const handleHelpClick = (id) => {
+    logClick('Question was helpful', 'QandA');
     setHelpClick(1);
     // console.log('answer', id, 'has this many clicks', helpClick);
     axios.put(`/api/helpfulQuestion/${id}`)
-      // .then((result) => console.log('helpful answer put req success'))
+      .then((result) => reRender(!render))
       .catch((err) => console.log('helpful question put req error', err));
   }
 
 
   return (
-    <>
-     {helpClick > 0 ? <span className="yes-style"> yes </span> : <button className="yes-style" onClick={() => handleHelpClick(questId)}> yes </button>}
-    </>
+    <div>
+     {helpClick > 0 ? <div className="yes-style"> yes </div> : <button className="yes-style" onClick={() => handleHelpClick(questId)}> yes </button>}
+    </div>
   )
 }
 

@@ -1,0 +1,56 @@
+
+
+.inner-question-container {
+  border: 1px solid black;
+  margin: 10px;
+
+}
+
+.QandA-question {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.answer-container {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 10px;
+}
+
+
+button {
+  border: none;
+}
+
+
+.question-accessories {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  margin-left: auto;
+
+}
+
+.question-helpful-yes button {
+  background-color: none;
+  border: none;
+  text-decoration: underline;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+}
+
+.question-helpful-yes button::selection {
+  text-decoration: none;
+}
+
+.add-an-answer, .report-style, .divider, .yes-style {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  margin: 3px;
+}

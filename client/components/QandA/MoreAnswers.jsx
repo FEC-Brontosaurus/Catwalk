@@ -4,8 +4,9 @@ import TimeAgo from 'react-timeago';
 import AnswerHelpClick from './AnswerHelpClick';
 import AnswerReport from './AnswerReport';
 import axios from 'axios';
+import _, { unescape } from 'underscore';
 
-const MoreAnswers = ({ questId }) => {
+const MoreAnswers = ({ questId, logClick, reRender, render }) => {
   const [initialAnswers, setInitAnswers] = useState([]);
   const helpClick = useRef(0);
   const getInitialAnswers = (questionId) => {
@@ -40,21 +41,6 @@ const MoreAnswers = ({ questId }) => {
     setInitAnswers(sellers.concat(buyers));
   };
 
-  // const displayAnswers = (sortedArr) => {
-  //   const tempArr = [];
-  //   for (let i = 0; i < 2; i += 1) {
-  //     tempArr.push(sortedArr[i]);
-  //   }
-  //   return tempArr;
-  // };
-  // const smallDisplay = displayAnswers(sortAnswers(answers));
-
-
-
-
-  // useEffect(() => (loadFlag ? setInitAnswers(sortAnswers(answers))
-  //   : setInitAnswers(smallDisplay)), [loadFlag]);
-
   return (
     <>
       {initialAnswers
@@ -62,15 +48,15 @@ const MoreAnswers = ({ questId }) => {
         answer ? <div>
           <div className="QandA-Answer" key={answer.answer_id.toString() + index}>
             A:
-            {answer.body}
+            {_.unescape(answer.body)}
             <span className="helpful-yes">
               Helpful?
-              <span> <AnswerHelpClick ansId={answer.answer_id}/> </span>
-              <><AnswerReport ansId={answer.answer_id}/></>
+              <span> <AnswerHelpClick reRender={reRender} render={render} logClick={logClick} ansId={answer.answer_id}/> </span>
+              <><AnswerReport reRender={reRender} render={render} logClick={logClick} ansId={answer.answer_id}/></>
             </span>
           </div>
           <div>
-            {answer.photos.length > 0 ? answer.photos.map((photo) => (<img key={photo} className="answer-image" src={photo}></img>)) : null }
+            {answer.photos.length > 0 ? answer.photos.map((photo) => (<>{typeof photo === 'string' ? <img key={photo} className="answer-image" src={photo}/> : null }</>)) : null }
           </div>
           <div className="username-timestamp"> by {answer.answerer_name}, <TimeAgo date={answer.date} /> </div>
         </div>
