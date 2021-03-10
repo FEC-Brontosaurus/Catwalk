@@ -9,14 +9,15 @@ import Quantity from './components/Quantity';
 import AddToCart from './components/AddToCart';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import ImageGalleryExpand from './components/ImageGalleryExpand/ImageGalleryExpand';
-import LogClick from '../LogClick';
 import './styles/ProductInformationStyles.css';
 import facebook from '../../../public/static/facebook.png';
 import twitter from '../../../public/static/twitter.png';
 import pinterest from '../../../public/static/pinterest.png';
 import './styles/OverviewStyle.css';
 
-const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
+const Overview = ({
+  currentProduct, overviewAverage, reviewScroll, LogClick,
+}) => {
   //  Current selection of items to be used in specific
   //  components that rely on others existing e.g. size depends on current style
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -63,6 +64,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
           thumbSplitArr={thumbSplitArr}
           setThumbDisplayArr={setThumbDisplayArr}
           setOverviewModal={setOverviewModal}
+          LogClick={LogClick}
         />
       ) : null}
       {(overviewModal === true) ? (
@@ -75,6 +77,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
           thumbSplitArr={thumbSplitArr}
           setThumbDisplayArr={setThumbDisplayArr}
           setOverviewModal={setOverviewModal}
+          LogClick={LogClick}
         />
       ) : null}
       <div id="overview-order-container">
@@ -84,6 +87,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
             currentProduct={currentProduct}
             currentStyle={currentStyle}
             reviewScroll={reviewScroll}
+            LogClick={LogClick}
           />
         )
           : null}
@@ -98,9 +102,10 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
             setValue={setValue}
             setThumbSplitArr={setThumbSplitArr}
             setCurrentImageIndex={setCurrentImageIndex}
+            LogClick={LogClick}
           />
         ) : null}
-        {(addToCartNoSize) ? <div id="no-cart">Please Select Size</div> : <div id="no-cart" />}
+        {(addToCartNoSize) ? <div id="no-cart">Please Select Size</div> : <div id="no-cart">{' '}</div>}
         {currentStyle
           ? (
             <Sizes
@@ -112,6 +117,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
               setAddToCartNoSize={setAddToCartNoSize}
               value={value}
               setValue={setValue}
+              LogClick={LogClick}
             />
           ) : null }
         {currentStyle ? (
@@ -120,6 +126,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
             currentSize={currentSize}
             setCurrentQuantity={setCurrentQuantity}
             currentQuantity={currentQuantity}
+            LogClick={LogClick}
           />
         )
           : null }
@@ -129,6 +136,7 @@ const Overview = ({ currentProduct, overviewAverage, reviewScroll }) => {
             currentSize={currentSize}
             setAddToCartNoSize={setAddToCartNoSize}
             currentStyle={currentStyle}
+            LogClick={LogClick}
           />
         )
           : null }
