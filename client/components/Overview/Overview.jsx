@@ -105,7 +105,7 @@ const Overview = ({
             LogClick={LogClick}
           />
         ) : null}
-        {(addToCartNoSize) ? <div id="no-cart">Please Select Size</div> : <div id="no-cart">{' '}</div>}
+        {(addToCartNoSize) ? <div style={{ height: '18.4px' }} id="no-cart">Please Select Size</div> : <div style={{ height: '18.4px' }} id="no-cart" />}
         {currentStyle
           ? (
             <Sizes
