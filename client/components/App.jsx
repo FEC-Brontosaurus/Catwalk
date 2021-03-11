@@ -15,7 +15,7 @@ const App = () => {
   //  expects to get an array of products
   //  if an error occurs log the error
   const getAllProducts = () => {
-    axios.get('http://localhost:3000/api/allproducts')
+    axios.get('/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
         setCurrentProduct(results.data[1]);
@@ -29,7 +29,6 @@ const App = () => {
 
   return (
     <div id="App-div">
-
       {(currentProduct) ? (
         <Overview
           currentProduct={currentProduct}
