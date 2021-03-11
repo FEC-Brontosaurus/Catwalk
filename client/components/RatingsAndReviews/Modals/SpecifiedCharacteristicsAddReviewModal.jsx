@@ -33,7 +33,7 @@ const SpecifiedCharacteristicsAddReviewModal = ({characteristicsMetadataObj, cur
 
     //POST request object
     const submitReview = () => {
-      axios.post('http://localhost:3000/api/reviews', reviewObjPOST)
+      axios.post('/api/reviews', reviewObjPOST)
         .catch((err) => console.log(err));
     }
 

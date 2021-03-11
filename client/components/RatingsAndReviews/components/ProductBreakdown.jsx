@@ -72,7 +72,7 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
     : null), [productMetadataObj]);
 
   return (
-    <div>
+    <div id="product-breakdown">
       <h3> Rating Breakdown</h3>
       <div>Average Rating: {averageRating}</div>
       <div>Total Reviews: {totalReviews}</div>

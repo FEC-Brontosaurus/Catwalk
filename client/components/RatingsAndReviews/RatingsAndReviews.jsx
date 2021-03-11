@@ -20,7 +20,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
 
   // given the id from the current product, make an API GET request
   const getAllReviews = () => {
-    axios.get('http://localhost:3000/api/getAllReviews', { params: { 'id': currentProduct.id } })
+    axios.get('/api/getAllReviews', { params: { 'id': currentProduct.id } })
       .then((results) => {
         // console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data.slice(0, 2));
@@ -32,7 +32,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
 
   //given the id from the current product, make an API GET request to get the review metadata for a given product
   const getProductMetadata = () => {
-    axios.get('http://localhost:3000/api/getProductMetadata', { params: { 'id': currentProduct.id } })
+    axios.get('/api/getProductMetadata', { params: { 'id': currentProduct.id } })
       .then((results) => {
         // console.log('getProductMetaData: ', results.data);
         setProductMetadataObj(results.data)
