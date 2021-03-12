@@ -6,10 +6,11 @@ import '../styles/AddToCartStyles.css';
 import axios from 'axios';
 
 const AddToCart = ({
-  currentQuantity, currentSize, setAddToCartNoSize, currentStyle,
+  currentQuantity, currentSize, setAddToCartNoSize, currentStyle, LogClick,
 }) => {
   //  handle clicking the add to cart button
   const handleAddToCart = () => {
+    LogClick('button', 'Overview');
     if (!currentSize) {
       setAddToCartNoSize(true);
     }

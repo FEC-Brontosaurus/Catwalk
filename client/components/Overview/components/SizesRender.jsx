@@ -54,8 +54,8 @@ const SizesRender = ({
             setValue(event.target.value);
             setCurrentSize(event.target.value);
             setCurrentQuantity(null);
-            LogClick('select', 'Overview');
           }}
+          onClick={() => LogClick('select', 'Overview')}
         >
           <option disabled hidden value="DEFAULT">Select Size</option>
           {styleArray.map((size, idx) => (
@@ -78,12 +78,12 @@ const SizesRender = ({
           setValue(event.target.value);
           setCurrentSize(event.target.value);
           setCurrentQuantity(null);
-          LogClick('select', 'Overview');
         }}
+        onClick={() => LogClick('select', 'Overview')}
       >
         <option disabled hidden value="DEFAULT">Select Size</option>
         {styleArray.map((size, idx) => (
-          <option id="size-option-valid" data-testid="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
+          <option id="size-option-valid" onClick={() => LogClick('option', 'Overview')} data-testid="size-option-valid" key={size + idx} value={size.size}>{size.size}</option>
         ))}
       </select>
     </div>

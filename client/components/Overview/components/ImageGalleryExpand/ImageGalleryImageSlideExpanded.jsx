@@ -10,7 +10,7 @@ import ImageGalleryExpandedZoom from './ImageGalleryExpandedZoom';
 
 const ImageGalleryImageSlideExpanded = ({
   setCurrentImageIndex, currentImageIndex, currentStyle, setCurrentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, LogClick,
 }) => {
   const [isZoom, setIsZoom] = useState(false);
   return (
@@ -20,12 +20,14 @@ const ImageGalleryImageSlideExpanded = ({
           currentStyle={currentStyle}
           currentImageIndex={currentImageIndex}
           setIsZoom={setIsZoom}
+          LogClick={LogClick}
         />
       ) : null }
       <ImageGalleryArrowsExpanded
         currentImageIndex={currentImageIndex}
         setCurrentImageIndex={setCurrentImageIndex}
         currentStyle={currentStyle}
+        LogClick={LogClick}
       />
       <ImageGalleryThumbnailExpanded
         currentImageIndex={currentImageIndex}
@@ -35,6 +37,7 @@ const ImageGalleryImageSlideExpanded = ({
         thumbDisplayArr={thumbDisplayArr}
         thumbSplitArr={thumbSplitArr}
         setThumbDisplayArr={setThumbDisplayArr}
+        LogClick={LogClick}
       />
       {currentStyle.photos.map((style, idx) => (
         <React.Fragment key={idx}>
@@ -46,7 +49,10 @@ const ImageGalleryImageSlideExpanded = ({
                   key={idx}
                   style={idx === currentImageIndex ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
                   alt=""
-                  onClick={() => setIsZoom(true)}
+                  onClick={() => {
+                    LogClick('select', 'Overview');
+                    setIsZoom(true);
+                  }}
                 />
               </>
             ) : (

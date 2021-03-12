@@ -14,7 +14,7 @@ import RenderStars from '../../renderStars';
 //  if there is a current price but no sale price render the current price
 //  if there is botha current price and sale price render the sale price in red followed by the current price with a line through it
 const ProductInformation = ({
-  currentProduct, currentStyle, overviewAverage, reviewScroll,
+  currentProduct, currentStyle, overviewAverage, reviewScroll, LogClick,
 }) => (
   <div id="productinformation-container">
     <div id="product-info-star-rating">
@@ -25,7 +25,10 @@ const ProductInformation = ({
         id="review-text"
         data-testid="review-text"
         onClick={
-          () => reviewScroll.current.scrollIntoView({ behavior: 'smooth' })
+          () => {
+            LogClick('div', 'Overview');
+            reviewScroll.current.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       >read all reviews
       </div>

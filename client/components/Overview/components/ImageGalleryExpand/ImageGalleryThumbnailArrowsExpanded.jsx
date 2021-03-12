@@ -6,11 +6,31 @@ import rightArrow from '../../../../../public/static/rightarrow.png';
 import '../../styles/ImageGalleryStyles.css';
 
 const ImageGalleryThumbnailArrowsExpanded = ({
-  setThumbDisplayArr, thumbDisplayArr, thumbSplitArr,
+  setThumbDisplayArr, thumbDisplayArr, thumbSplitArr, LogClick,
 }) => (
   <div id="imagegallery-thumbnail-arrows-container">
-    {thumbDisplayArr === 0 ? null : <img id="imagegallery-expanded-thumbnail-leftarrow" src={leftArrow} alt="" onClick={() => setThumbDisplayArr((thumbDisplayArr - 1))} />}
-    {thumbDisplayArr === thumbSplitArr.length - 1 ? null : <img id="imagegallery-expanded-thumbnail-rightarrow" src={rightArrow} alt="" onClick={() => setThumbDisplayArr((thumbDisplayArr + 1))} />}
+    {thumbDisplayArr === 0 ? null : (
+      <img
+        id="imagegallery-expanded-thumbnail-leftarrow"
+        src={leftArrow}
+        alt=""
+        onClick={() => {
+          LogClick('select', 'Overview');
+          setThumbDisplayArr((thumbDisplayArr - 1));
+        }}
+      />
+    )}
+    {thumbDisplayArr === thumbSplitArr.length - 1 ? null : (
+      <img
+        id="imagegallery-expanded-thumbnail-rightarrow"
+        src={rightArrow}
+        alt=""
+        onClick={() => {
+          LogClick('select', 'Overview');
+          setThumbDisplayArr((thumbDisplayArr + 1));
+        }}
+      />
+    )}
   </div>
 );
 

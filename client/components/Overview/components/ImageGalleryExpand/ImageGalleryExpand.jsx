@@ -5,7 +5,7 @@ import '../../styles/ImageGalleryStyles.css';
 import ImageGalleryImageSlideExpanded from './ImageGalleryImageSlideExpanded';
 
 const ImageGalleryExpand = ({
-  currentImageIndex, setCurrentImageIndex, currentStyle,
+  currentImageIndex, setCurrentImageIndex, currentStyle, LogClick,
   setCurrentStyle, thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal,
 }) => (
   <>
@@ -20,6 +20,7 @@ const ImageGalleryExpand = ({
         thumbSplitArr={thumbSplitArr}
         setThumbDisplayArr={setThumbDisplayArr}
         setOverviewModal={setOverviewModal}
+        LogClick={LogClick}
       />
     </div>
   </>

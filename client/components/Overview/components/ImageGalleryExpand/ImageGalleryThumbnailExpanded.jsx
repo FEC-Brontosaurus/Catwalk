@@ -7,7 +7,7 @@ import '../../styles/ImageGalleryStyles.css';
 
 const ImageGalleryThumbnailExpanded = ({
   currentImageIndex, setCurrentImageIndex, currentStyle,
-  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr,
+  thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, LogClick
 }) => (
   <div id="imagegallery-thumbnail-container">
     {(thumbSplitArr.length > 1)
@@ -19,6 +19,7 @@ const ImageGalleryThumbnailExpanded = ({
           thumbSplitArr={thumbSplitArr}
           setThumbDisplayArr={setThumbDisplayArr}
           thumbDisplayArr={thumbDisplayArr}
+          LogClick={LogClick}
         />
       )
       : null }
@@ -32,6 +33,7 @@ const ImageGalleryThumbnailExpanded = ({
               ? { opacity: 1 } : null}
             alt=""
             onClick={() => {
+              LogClick('select', 'Overview');
               setCurrentImageIndex(thumbDisplayArr * 7 + idx);
             }}
           />
