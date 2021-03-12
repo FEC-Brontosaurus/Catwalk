@@ -5,7 +5,7 @@
   margin-top: 5px;
   left: 2%;
   position: relative;
-  height: 60px;
+  height: 3vw;
   text-align: center;
 }
 
@@ -15,8 +15,12 @@
   text-align: center;
 }
 
+#quantity-select-valid:hover {
+  background-color: rgb(233, 233, 233);
+}
+
 #quantity-option-valid {
-  height: 60px;
+  height: 5vw;
   width: 100%;
 }
 

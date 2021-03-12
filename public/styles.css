@@ -16,7 +16,7 @@ body{
 }
 
 .stars-outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
+  content: "\2606 \2606 \2606 \2606 \2606";
 }
 
 .stars-inner {
@@ -29,6 +29,11 @@ body{
 }
 
 .stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
+  content: "\2605 \2605 \2605 \2605 \2605";
   color: #f8ce0b;
+}
+
+#searchbar{
+  text-align: center;
+  margin: 5px;
 }
