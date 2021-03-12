@@ -75,7 +75,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
   }
 
   return (
-    <div id="RatingsAndReviews-wrapper" ref={reviewScroll}>
+    <div id="RatingsAndReviews">
         <div id="RatingsAndReviews-titlediv">
           <h3>Ratings and Reviews</h3>
           <form>
@@ -87,11 +87,12 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
             </select>
           </form>
         </div>
-      <div className="RatingsAndReviews-sidebar">
         {(productReviewArr.length === constantReviewArr.length )
           ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
           : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
         }
+    <div id="RatingsAndReviews-wrapper" ref={reviewScroll}>
+      <div className="RatingsAndReviews-sidebar">
         {Object.keys(productMetadataObj).length > 0
         ?<ProductBreakdown
         productMetadataObj={productMetadataObj}
@@ -130,6 +131,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         }
       </div>
       </div>
+    </div>
     </div>
   );
 };

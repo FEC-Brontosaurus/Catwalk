@@ -70,14 +70,11 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
   useEffect(() => (productMetadataObj
     ? (calculateAverageRating(productMetadataObj.ratings))
     : null), [productMetadataObj]);
-
-  return (
-    <div id="product-breakdown">
+    
+    return (
+      <div id="product-breakdown">
       {/* <h3> Rating Breakdown</h3> */}
-      <div>Average Rating: {averageRating}</div>
-      <div>Total Reviews: {totalReviews}</div>
       <RenderStars rating={averageRating}/>
-      {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
       <div
         ref={currentFocusedElement5}
         onClick={() => {filterRatingReviewsDisplay(5), LogClick('div', 'RatingsAndReviews')}}
@@ -116,11 +113,14 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
       {Object.keys(productMetadataObj.recommended).length > 0
         ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
         : null}
-        {Object.keys(productMetadataObj.characteristics).length > 0
-          ? <CharacteristicsBreakdown
-              characteristicsObj={productMetadataObj.characteristics}
-            />
-          : <div>No characteristics to display</div>
+      <div>Average Rating: {averageRating}</div>
+      <div>Total Reviews: {totalReviews}</div>
+      {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
+      {Object.keys(productMetadataObj.characteristics).length > 0
+        ? <CharacteristicsBreakdown
+            characteristicsObj={productMetadataObj.characteristics}
+          />
+        : <div>No characteristics to display</div>
       }
     </div>
   );
