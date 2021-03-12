@@ -13,12 +13,14 @@ describe('AddToCart Tests', () => {
     const currentSize = 'OUT OF STOCK';
     const setAddToCartNoSize = jest.fn();
     const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };
+    const LogClick = jest.fn();
 
     render(<AddToCart
       currentQuantity={currentQuantity}
       currentSize={currentSize}
       setAddToCartNoSize={setAddToCartNoSize}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  check to make sure that the first style is the current style
@@ -32,12 +34,14 @@ describe('AddToCart Tests', () => {
     const currentSize = 'M';
     const setAddToCartNoSize = jest.fn();
     const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };
+    const LogClick = jest.fn();
 
     render(<AddToCart
       currentQuantity={currentQuantity}
       currentSize={currentSize}
       setAddToCartNoSize={setAddToCartNoSize}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  check to make sure that the first style is the current style
@@ -52,12 +56,14 @@ describe('AddToCart Tests', () => {
     const currentSize = null;
     const setAddToCartNoSize = jest.fn();
     const currentStyle = { style_id: 110041, name: 'Cyan', photos: ['test1'] };
+    const LogClick = jest.fn();
 
     render(<AddToCart
       currentQuantity={currentQuantity}
       currentSize={currentSize}
       setAddToCartNoSize={setAddToCartNoSize}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     fireEvent.click(screen.queryByTestId('addtocart'));

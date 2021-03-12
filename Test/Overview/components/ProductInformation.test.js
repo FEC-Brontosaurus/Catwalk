@@ -16,6 +16,7 @@ describe('ProductInformation Tests', () => {
       default_price: 100,
       description: 'test description',
     };
+    const LogClick = jest.fn();
 
     //  create a dummy style with no sale price
     const currentStyle = { sale_price: null };
@@ -24,6 +25,7 @@ describe('ProductInformation Tests', () => {
     const { container } = render(<ProductInformation
       currentProduct={currentProduct}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  find each component by id in the DOM
@@ -47,6 +49,7 @@ describe('ProductInformation Tests', () => {
       default_price: 100,
       description: 'test description',
     };
+    const LogClick = jest.fn();
 
     //  create a style with a sale price
     const currentStyle = { sale_price: null };
@@ -55,6 +58,7 @@ describe('ProductInformation Tests', () => {
     const { container } = render(<ProductInformation
       currentProduct={currentProduct}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  find price and sale price in the DOM but not the default price
@@ -76,6 +80,7 @@ describe('ProductInformation Tests', () => {
       default_price: 100,
       description: 'test description',
     };
+    const LogClick = jest.fn();
 
     //  create a style with a sale price
     const currentStyle = null;
@@ -84,6 +89,7 @@ describe('ProductInformation Tests', () => {
     const { container } = render(<ProductInformation
       currentProduct={currentProduct}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  find price and sale price in the DOM but not the default price
@@ -105,6 +111,7 @@ describe('ProductInformation Tests', () => {
       default_price: 100,
       description: 'test description',
     };
+    const LogClick = jest.fn();
 
     //  create a style with a sale price
     const currentStyle = { sale_price: 80 };
@@ -113,6 +120,7 @@ describe('ProductInformation Tests', () => {
     const { container } = render(<ProductInformation
       currentProduct={currentProduct}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  find price and sale price in the DOM but not the default price
@@ -134,6 +142,7 @@ describe('ProductInformation Tests', () => {
       default_price: 100,
       description: 'test description',
     };
+    const LogClick = jest.fn();
 
     //  create a style with a sale price
     const currentStyle = { sale_price: 80 };
@@ -142,6 +151,7 @@ describe('ProductInformation Tests', () => {
     const { container } = render(<ProductInformation
       currentProduct={currentProduct}
       currentStyle={currentStyle}
+      LogClick={LogClick}
     />);
 
     //  find price and sale price in the DOM but not the default price
@@ -153,7 +163,9 @@ describe('ProductInformation Tests', () => {
     expect(priceDefault).toBeNull();
     expect(priceLine).toBeInTheDocument();
     expect(salePrice).toBeInTheDocument();
-  }); it('Should call funciton to scroll to review section on all review click', () => {
+  });
+
+  it('Should call funciton to scroll to review section on all review click', () => {
     //  create a dummy product
     const currentProduct = {
       category: 'test category',
@@ -161,6 +173,7 @@ describe('ProductInformation Tests', () => {
       default_price: 100,
       description: 'test description',
     };
+    const LogClick = jest.fn();
 
     const reviewScroll = { current: { scrollIntoView: jest.fn() } };
 
@@ -172,6 +185,7 @@ describe('ProductInformation Tests', () => {
       currentProduct={currentProduct}
       currentStyle={currentStyle}
       reviewScroll={reviewScroll}
+      LogClick={LogClick}
     />);
 
     //  find price and sale price in the DOM but not the default price
