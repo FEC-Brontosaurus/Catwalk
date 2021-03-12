@@ -3,14 +3,12 @@
   height: 40vw;
   display: inline-block;
   position: relative;
-  outline: 3px solid black;
 }
 
 #imagegallery-mainimage-container {
   position: absolute;
   width: 100%;
   height: 100%;
-  outline: 1px solid greenyellow;
 }
 
 #imagegallery-slide-image {
@@ -148,8 +146,8 @@
 #imagegallery-extended-thumbnail-slide-image {
   position: relative;
   margin: 10px;
-  width: 3vw;
-  height: 3vw;
+  width: 1vw;
+  height: 1vw;
   border-radius: 50px;
   background-color: white;
   z-index: 3;
