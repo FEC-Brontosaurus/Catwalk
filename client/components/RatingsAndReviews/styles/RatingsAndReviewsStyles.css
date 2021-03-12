@@ -24,6 +24,11 @@
   border: 2px solid black;
 }
 
+.RatingsAndReviews-sidebar {
+  background-color: lightpink;
+  width: 20vw;
+}
+
 .RatingsAndReviews-content{
   display: flex;
   flex-direction: column;
@@ -38,7 +43,7 @@
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  display:  ;
+  display: flex;
   background-color: lightseagreen;
 }
 

@@ -75,6 +75,10 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
       <div id="product-breakdown">
       {/* <h3> Rating Breakdown</h3> */}
       <RenderStars rating={averageRating}/>
+      {Object.keys(productMetadataObj.recommended).length > 0
+        ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
+        : null
+      }
       <div
         ref={currentFocusedElement5}
         onClick={() => {filterRatingReviewsDisplay(5), LogClick('div', 'RatingsAndReviews')}}
@@ -110,9 +114,6 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
         onMouseOut={() => { removeHoverBackgroundColor(currentFocusedElement1); }}
       >1 Star <progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100" />
       </div>
-      {Object.keys(productMetadataObj.recommended).length > 0
-        ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
-        : null}
       <div>Average Rating: {averageRating}</div>
       <div>Total Reviews: {totalReviews}</div>
       {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
