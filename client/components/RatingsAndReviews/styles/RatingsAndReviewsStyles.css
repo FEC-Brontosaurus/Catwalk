@@ -1,23 +1,23 @@
 /* Organization is from parent top parent component down */
-#RatingsAndReviews-wrapper{
-  display: flex;
-  justify-content: center;
-}
+  
 
-#RatingsAndReviews-grid{
+/* #RatingsAndReviews-wrapper{
   display: grid;
   border: 2px solid black;
   max-width: fit-content;
-  grid-template-columns: 2fr 6fr;
   grid-gap: 20px;
   padding: 20px;
   max-height: 33%;
   overflow: scroll; 
+} */
+#RatingsAndReviews-wrapper{
+  display: grid;
+  border: 2px solid black;
 }
 
-.RatingsAndReviews-content{
+/* .RatingsAndReviews-content{
   border: 2px blue
-}
+} */
 
 
 

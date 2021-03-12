@@ -76,7 +76,6 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
 
   return (
     <div id="RatingsAndReviews-wrapper" ref={reviewScroll}>
-      <div id="RatingsAndReviews-grid">
         <div id="RatingsAndReviews-titlediv">
           <h3>Ratings and Reviews</h3>
           <form>
@@ -95,15 +94,14 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         }
         {Object.keys(productMetadataObj).length > 0
         ?<ProductBreakdown
-            productMetadataObj={productMetadataObj}
-            filterRatingReviewsDisplay={filterRatingReviewsDisplay}
-            setOverviewAverage={setOverviewAverage}
-            LogClick={LogClick}
-            />
+        productMetadataObj={productMetadataObj}
+        filterRatingReviewsDisplay={filterRatingReviewsDisplay}
+        setOverviewAverage={setOverviewAverage}
+        LogClick={LogClick} 
+        />
         : null
       }
       </div>
-
       <div className="RatingsAndReviews-content">
         {productReviewArr.length > 0
           ? productReviewArr.map((productReviewObj) => (
@@ -115,23 +113,22 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
             ))
         : <div>No reviews to display</div>
         }
-      </div>
-
-      {Object.keys(characteristicsMetadataObj).length > 0
-        ? <SpecifiedCharacteristicsAddReviewModal 
-        characteristicsMetadataObj={characteristicsMetadataObj}
-        currentProduct_id={currentProduct.id}
-        LogClick={LogClick}
-        />
-        // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
-        // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
-        : null
-      }
+      <div id="RatingAndReviews-buttons">
+        {Object.keys(characteristicsMetadataObj).length > 0
+          ? <SpecifiedCharacteristicsAddReviewModal 
+          characteristicsMetadataObj={characteristicsMetadataObj}
+          currentProduct_id={currentProduct.id}
+          LogClick={LogClick}
+          />
+          // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
+          // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
+          : null
+        }
         {isDisplayingAllReviews 
           ? <button type="button" style={{color: "#a6a6a6"}}>More Reviews</button>
           : <button type="button" onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
         }
-
+      </div>
       </div>
     </div>
   );
