@@ -1,13 +1,10 @@
 #Overview {
   position: relative;
-  width: 60%;
-  margin: auto;
-  outline: 3px solid black;
+  width: 100%;
 }
 
 #overview-order-container {
   width: 35%;
-  height: 700px;
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -21,4 +18,11 @@
   left: 10%;
   width: 100%;
   display: inline-block;
+}
+
+#product-info-overview{
+  font-size: 1.5vw;
+  font-family: sans-serif;
+  width: 70%;
+  margin: 5%
 }
