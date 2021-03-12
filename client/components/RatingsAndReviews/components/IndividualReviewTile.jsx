@@ -65,7 +65,9 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
             <button type="button" onClick={() => {setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews')}}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
-        : <div>{reformattedBody(productReviewObj.body)}</div>}
+        : <div>{reformattedBody(productReviewObj.body)}</div>
+      }
+      <div className="IndividualReviewTile-images">
       {productReviewObj.photos
         ? productReviewObj.photos.map((photoObj) => (
           <div key={`${photoObj.id}-div`}>
@@ -79,6 +81,7 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
           </div>
         ))
       : null}
+      </div>
       <div>{_.unescape(productReviewObj.reviewer_name)}</div>
       {productReviewObj.response
       ? <div>Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>

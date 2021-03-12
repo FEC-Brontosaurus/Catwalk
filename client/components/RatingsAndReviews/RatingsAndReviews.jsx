@@ -25,7 +25,6 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         // console.log('getAllReviews: ', results.data);
         setProductReviewArr(results.data.slice(0, 2));
         setConstantReviewArr(results.data);
-        // renderTwoMoreReviewTiles();
       })
       .catch((err) => console.log(err));
   };
@@ -76,9 +75,9 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
 
   return (
     <div id="RatingsAndReviews">
-        <div id="RatingsAndReviews-titlediv">
+        <div id="RatingsAndReviews-title">
           <h3>Ratings and Reviews</h3>
-          <form>
+          <form id="title-sort-form" className="title-features">
             <label htmlFor="sort">Sort by: </label>
             <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value), LogClick('select', 'RatingsAndReviews')}}>
               <option value="relevant">Relevant</option>
@@ -86,11 +85,11 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
               <option value="newest">Newest</option>
             </select>
           </form>
-        </div>
         {(productReviewArr.length === constantReviewArr.length )
-          ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
-          : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
+          ? <button id="title-reset-button" className="title-features" type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
+          : <button id="title-reset-button" className="title-features" type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
         }
+        </div>
     <div id="RatingsAndReviews-wrapper" ref={reviewScroll}>
       <div className="RatingsAndReviews-sidebar">
         {Object.keys(productMetadataObj).length > 0
