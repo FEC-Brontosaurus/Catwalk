@@ -77,17 +77,18 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
   return (
     <div id="RatingsAndReviews-wrapper" ref={reviewScroll}>
       <div id="RatingsAndReviews-grid">
+        <div id="RatingsAndReviews-titlediv">
+          <h3>Ratings and Reviews</h3>
+          <form>
+            <label htmlFor="sort">Sort by: </label>
+            <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value), LogClick('select', 'RatingsAndReviews')}}>
+              <option value="relevant">Relevant</option>
+              <option value="helpful">Helpful</option>
+              <option value="newest">Newest</option>
+            </select>
+          </form>
+        </div>
       <div className="RatingsAndReviews-sidebar">
-        <h3>Ratings and Reviews</h3>
-        <form>
-          <label htmlFor="sort">Sort by: </label>
-          <select name="sort" id="sort-select" onChange={(event) => {sortReviewDisplay(event.target.value), LogClick('select', 'RatingsAndReviews')}}>
-            <option value="relevant">Relevant</option>
-            <option value="helpful">Helpful</option>
-            <option value="newest">Newest</option>
-          </select>
-        </form>
-        <br></br>
         {(productReviewArr.length === constantReviewArr.length )
           ? <button type="button" style={{color: "#a6a6a6"}}>Remove All Filters</button>
           : <button type="button" onClick={() => {setProductReviewArr(constantReviewArr), LogClick('button', 'RatingsAndReviews')}}>Remove All Filters</button>
@@ -98,7 +99,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
             filterRatingReviewsDisplay={filterRatingReviewsDisplay}
             setOverviewAverage={setOverviewAverage}
             LogClick={LogClick}
-          />
+            />
         : null
       }
       </div>
@@ -107,30 +108,30 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
         {productReviewArr.length > 0
           ? productReviewArr.map((productReviewObj) => (
             <IndividualReviewTile
-              key={productReviewObj.review_id}
-              productReviewObj={productReviewObj}
-              LogClick={LogClick}
+            key={productReviewObj.review_id}
+            productReviewObj={productReviewObj}
+            LogClick={LogClick}
             />
-          ))
+            ))
         : <div>No reviews to display</div>
         }
       </div>
 
       {Object.keys(characteristicsMetadataObj).length > 0
         ? <SpecifiedCharacteristicsAddReviewModal 
-            characteristicsMetadataObj={characteristicsMetadataObj}
-            currentProduct_id={currentProduct.id}
-            LogClick={LogClick}
-          />
+        characteristicsMetadataObj={characteristicsMetadataObj}
+        currentProduct_id={currentProduct.id}
+        LogClick={LogClick}
+        />
         // : <AddReviewModal currentProduct_id={currentProduct.id}/> This modal could be an example for when a product has no reviews. Something to talk about with client
         // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
         : null
       }
+        {isDisplayingAllReviews 
+          ? <button type="button" style={{color: "#a6a6a6"}}>More Reviews</button>
+          : <button type="button" onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
+        }
 
-      {isDisplayingAllReviews 
-        ? <button type="button" style={{color: "#a6a6a6"}}>More Reviews</button>
-        : <button type="button" onClick={() => {renderTwoMoreReviewTiles()}}>More Reviews</button>
-      }
       </div>
     </div>
   );
