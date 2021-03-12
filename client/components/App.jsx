@@ -3,7 +3,8 @@ import axios from 'axios';
 import Overview from './Overview/Overview';
 import QandA from './QandA/QandA';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
-import LogClick from './LogClick.jsx';
+import LogClick from './LogClick';
+import Search from './Search';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -29,6 +30,7 @@ const App = () => {
 
   return (
     <div id="App-div">
+      <Search setCurrentProduct={setCurrentProduct} LogClick={LogClick} />
       {(currentProduct) ? (
         <Overview
           currentProduct={currentProduct}
