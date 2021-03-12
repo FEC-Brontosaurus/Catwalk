@@ -12,7 +12,7 @@ const Styles = ({
 
   //  ajax request to get all styles for the current products id
   const getAllStyles = () => {
-    axios.get('http://localhost:3000/api/getallstyles', { params: { id } })
+    axios.get('/api/getallstyles', { params: { id } })
       .then((results) => {
         // //  create an array with all styles (not in rows of 4)
         // setImageArray(results.data);

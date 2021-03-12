@@ -3,21 +3,13 @@ import styles from './styles/AnswerStyles.css';
 import TimeAgo from 'react-timeago';
 import AnswerHelpClick from './AnswerHelpClick';
 import AnswerReport from './AnswerReport';
-// import axios from 'axios';
+import _, { unescape } from 'underscore';
 
-const Answers = ({ answers, loadFlag }) => {
+
+const Answers = ({ answers, loadFlag, logClick, reRender, render }) => {
   const [initialAnswers, setInitAnswers] = useState([]);
   const helpClick = useRef(0);
-  // const getInitialAnswers = (questionId) => {
-  //   axios.get(`/api/qa/questions/${questionId}/answers`)
-  //     .then((result) => {
-  //       setInitAnswers(result.data.results);
-  //       console.log(result.data.results);
-  //     })
-  //     .catch((err) => { console.log('error in answers get req', err); });
-  // };
 
-  // useEffect(() => (questId ? getInitialAnswers(questId) : null), [questId]);
 
   const sortAnswers = (unsortedAnswers) => {
     const tempArr = [];
@@ -60,18 +52,18 @@ const Answers = ({ answers, loadFlag }) => {
     <>
       {initialAnswers
       ? initialAnswers.map((answer, index) => (
-        answer ? <div>
-          <div className="QandA-Answer" key={answer.answer_id.toString() + index}>
-            A:
-            {answer.body}
-            <span className="helpful-yes">
+        answer ? <div key={answer.answer_id.toString() + index}>
+          <div className="QandA-Answer" >
+            <div className="a-style"> A: </div>
+            {_.unescape(answer.body)}
+            <div className="helpful-yes">
               Helpful?
-              <span> <AnswerHelpClick ansId={answer.answer_id}/> <span> ({answer.helpfulness})</span> </span>
-              <><AnswerReport ansId={answer.answer_id}/></>
-            </span>
+              <div> <AnswerHelpClick reRender={reRender} render={render} logClick={logClick} ansId={answer.answer_id}/> <div> ({answer.helpfulness})</div> </div>
+              <><AnswerReport reRender={reRender} render={render} logClick={logClick} ansId={answer.answer_id}/></>
+            </div>
           </div>
           <div>
-            {answer.photos.length > 0 ? answer.photos.map((photo) => (<img key={photo} className="answer-image" src={photo}></img>)) : null }
+            {answer.photos.length > 0 ? answer.photos.map((photo) => (<img key={photo} className="answer-image" src={photo} alt="Image Unavailable"/>)) : null }
           </div>
           <div className="username-timestamp"> by {answer.answerer_name}, <TimeAgo date={answer.date} /> </div>
         </div>

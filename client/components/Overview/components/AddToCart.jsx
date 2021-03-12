@@ -16,7 +16,7 @@ const AddToCart = ({
     if (currentQuantity && currentSize) {
       for (const sku_id in currentStyle.skus) {
         if (currentStyle.skus[sku_id].size === currentSize) {
-          axios.post('http://localhost:3000/api/addtocart', { sku_id })
+          axios.post('/api/addtocart', { sku_id })
             .catch((err) => console.log(err));
         }
       }

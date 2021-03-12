@@ -5,7 +5,7 @@ import ClickedImageModal from '../Modals/ClickedImageModal.jsx';
 import RenderStars from '../../renderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
 
-const IndividualReviewTile = ({ productReviewObj }) => {
+const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
   const [isShowingFullReviewBody, setIsShowingFullReviewBody] = useState(false);
 
   const reformattedDate = () => {
@@ -52,15 +52,17 @@ const IndividualReviewTile = ({ productReviewObj }) => {
   };
 
   return (
-    <div className="IndividualReviewTile-div">
-      <RenderStars rating={productReviewObj.rating}/>
+    <div className="IndividualReviewTile-content">
+      <RenderStars 
+        rating={productReviewObj.rating}
+      />
       <div>{reformattedDate(productReviewObj.date)}</div>
       <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
       {productReviewObj.body.length >= 250
         ? (
           <div>
             {reformattedBody(productReviewObj.body)}
-            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
+            <button type="button" onClick={() => {setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews')}}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
         : <div>{reformattedBody(productReviewObj.body)}</div>}
@@ -72,6 +74,7 @@ const IndividualReviewTile = ({ productReviewObj }) => {
               key={photoObj.id}
               photoURL={photoObj.url}
               alt="Individual Review Tile"
+              LogClick={LogClick}
             />
           </div>
         ))
@@ -86,7 +89,9 @@ const IndividualReviewTile = ({ productReviewObj }) => {
       }
       <HelpfulReviewFeedbackButton 
         review_id={productReviewObj.review_id}
-        helpfulnessRating={productReviewObj.helpfulness}/>
+        helpfulnessRating={productReviewObj.helpfulness}
+        LogClick={LogClick}
+      />
       <br></br>
     </div>
   );

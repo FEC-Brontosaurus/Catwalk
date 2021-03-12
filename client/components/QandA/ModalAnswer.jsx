@@ -28,7 +28,7 @@ const OVERLAY_STYLES = {
 }
 
 
-const AnswerModal = ({ open, setOpen, question, title, id }) => {
+const AnswerModal = ({ open, setOpen, question, title, id, logClick, reRender, render }) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
@@ -36,6 +36,7 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
   const [imageFiles, setImageFiles] = useState([]);
 
   const submitAnswer = (event, name, email, answer) => {
+    logClick('Submit New Answer Button', 'QandA');
     const answerEsc = _.escape(answer);
     const emailEsc = _.escape(email);
     const nameEsc = _.escape(name);
@@ -48,15 +49,19 @@ const AnswerModal = ({ open, setOpen, question, title, id }) => {
         'photos': []
       }
     })
-     .then((result) => console.log('submitanswer success'))
+     .then((result) => {
+      //  console.log('submitanswer success')
+       setUserAnswer('');
+       setUserEmail('');
+       setUserName('');
+       setOpen(false);
+       reRender(!render);
+      })
      .catch((err) => console.log('error in client submitanswer post:', err));
-    setUserAnswer('');
-    setUserEmail('');
-    setUserName('');
-    setOpen(false);
   }
 
   const discardAnswer = () => {
+    logClick('discard new answer button', 'QandA');
     setUserAnswer('');
     setUserEmail('');
     setUserName('');

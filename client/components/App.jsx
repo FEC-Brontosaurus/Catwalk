@@ -3,7 +3,7 @@ import axios from 'axios';
 import Overview from './Overview/Overview';
 import QandA from './QandA/QandA';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
-import LogClick from './LogClick';
+import LogClick from './LogClick.jsx';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -15,10 +15,10 @@ const App = () => {
   //  expects to get an array of products
   //  if an error occurs log the error
   const getAllProducts = () => {
-    axios.get('http://localhost:3000/api/allproducts')
+    axios.get('/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[1]);
+        setCurrentProduct(results.data[0]);
       })
       .catch((err) => console.log(err));
   };
@@ -37,12 +37,13 @@ const App = () => {
           LogClick={LogClick}
         />
       ) : null}
-      {(currentProduct) ? <QandA id={currentProduct.id} /> : null}
+      {(currentProduct) ? <QandA logClick={LogClick} id={currentProduct.id} title={currentProduct.name} /> : null}
       {(currentProduct) ? (
         <RatingsAndReviews
           currentProduct={currentProduct}
           setOverviewAverage={setOverviewAverage}
           reviewScroll={reviewScroll}
+          LogClick={LogClick}
         />
       ) : null}
     </div>
