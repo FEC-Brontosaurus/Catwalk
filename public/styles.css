@@ -32,3 +32,8 @@ body{
   content: "\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
 }
+
+#searchbar{
+  text-align: center;
+  margin: 5px;
+}

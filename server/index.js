@@ -227,6 +227,16 @@ app.put('/api/reviews/:review_id/helpful', (req, res) => {
     })
 })
 
+app.get('/api/search', (req, res) => {
+  const { search } = req.query;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${search}`, { headers: { Authorization: API_KEY_AF } })
+    .then((response) => res.send(response.data))
+    .catch((err) => {
+      console.log('Error from API Search', err);
+      res.send(500);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
