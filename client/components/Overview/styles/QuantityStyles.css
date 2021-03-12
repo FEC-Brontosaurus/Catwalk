@@ -5,7 +5,7 @@
   margin-top: 5px;
   left: 2%;
   position: relative;
-  height: 60px;
+  height: 5vw;
   text-align: center;
 }
 
@@ -16,7 +16,7 @@
 }
 
 #quantity-option-valid {
-  height: 60px;
+  height: 5vw;
   width: 100%;
 }
 
