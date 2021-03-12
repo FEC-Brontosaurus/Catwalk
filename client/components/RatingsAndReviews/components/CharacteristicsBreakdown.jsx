@@ -3,7 +3,7 @@ import React from 'react';
 const CharacteristicsBreakdown = ({characteristicsObj}) => {
 
     return (
-        <div>
+        <div className="product-breakdown-items">
         {/* On a scale where 5 is "perfect" */}
         {characteristicsObj.Comfort 
         ? (<div>

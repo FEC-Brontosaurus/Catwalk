@@ -13,10 +13,12 @@ body{
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
+  font-size: 2vw;
 }
 
 .stars-outer::before {
   content: "\2606 \2606 \2606 \2606 \2606";
+  font-size: 2vw;
 }
 
 .stars-inner {
@@ -26,11 +28,13 @@ body{
   white-space: nowrap;
   overflow: hidden;
   width: 0;
+  font-size: 2vw;
 }
 
 .stars-inner::before {
   content: "\2605 \2605 \2605 \2605 \2605";
   color: #f8ce0b;
+  font-size: 2vw;
 }
 
 #searchbar{

@@ -24,6 +24,13 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
 
   // calculation functions
   const calculateAverageRating = (ratingsObj) => {
+    if (Object.keys(ratingsObj).length === 0){
+      setTotalReviews(0);
+      setAverageRating(0);
+      setOverviewAverage(0);
+    }
+
+    console.log(Object.keys(ratingsObj).length);
     let totalReviews = 0;
     let weightedAverageRating = 0;
     for (const rating in ratingsObj) {
@@ -74,48 +81,57 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
     return (
       <div id="product-breakdown">
       {/* <h3> Rating Breakdown</h3> */}
-      <RenderStars rating={averageRating}/>
+      <div className="product-breakdown-rating-average">
+        {averageRating}
+        <RenderStars  rating={averageRating}/>
+      </div>
+      
       {Object.keys(productMetadataObj.recommended).length > 0
-        ? <div>{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
+        ? <div className="product-breakdown-items">{calculateRecommendedPercentage(productMetadataObj.recommended)}% of reviews recommend this product!</div>
         : null
       }
       <div
         ref={currentFocusedElement5}
+        className="product-breakdown-items stars-bars"
         onClick={() => {filterRatingReviewsDisplay(5), LogClick('div', 'RatingsAndReviews')}}
         onMouseOver={() => changeHoverBackgroundColor(currentFocusedElement5)}
         onMouseOut={() => removeHoverBackgroundColor(currentFocusedElement5)}
-      >5 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100" />
+      >5 Stars &nbsp;<progress value={calculateStarAverageRating(productMetadataObj.ratings[5])} max="100" />
       </div>
       <div
         ref={currentFocusedElement4}
+        className="product-breakdown-items stars-bars"
         onClick={() => {filterRatingReviewsDisplay(4), LogClick('div', 'RatingsAndReviews')}}
         onMouseOver={() => { changeHoverBackgroundColor(currentFocusedElement4); }}
         onMouseOut={() => { removeHoverBackgroundColor(currentFocusedElement4); }}
-      >4 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[4])} max="100" />
+      >4 Stars &nbsp;<progress value={calculateStarAverageRating(productMetadataObj.ratings[4])} max="100" />
       </div>
       <div
         ref={currentFocusedElement3}
+        className="product-breakdown-items stars-bars"
         onClick={() => {filterRatingReviewsDisplay(3), LogClick('div', 'RatingsAndReviews')}}
         onMouseOver={() => { changeHoverBackgroundColor(currentFocusedElement3); }}
         onMouseOut={() => { removeHoverBackgroundColor(currentFocusedElement3); }}
-      >3 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[3])} max="100" />
+      >3 Stars &nbsp;<progress value={calculateStarAverageRating(productMetadataObj.ratings[3])} max="100" />
       </div>
       <div
         ref={currentFocusedElement2}
+        className="product-breakdown-items stars-bars"
         onClick={() => {filterRatingReviewsDisplay(2), LogClick('div', 'RatingsAndReviews')}}
         onMouseOver={() => { changeHoverBackgroundColor(currentFocusedElement2); }}
         onMouseOut={() => { removeHoverBackgroundColor(currentFocusedElement2); }}
-      >2 Stars <progress value={calculateStarAverageRating(productMetadataObj.ratings[2])} max="100" />
+      >2 Stars &nbsp;<progress value={calculateStarAverageRating(productMetadataObj.ratings[2])} max="100" />
       </div>
       <div
         ref={currentFocusedElement1}
+        className="product-breakdown-items stars-bars"
         onClick={() => {filterRatingReviewsDisplay(1), LogClick('div', 'RatingsAndReviews')}}
         onMouseOver={() => { changeHoverBackgroundColor(currentFocusedElement1); }}
         onMouseOut={() => { removeHoverBackgroundColor(currentFocusedElement1); }}
-      >1 Star <progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100" />
+      >1 Star &nbsp;<progress value={calculateStarAverageRating(productMetadataObj.ratings[1])} max="100" />
       </div>
-      <div>Average Rating: {averageRating}</div>
-      <div>Total Reviews: {totalReviews}</div>
+      
+      <div className="product-breakdown-items">Total Reviews: {totalReviews}</div>
       {/* Did not use mapping function because they object does not always have all five numbers to represent all five ratings */}
       {Object.keys(productMetadataObj.characteristics).length > 0
         ? <CharacteristicsBreakdown

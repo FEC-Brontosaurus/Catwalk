@@ -53,7 +53,7 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
 
   return (
     <div className="IndividualReviewTile-content">
-      <RenderStars 
+      <RenderStars
         rating={productReviewObj.rating}
       />
       <div>{reformattedDate(productReviewObj.date)}</div>
@@ -62,35 +62,35 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
         ? (
           <div>
             {reformattedBody(productReviewObj.body)}
-            <button type="button" onClick={() => {setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews')}}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
+            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews') }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
         : <div>{reformattedBody(productReviewObj.body)}</div>
       }
       <div className="IndividualReviewTile-images">
-      {productReviewObj.photos
-        ? productReviewObj.photos.map((photoObj) => (
-          <div key={`${photoObj.id}-div`}>
-            <ClickedImageModal 
-              id="IndividualReviewTile-img"
-              key={photoObj.id}
-              photoURL={photoObj.url}
-              alt="Individual Review Tile"
-              LogClick={LogClick}
-            />
-          </div>
-        ))
-      : null}
+        {productReviewObj.photos
+          ? productReviewObj.photos.map((photoObj) => (
+            <div key={`${photoObj.id}-div`}>
+              <ClickedImageModal
+                id="IndividualReviewTile-img"
+                key={photoObj.id}
+                photoURL={photoObj.url}
+                alt="Individual Review Tile"
+                LogClick={LogClick}
+              />
+            </div>
+          ))
+          : null}
       </div>
       <div>{_.unescape(productReviewObj.reviewer_name)}</div>
       {productReviewObj.response
-      ? <div>Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>
-      : null}
+        ? <div>Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>
+        : null}
       {productReviewObj.recommend
         ? <div><span>&#10003;</span>I recommend this product</div>
         : null
       }
-      <HelpfulReviewFeedbackButton 
+      <HelpfulReviewFeedbackButton
         review_id={productReviewObj.review_id}
         helpfulnessRating={productReviewObj.helpfulness}
         LogClick={LogClick}
