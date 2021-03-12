@@ -33,7 +33,6 @@ const Overview = ({
 
   //  on user changing style in image gallery by clicking the arrows update the current style
   useEffect(() => setThumbDisplayArr(Math.floor(currentImageIndex / 7)), [currentImageIndex]);
-
   useEffect(() => setCurrentImageIndex(0), [currentStyle]);
 
   useEffect(() => {
