@@ -49,8 +49,6 @@ const Overview = ({
     }
   }, [currentStyle]);
 
-  console.log(thumbSplitArr);
-
   //  render each component and certain components will not render
   //  unless the data required is present (used to save some time);
   return (

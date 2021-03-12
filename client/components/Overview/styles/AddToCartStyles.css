@@ -11,7 +11,7 @@
 #addtocart-button {
   width: 90%;
   height: 5vw;
-  border: none;
+  border: 3vw;
   outline: 1px solid black;
   background-color: white;
   text-align: left;
