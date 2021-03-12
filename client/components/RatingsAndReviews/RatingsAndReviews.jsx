@@ -46,9 +46,6 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
   const renderTwoMoreReviewTiles = () => {
     if (productReviewArr.length !== constantReviewArr.length) {
       const elementsToBeAddedToDisplay = constantReviewArr.slice(currentProductReviewArrIndex, (currentProductReviewArrIndex + 2));
-      console.log('productReviewArr: ', productReviewArr)
-      console.log('constantReviewArr: ', constantReviewArr)
-      console.log(elementsToBeAddedToDisplay);
       setProductReviewArr(productReviewArr.concat(elementsToBeAddedToDisplay));
       setCurrentProductReviewArrIndex(currentProductReviewArrIndex + 2);
     } else {
