@@ -1,21 +1,19 @@
 #imagegallery-container {
-  width: 700px;
-  height: 700px;
+  width: 40vw;
+  height: 40vw;
   display: inline-block;
   position: relative;
-  outline: 3px solid black;
 }
 
 #imagegallery-mainimage-container {
   position: absolute;
-  width: 700px;
-  height: 700px;
-  outline: 3px solid black;
+  width: 100%;
+  height: 100%;
 }
 
 #imagegallery-slide-image {
-  width: 700px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   position: relative;
   cursor: zoom-in;
@@ -24,8 +22,8 @@
 
 #imagegallery-leftarrow {
   position: absolute;
-  height: 30px;
-  width: 30px;
+  height: 2vw;
+  width: 2vw;
   z-index: 5;
   top: 50%;
   left: 5%;
@@ -34,8 +32,8 @@
 
 #imagegallery-rightarrow {
   position: absolute;
-  height: 30px;
-  width: 30px;
+  height: 2vw;
+  width: 2vw;
   z-index: 5;
   top: 50%;
   right: 5%;
@@ -52,14 +50,13 @@
 
 #imagegallery-thumbnail-slide-image {
   position: relative;
-  margin: 10px;
-  width:40px;
-  height: 40px;
-  border-radius: 50px;
+  width:3vw;
+  height: 3vw;
+  border-radius: 50%;
   z-index: 3;
   display: inline-block;
   background-size: cover;
-  padding: 3px;
+  margin: 3%;
   opacity: .5;
   box-shadow: 0 0 0 1px white;
   cursor: pointer;
@@ -149,8 +146,8 @@
 #imagegallery-extended-thumbnail-slide-image {
   position: relative;
   margin: 10px;
-  width:20px;
-  height: 20px;
+  width: 1vw;
+  height: 1vw;
   border-radius: 50px;
   background-color: white;
   z-index: 3;

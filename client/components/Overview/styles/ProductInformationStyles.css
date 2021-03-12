@@ -9,7 +9,7 @@
   position: relative;
   left: 10%;
   margin: 5px;
-  font-size: 15px;
+  font-size: 1vw;
   font-family: sans-serif;
 }
 
@@ -18,9 +18,9 @@
   width: 100%;
   float: left;
   position: relative;
-  left: 10%;
+  left: 9%;
   margin: 5px;
-  font-size: 30px;
+  font-size: 2vw;
   font-family: sans-serif;
   font-weight: bolder;
 }
@@ -37,7 +37,7 @@
   position: relative;
   margin: 5px;
   margin-left: 1px;
-  font-size: 15px;
+  font-size: 1vw;
   font-family: sans-serif;
 }
 
@@ -47,7 +47,7 @@
   margin: 5px;
   left: 10%;
   margin-left: 1px;
-  font-size: 15px;
+  font-size: 1vw;
   font-family: sans-serif;
 }
 
@@ -58,7 +58,7 @@
   left: 10%;
   margin: 5px;
   margin-left: 1px;
-  font-size: 15px;
+  font-size: 1vw;
   font-family: sans-serif;
 }
 
@@ -67,8 +67,8 @@
 }
 
 #product-info-share-facebook {
-  width: 30px;
-  height: 30px;
+  width: 2vw;
+  height: 2vw;
   border-radius: 50px;
   background-size: cover;
   box-shadow: 0px 0px 0px 1px black;
@@ -76,8 +76,8 @@
 }
 
 #product-info-share-twitter {
-  width: 30px;
-  height: 30px;
+  width: 2vw;
+  height: 2vw;
   border-radius: 50px;
   background-size: cover;
   box-shadow: 0px 0px 0px 1px black;
@@ -85,8 +85,8 @@
 }
 
 #product-info-share-pinterest {
-  width: 30px;
-  height: 30px;
+  width: 2vw;
+  height: 2vw;
   border-radius: 50px;
   background-size: cover;
   box-shadow: 0px 0px 0px 1px black;
@@ -106,8 +106,7 @@
   display: inline-block;
   left: 10%;
   top: 10%;
-  margin: 5px;
-  margin-top: 30px;
+  margin-top: 10%;
 }
 
 #overviewAverage{
@@ -116,8 +115,8 @@
 
 #review-text{
   text-decoration: underline;
-  font-size: 8px;
+  font-size: 0.5vw;
   font-family: sans-serif;
-  width: 100px;
+  width: 20%;
   display: inline-block;
 }

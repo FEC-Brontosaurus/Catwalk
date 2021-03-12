@@ -23,8 +23,8 @@ const QuantityRender = ({
             if (!isTest) { LogClick('select', 'Overview'); }
           }}
         >
-          {currentQuantity ? <option value="DEFAULT" disabled hidden>Select Quantity</option>
-            : <option value="DEFAULT" data-testid="placeholder" selected disabled hidden>Select Quantity</option>}
+          {currentQuantity ? <option value="DEFAULT" disabled hidden>-</option>
+            : <option value="DEFAULT" data-testid="placeholder" selected disabled hidden>-</option>}
           {quantityArray.map((quantity, idx) => (
             <option id="quantity-option-valid" data-testid="quantity-option-valid" key={quantity + idx} value={quantity}>{quantity}</option>
           ))}
