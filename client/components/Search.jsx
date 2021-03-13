@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -11,7 +12,10 @@ const Search = ({ LogClick, setCurrentProduct }) => {
 
   return (
     <div id="searchbar">
+      <label htmlFor="search-text" style={{position: 'absolute', opacity: 0 }}>Search</label>
       <input
+        name="search-text"
+        id="search-text"
         type="text"
         value={term}
         onInput={(event) => {

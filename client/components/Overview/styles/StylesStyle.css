@@ -19,6 +19,7 @@
   position: relative;
   bottom: 1.2vw;
   left: 2.1vw;
+  object-fit: cover;
 }
 
 #style-img {
@@ -26,6 +27,7 @@
   height: 3vw;
   border-radius: 50px;
   margin: 2px;
+  object-fit: cover;
 }
 
 #style-title {
