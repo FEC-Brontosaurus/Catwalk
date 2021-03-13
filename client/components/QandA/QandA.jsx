@@ -62,7 +62,6 @@ const QandA = ({ id, title, logClick }) => {
 
   return (
     <div id="QandA">
-      <div id="top-border" />
       <h3 id="module-title">{ 'Questions & Answers' }</h3>
       <div id="QandA-Search">
         {initialQuestions

@@ -9,6 +9,7 @@
 }
 #module-title {
   padding-left: 10px;
+  font-family: 'Lato', sans-serif;
 
 }
 #QandA-Search {
@@ -30,7 +31,7 @@
   margin: 5px, 5px, 5px, 5px;
   padding: 5px;
   height: 600px;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: #f4f9f9;
 }
 
@@ -49,7 +50,7 @@
 .bottom-buttons {
   height: 50px;
   width:300px;
-  background-color: #ccf2f4;
+  background-color: #6dbcbe;
   border: 1px solid black;
 
 }

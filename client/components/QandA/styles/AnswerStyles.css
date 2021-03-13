@@ -17,6 +17,7 @@
 .a-style {
   font-weight: 900;
   margin-right: 30px;
+  font-family: 'Lato', sans-serif;
 }
 
 .answer-help-style {
@@ -81,4 +82,8 @@
   border-radius: 15px;
   margin: 5px 5px;
 
+}
+
+.username-timestamp {
+  margin: 0px 2px;
 }
