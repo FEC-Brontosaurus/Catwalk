@@ -45,7 +45,7 @@ const SizesRender = ({
   //  displayed size / current size and reset the quantity selecte
   if (currentSize === null) {
     return (
-      <div id="sizes-select">
+      <div id="sizes-select-1">
         <select
           id="sizes-select"
           data-testid="sizes-select-nocurrent"
@@ -69,7 +69,7 @@ const SizesRender = ({
   //  when the user selects a different size change the
   //  displayed size / current size and reset the quantity selecte
   return (
-    <div id="sizes-select">
+    <div id="sizes-select-1">
       <select
         id="sizes-select"
         data-testid="sizes-select-current"

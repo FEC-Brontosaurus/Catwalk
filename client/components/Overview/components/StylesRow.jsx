@@ -42,7 +42,6 @@ const StylesRow = ({
             title="imagethumbnail"
             style={(style.style_id === currentStyle.style_id) ? { boxShadow: '0px 0px 5px 3px #888888' } : null}
             src={style.photos[0].thumbnail_url}
-            objectFit="cover"
             onClick={() => {
               LogClick('img', 'Overview');
               setCurrentStyle(style);
