@@ -1,8 +1,12 @@
 body{
   margin: 0;
   background-color: #f4f9f9;
+  font-family: 'Barlow', sans-serif;
 
 }
+
+/* font-family: 'Barlow', sans-serif;
+font-family: 'Lato', sans-serif; */
 
 #app {
   width: 70%;
@@ -10,11 +14,6 @@ body{
   color: #464b4b;
 }
 
-input {
-  background-color: #f4f9f9;
-  border-radius: 5px;
-  border: 1px solid black;
-}
 
 /* renderStarsCSS */
 .stars-outer {
