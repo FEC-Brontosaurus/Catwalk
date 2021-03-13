@@ -153,6 +153,7 @@ const Overview = ({
             </div>
           </>
         ) : null}
+      <div id="overview-bottom-border" />
     </div>
   );
 };

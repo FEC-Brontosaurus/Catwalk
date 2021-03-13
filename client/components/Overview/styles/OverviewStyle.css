@@ -30,3 +30,11 @@
   padding: 0 20% 0 20%;
   float: left;
 }
+
+#overview-bottom-border {
+  width: 90%;
+  margin-left: 5%;
+  box-shadow: 0 0 0 1px rgb(218, 218, 218);
+  margin-right: 5%;
+  margin-top: 2%;
+}
