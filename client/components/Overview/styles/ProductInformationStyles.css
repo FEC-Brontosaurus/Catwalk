@@ -64,6 +64,8 @@
 
 #product-info-share {
   display: inline-block;
+  text-align: center;
+  width: 100%;
 }
 
 #product-info-share-facebook {

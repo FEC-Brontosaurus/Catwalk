@@ -1,6 +1,7 @@
 #Overview {
   position: relative;
   width: 100%;
+  background-color: #f4f9f4;
 }
 
 #overview-order-container {
@@ -23,6 +24,9 @@
 #product-info-overview{
   font-size: 1.5vw;
   font-family: sans-serif;
-  width: 70%;
   margin: 5% 0 2% 2%;
+  color: #5c8d89;
+  text-align: center;
+  padding: 0 20% 0 20%;
+  float: left;
 }
