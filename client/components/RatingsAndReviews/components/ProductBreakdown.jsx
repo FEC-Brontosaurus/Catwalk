@@ -63,7 +63,7 @@ const ProductBreakdown = ({
   // conditional styling functions
   const changeHoverBackgroundColor = (currentFocusedElementInput) => {
     currentFocusedElementInput.current.focus();
-    currentFocusedElementInput.current.style.backgroundColor = '#44c17b';
+    currentFocusedElementInput.current.style.backgroundColor = '#6DBCBE';
   };
 
   const removeHoverBackgroundColor = (currentFocusedElementInput) => {

@@ -133,8 +133,8 @@ const RatingsAndReviews = ({
               // : <button type="button" style={{color: "#a6a6a6"}}>Add Review</button>
               : null}
             {isDisplayingAllReviews
-              ? <button type="button" style={{ color: '#a6a6a6' }}>More Reviews</button>
-              : <button type="button" onClick={() => { renderTwoMoreReviewTiles(); }}>More Reviews</button>}
+              ? <button className="RatingAndReviews-bottom-buttons" type="button" style={{ color: '#a6a6a6' }}>More Reviews</button>
+              : <button className="RatingAndReviews-bottom-buttons" type="button" onClick={() => { renderTwoMoreReviewTiles(); }}>More Reviews</button>}
           </div>
         </div>
       </div>
