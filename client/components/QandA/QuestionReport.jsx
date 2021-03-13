@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-
-const QuestionReport = ({ questId, logClick, reRender, render }) => {
+const QuestionReport = ({
+  questId, logClick, reRender, render,
+}) => {
   const [reportClick, setReportClick] = useState(0);
 
   const handleReportClick = (questionId) => {
@@ -10,15 +11,15 @@ const QuestionReport = ({ questId, logClick, reRender, render }) => {
     setReportClick(1);
     // console.log(questId, 'was reported');
     axios.put(`/api/reportQuestion/${questionId}`)
-      .then((result) => reRender(!render))
+      .then(() => reRender(!render))
       .catch((err) => console.log('report Question put error', err));
-  }
+  };
 
   return (
-    <>
-      {reportClick < 1 ? <span className="report-style" onClick={() => handleReportClick(questId)}> Report </span> : <span className="report-style"> Reported </span>}
-    </>
-  )
-}
+    <div className="question-report-style">
+      {reportClick < 1 ? <div className="report-style" onClick={() => handleReportClick(questId)}> Report </div> : <div className="report-style"> Reported </div>}
+    </div>
+  );
+};
 
 export default QuestionReport;

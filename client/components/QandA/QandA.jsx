@@ -51,42 +51,60 @@ const QandA = ({ id, title, logClick }) => {
 
   const displaySearchResults = (searchTerm) => {
     setInitQuestions(masterList);
-    let tempArr = [];
-    for (let i = 0; i < initialQuestions.length; i+= 1) {
+    const tempArr = [];
+    for (let i = 0; i < initialQuestions.length; i += 1) {
       if (initialQuestions[i].question_body.toLowerCase().includes(searchTerm.toLowerCase())) {
         tempArr.push(initialQuestions[i]);
       }
     }
     setInitQuestions(tempArr);
-  }
+  };
 
   return (
     <div id="QandA">
-      <h3>{ 'Questions & Answers' }</h3>
+      <div id="top-border" />
+      <h3 id="module-title">{ 'Questions & Answers' }</h3>
       <div id="QandA-Search">
-       {initialQuestions && <Search logClick={logClick} searchResults={displaySearchResults} setQuestions={setInitQuestions} masterList={setDisplayQuestions(masterList)}/> }
+        {initialQuestions
+        && (
+        <Search
+          logClick={logClick}
+          searchResults={displaySearchResults}
+          setQuestions={setInitQuestions}
+          masterList={setDisplayQuestions(masterList)}
+        />
+        ) }
       </div>
       <div id="questions-container">
         {initialQuestions.length > 0
-        ? (
-        <Question
-          render={reRenderToggle}
-          reRender={setReRenderToggle}
-          logClick={logClick}
-          title={title}
-          loadFlag={loadMoreQuestions}
-          questions={(!loadMoreQuestions ? setDisplayQuestions(initialQuestions)
-            : initialQuestions)}
-        />
-        ) : null }
+          ? (
+            <Question
+              render={reRenderToggle}
+              reRender={setReRenderToggle}
+              logClick={logClick}
+              title={title}
+              loadFlag={loadMoreQuestions}
+              questions={(!loadMoreQuestions ? setDisplayQuestions(initialQuestions)
+                : initialQuestions)}
+            />
+          ) : null }
       </div>
-      <form>
+      <div className="bottom-button-collective">
         {(!loadMoreQuestions
-          ? <button type="button" onClick={() => setLoadMoreQuestions(true)}> More Answered Questions </button>
-          : <button type="button" onClick={() => setLoadMoreQuestions(false)}> Less Questions </button>)}
-        <button type="button" onClick={() => setQuestionModalToggle(true)}> Add a Question </button>
-      </form>
-      <QuestionModal render={reRenderToggle} reRender={setReRenderToggle} logClick={logClick} title={title} id={id} setOpen={setQuestionModalToggle} open={questionModalToggle}/>
+          ? <button className="bottom-buttons" type="button" onClick={() => setLoadMoreQuestions(true)}> More Answered Questions </button>
+          : <button className="bottom-buttons" type="button" onClick={() => setLoadMoreQuestions(false)}> Less Questions </button>)}
+        <button className="bottom-buttons" type="button" onClick={() => setQuestionModalToggle(true)}> Add a Question </button>
+      </div>
+      <QuestionModal
+        render={reRenderToggle}
+        reRender={setReRenderToggle}
+        logClick={logClick}
+        title={title}
+        id={id}
+        setOpen={setQuestionModalToggle}
+        open={questionModalToggle}
+      />
+      <div className="bottom-border" />
     </div>
   );
 };

@@ -1,13 +1,84 @@
 
 
-.answer-image {
-  height: 75px;
-  width: 75px;
-  border: 2px solid black;
-  margin: 5px 5px;
+.answer-container {
+  display: block;
+  background-color: #f4f9f9;
+  border-radius: 5px;
+
+
+}
+
+.QandA-Answer {
+  display: flex;
+  flex-direction: row;
 
 }
 
 .a-style {
   font-weight: 900;
+  margin-right: 30px;
+}
+
+.answer-help-style {
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.answer-report-style {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.helpful-yes {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  font-size: 12px;
+  align-items: center;
+
+
+}
+
+.helpClick {
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.helpClick button {
+  background-color:#f4f9f9;
+  text-decoration: underline;
+}
+
+.helpClick button::selection {
+  text-decoration: none;
+}
+
+.answer-helpfulness {
+  align-items: center;
+}
+
+.reportClick {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.answer-image-container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.answer-image {
+  height: 75px;
+  width: 75px;
+  border: 2px solid black;
+  border-radius: 15px;
+  margin: 5px 5px;
+
 }

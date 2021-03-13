@@ -1,11 +1,20 @@
 body{
   margin: 0;
+  background-color: #f4f9f9;
+
 }
 
 #app {
   width: 70%;
   margin: 0 15% 0 15%;
   outline: 1px solid red;
+  color: #464b4b;
+}
+
+input {
+  background-color: #f4f9f9;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 /* renderStarsCSS */
