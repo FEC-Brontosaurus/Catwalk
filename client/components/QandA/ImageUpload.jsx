@@ -1,37 +1,38 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
-const ImageUpload = ({ imageFiles, setImage, toggleClose, logClick }) => {
+const ImageUpload = ({
+  setImage, toggleClose, logClick,
+}) => {
   const [tempImageArr, setTempImageArr] = useState([]);
-  const uploadedImage = useRef({});
-
 
   const handleImageUpload = (e) => {
     const tempArr = [];
-    const files = e.target.files;
+    const { files } = e.target;
     for (let i = 0; i < files.length; i += 1) {
       tempArr.push(URL.createObjectURL(files[i]));
     }
     setTempImageArr(tempArr);
-  }
+  };
 
-  const handleSubmit = (e) => {
-     setImage(tempImageArr);
-     toggleClose(false);
-  }
+  const handleSubmit = () => {
+    logClick('submit upload images', 'QandA');
+    setImage(tempImageArr);
+    toggleClose(false);
+  };
 
-return (
-  <>
-    <div>
-      <form>
-        {tempImageArr.length < 5 ? <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={(e) => handleImageUpload(e)} multiple/> : null}
-      </form>
-      <div className="image-thumbnail">
-        {tempImageArr.length > 0 ? tempImageArr.map((image) => (<img src={image} style={{width: '100px', height: '100px'}}/> )) : null }
+  return (
+    <>
+      <div>
+        <form>
+          {tempImageArr.length < 5 ? <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={(e) => handleImageUpload(e)} multiple /> : null}
+        </form>
+        <div className="image-thumbnail">
+          {tempImageArr.length > 0 ? tempImageArr.map((image) => (<img key={image} alt="Uploaded thumbnail" src={image} style={{ width: '100px', height: '100px' }} />)) : null }
+        </div>
       </div>
-    </div>
-    <button type="button" onClick={(e) => handleSubmit(e)}> Submit Uploads </button>
-  </>
-)
-}
+      <button type="button" onClick={() => handleSubmit()}> Submit Uploads </button>
+    </>
+  );
+};
 
 export default ImageUpload;

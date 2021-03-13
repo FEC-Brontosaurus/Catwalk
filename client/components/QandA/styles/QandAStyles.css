@@ -1,9 +1,14 @@
+
 #QandA {
-  max-height: 700px;
-  width: 70%;
-  margin-left: 15%;
-  margin-right: 15%;
+  height: 800px;
+  width: 100%;
   display: inline-block;
+  margin-bottom: 15px;
+  margin-top: 15px;
+
+}
+#module-title {
+  padding-left: 10px;
 
 }
 #QandA-Search {
@@ -21,11 +26,47 @@
   display: none;
 }
 
-.questions-container {
+#questions-container {
   margin: 5px, 5px, 5px, 5px;
   padding: 5px;
+  height: 600px;
+  overflow: scroll;
+  background-color: #f4f9f9;
 }
+
 
 .q-style {
   font-weight: bold;
+}
+
+.bottom-button-collective {
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+
+}
+
+.bottom-buttons {
+  height: 50px;
+  width:300px;
+  background-color: #ccf2f4;
+  border: 1px solid black;
+
+}
+
+input::selection {
+  background-color: rgb(255, 255, 255);
+}
+
+.bottom-border {
+  margin: 50px 10% 50px 10%;
+  padding: 5px;
+  width: 80%;
+  border-bottom: 1px solid black;
+}
+#top-border {
+  margin: 50px 10% 50px 10%;
+  padding: 5px;
+  width: 80%;
+  border-bottom: 1px solid black;
 }

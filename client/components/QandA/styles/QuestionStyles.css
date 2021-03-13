@@ -3,6 +3,8 @@
 .inner-question-container {
   border: 1px solid black;
   margin: 10px;
+  background-color: #6dbcbe;
+  border-radius: 5px;
 
 }
 
@@ -12,6 +14,8 @@
   margin: 5px;
   display: flex;
   flex-direction: row;
+  background-color: #f4f9f9;
+  border-radius: 5px;
 }
 
 
@@ -24,6 +28,8 @@
 
 button {
   border: none;
+  background-color: #ccf2f4;
+  border-radius: 5px;
 }
 
 
@@ -32,11 +38,12 @@ button {
   flex-direction: row;
   font-size: 12px;
   margin-left: auto;
+  align-items: center;
 
 }
 
 .question-helpful-yes button {
-  background-color: none;
+  background-color: #f4f9f4;
   border: none;
   text-decoration: underline;
   display: flex;
@@ -53,4 +60,15 @@ button {
   display: flex;
   flex-direction: row;
   margin: 3px;
+}
+
+.q-style {
+  margin-right: 30px;
+}
+
+.more-answers {
+  background-color: #f4f9f4;
+  width: 20%;
+  height: 20px;
+  margin: 20px 40% 20px 40%;
 }
