@@ -11,7 +11,6 @@ font-family: 'Lato', sans-serif; */
 #app {
   width: 70%;
   margin: 0 15% 0 15%;
-  outline: 1px solid red;
   color: #464b4b;
 }
 

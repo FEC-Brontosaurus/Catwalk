@@ -28,7 +28,7 @@
 
 button {
   border: none;
-  background-color: #ccf2f4;
+  background-color: #6dbcbe;
   border-radius: 5px;
 }
 
@@ -64,6 +64,7 @@ button {
 
 .q-style {
   margin-right: 30px;
+  font-family: 'Lato', sans-serif;
 }
 
 .more-answers {

@@ -82,7 +82,7 @@ const AnswerModal = ({
         </h3>
         {/* <h4> ID: {id} </h4> */}
         {!imageUploadToggle ? (
-          <form onSubmit={(event) => submitAnswer(event, userName, userEmail, userAnswer)}>
+          <form className="modal-styles" onSubmit={(event) => submitAnswer(event, userName, userEmail, userAnswer)}>
             <h3> Username* </h3>
             <label className="hidden-style" htmlFor="answer-username-input">Username *</label>
             <input type="text" id="answer-username-input" placeholder="Example: jack543!" value={userName} onInput={(event) => setUserName(event.target.value)} maxLength="60" required />
