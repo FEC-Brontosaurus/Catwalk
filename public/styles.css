@@ -13,6 +13,7 @@ body{
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
+  font-size: 2vw;
 }
 
 .stars-outer::before {
@@ -26,6 +27,8 @@ body{
   white-space: nowrap;
   overflow: hidden;
   width: 0;
+  font-family: FontAwesome;
+  font-size: 2vw;
 }
 
 .stars-inner::before {

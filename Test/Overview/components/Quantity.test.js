@@ -16,12 +16,14 @@ describe('Quanity Tests', () => {
     const currentSize = 'M';
     const setCurrentQuantity = jest.fn();
     const currentQuantity = 2;
+    const LogClick = jest.fn();
 
     render(<Quantity
       currentStyle={currentStyle}
       currentSize={currentSize}
       setCurrentQuantity={setCurrentQuantity}
       currentQuantity={currentQuantity}
+      LogClick={LogClick}
     />);
 
     //  check to make sure that the first style is the current style
@@ -39,6 +41,7 @@ describe('Quanity Render Tests', () => {
     const setCurrentQuantity = jest.fn();
     const currentQuantity = 2;
     const isTest = true;
+    const LogClick = jest.fn();
 
     render(<QuantityRender
       quantityArray={quantityArray}
@@ -46,6 +49,7 @@ describe('Quanity Render Tests', () => {
       currentSize={currentSize}
       setCurrentQuantity={setCurrentQuantity}
       currentQuantity={currentQuantity}
+      LogClick={LogClick}
     />);
 
     //  check to make sure that the first style is the current style
@@ -59,6 +63,7 @@ describe('Quanity Render Tests', () => {
     const setCurrentQuantity = jest.fn();
     const currentQuantity = null;
     const isTest = true;
+    const LogClick = jest.fn();
 
     render(<QuantityRender
       quantityArray={quantityArray}
@@ -66,6 +71,7 @@ describe('Quanity Render Tests', () => {
       currentSize={currentSize}
       setCurrentQuantity={setCurrentQuantity}
       currentQuantity={currentQuantity}
+      LogClick={LogClick}
     />);
 
     //  check to make sure that the first style is the current style
@@ -80,6 +86,7 @@ describe('Quanity Render Tests', () => {
     const setCurrentQuantity = jest.fn();
     const currentQuantity = null;
     const isTest = true;
+    const LogClick = jest.fn();
 
     render(<QuantityRender
       quantityArray={quantityArray}
@@ -87,6 +94,7 @@ describe('Quanity Render Tests', () => {
       currentSize={currentSize}
       setCurrentQuantity={setCurrentQuantity}
       currentQuantity={currentQuantity}
+      LogClick={LogClick}
     />);
 
     fireEvent.change(screen.queryByTestId('quantity-select-valid'), 4);

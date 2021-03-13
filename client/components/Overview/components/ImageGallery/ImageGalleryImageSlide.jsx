@@ -12,24 +12,6 @@ const ImageGalleryImageSlide = ({
   thumbSplitArr, thumbDisplayArr, setThumbDisplayArr, setOverviewModal, LogClick,
 }) => (
   <div id="imagegallery-mainimage-container">
-    {/* {thumbSplitArr.length > 0 ? (
-      <>
-        <ImageGalleryArrows
-          currentImageIndex={currentImageIndex}
-          setCurrentImageIndex={setCurrentImageIndex}
-          currentStyle={currentStyle}
-        />
-        <ImageGalleryThumbnail
-          currentStyle={currentStyle}
-          currentImageIndex={currentImageIndex}
-          setCurrentImageIndex={setCurrentImageIndex}
-          setCurrentStyle={setCurrentStyle}
-          thumbDisplayArr={thumbDisplayArr}
-          thumbSplitArr={thumbSplitArr}
-          setThumbDisplayArr={setThumbDisplayArr}
-        />
-      </>
-    ) : null } */}
     {currentStyle.photos.map((style, idx) => (
       <React.Fragment key={idx}>
         {(style.url !== null)
@@ -39,7 +21,10 @@ const ImageGalleryImageSlide = ({
               key={idx}
               style={currentImageIndex === idx ? { backgroundImage: `url(${style.url})`, opacity: 1, zIndex: 2 } : { backgroundImage: `url(${style.url})`, opacity: 0 }}
               alt=""
-              onClick={() => setOverviewModal(true)}
+              onClick={() => {
+                LogClick('div', 'Overview');
+                setOverviewModal(true);
+              }}
             >
               {thumbSplitArr.length > 0 ? (
                 <>

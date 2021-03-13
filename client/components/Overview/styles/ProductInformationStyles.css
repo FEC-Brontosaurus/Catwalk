@@ -64,6 +64,8 @@
 
 #product-info-share {
   display: inline-block;
+  text-align: center;
+  width: 100%;
 }
 
 #product-info-share-facebook {
@@ -93,6 +95,18 @@
   margin: 3px;
 }
 
+#product-info-share-pinterest{
+  cursor: pointer;
+}
+
+#product-info-share-facebook{
+  cursor: pointer;
+}
+
+#product-info-share-twitter{
+  cursor: pointer;
+}
+
 #sizes-container-addtocart {
   position: relative;
 }
@@ -119,4 +133,8 @@
   font-family: sans-serif;
   width: 20%;
   display: inline-block;
+}
+
+#review-text:hover{
+  cursor: pointer;
 }

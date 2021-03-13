@@ -4,7 +4,7 @@ import React from 'react';
 import QuantityRender from './QuantityRender';
 
 const Quantity = ({
-  currentStyle, currentSize, setCurrentQuantity, currentQuantity,
+  currentStyle, currentSize, setCurrentQuantity, currentQuantity, LogClick,
 }) => {
   //  array to keep track of list of elements to be mapped in Quantity Render
   const quantityArray = [];
@@ -38,6 +38,7 @@ const Quantity = ({
       setCurrentQuantity={setCurrentQuantity}
       currentSize={currentSize}
       currentQuantity={currentQuantity}
+      LogClick={LogClick}
     />
   );
 };

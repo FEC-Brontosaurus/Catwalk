@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
@@ -10,11 +11,11 @@ const ImageGalleryArrows = ({
 }) => (
   <div id="imagegallery-arrows-container">
     {currentImageIndex === 0 ? null : (
-      <img
+      <div
         id="imagegallery-leftarrow"
         data-testid="leftarrow"
-        src={leftArrow}
-        alt=""
+        // src={leftArrow}
+        // alt=""
         onClick={(e) => {
           e.stopPropagation();
           setCurrentImageIndex((currentImageIndex - 1));
@@ -23,11 +24,11 @@ const ImageGalleryArrows = ({
       />
     )}
     {currentImageIndex === currentStyle.photos.length - 1 ? null : (
-      <img
+      <div
         id="imagegallery-rightarrow"
         data-testid="rightarrow"
-        src={rightArrow}
-        alt=""
+        // src={rightArrow}
+        // alt=""
         onClick={(e) => {
           e.stopPropagation();
           setCurrentImageIndex((currentImageIndex + 1));

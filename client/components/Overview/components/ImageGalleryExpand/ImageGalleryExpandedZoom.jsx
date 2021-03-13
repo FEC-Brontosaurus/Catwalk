@@ -5,7 +5,7 @@
 import React, { useRef } from 'react';
 import '../../styles/ImageGalleryStyles.css';
 
-const ImageGalleryExpandedZoom = ({ currentStyle, currentImageIndex, setIsZoom }) => {
+const ImageGalleryExpandedZoom = ({ currentStyle, currentImageIndex, setIsZoom, LogClick, }) => {
   const mouseMove = (e) => {
     //  get x and y positions of image
     const imagePos = e.target.getBoundingClientRect();
@@ -29,7 +29,10 @@ const ImageGalleryExpandedZoom = ({ currentStyle, currentImageIndex, setIsZoom }
         backgroundPosition: '0% 0%',
       }}
       onMouseMove={mouseMove}
-      onClick={() => setIsZoom(false)}
+      onClick={() => {
+        LogClick('select', 'Overview');
+        setIsZoom(false);
+      }}
     />
   );
 };
