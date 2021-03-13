@@ -20,7 +20,7 @@ const App = () => {
     axios.get('/api/allproducts')
       .then((results) => {
         // setAllProducts(results.data);
-        setCurrentProduct(results.data[2]);
+        setCurrentProduct(results.data[0]);
       })
       .catch((err) => console.log(err));
   };
