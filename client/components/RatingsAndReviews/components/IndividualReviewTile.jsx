@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable quote-props */
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
@@ -68,12 +67,10 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
         ? (
           <div className="IndividualReviewTile-content-body">
             {reformattedBody(productReviewObj.body)}
-            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews'); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
+            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody); LogClick('button', 'RatingsAndReviews'); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
-        : <div className="IndividualReviewTile-content-body">{reformattedBody(productReviewObj.body)}</div>
-      }
-
+        : <div className="IndividualReviewTile-content-body">{reformattedBody(productReviewObj.body)}</div>}
       <div className="IndividualReviewTile-images">
         {productReviewObj.photos
           ? productReviewObj.photos.map((photoObj) => (
