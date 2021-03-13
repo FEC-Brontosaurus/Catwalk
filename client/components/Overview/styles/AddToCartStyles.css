@@ -5,25 +5,27 @@
   left: 10%;
   margin: 5px;
   font-size: 15px;
-  font-family: sans-serif;
+  border-radius: 5px;
 }
 
 #addtocart-button {
   width: 90%;
   height: 5vw;
   border: 3vw;
-  outline: 1px solid black;
-  background-color: white;
+  box-shadow: 0 0 0 1px black;
+  background-color: #6DBCBE;
   text-align: left;
+  border-radius: 5px;
 }
 
 #addtocart-text {
   width: 100%;
   font-size: 1vw;
   margin-left: 10px;
+  border-radius: 5px;
 }
 
 #addtocart-button:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: #3DA3A5;
   cursor: pointer;
 }

@@ -7,12 +7,15 @@
   position: relative;
   height: 3vw;
   text-align: center;
+  border-radius: 5px;
 }
 
 #quantity-select-valid, #quantity-select-invalid {
   height: 100%;
   width: 100%;
   text-align: center;
+  border-radius: 5px;
+  background-color: #6DBCBE;
 }
 
 #quantity-select-valid:hover {
@@ -22,10 +25,11 @@
 #quantity-option-valid {
   height: 5vw;
   width: 100%;
+  background-color: #6DBCBE;
 }
 
 #quantity-option-valid:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: #3DA3A5;
 }
 
 #quantity-select-valid:hover{

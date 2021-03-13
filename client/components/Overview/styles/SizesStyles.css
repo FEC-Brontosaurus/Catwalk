@@ -8,26 +8,22 @@
 }
 
 #sizes-select{
+  border-radius: 5px;
   width: 100%;
   height: 100%;
   font-size: 1vw;
   text-align: center;
-}
-
-#sizes-select-1{
-  width: 100%;
-  height: 100%;
+  height: 3vw;
+  background-color: #6DBCBE;
+  cursor: pointer;
 }
 
 #sizes-select-addtocart {
   width: 100%;
-  font-size: 1.5vw;
+  font-size: 1vw;
+  background-color: #6DBCBE;
 }
 
 #sizes-select:hover {
-  background-color: rgb(233, 233, 233);
-}
-
-#sizes-select:hover{
-  cursor: pointer;
+  background-color: #3DA3A5;
 }
