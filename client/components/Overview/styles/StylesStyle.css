@@ -46,3 +46,11 @@
 #styles-row-container {
   text-align: left;
 }
+
+#style-img:hover {
+  cursor: pointer;
+}
+
+#check-img:hover {
+  cursor: pointer;
+}

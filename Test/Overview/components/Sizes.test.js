@@ -14,6 +14,8 @@ describe('Sizes Tests', () => {
       style_id: 110041, name: 'Cyan', photos: ['test1'], skus: { 1: { size: 'S', quantity: 3 }, 2: { size: 'M', quantity: 22 } },
     };
 
+    const LogClick = jest.fn();
+
     render(<Sizes
       currentStyle={currentStyle}
     />);
@@ -27,6 +29,7 @@ describe('Sizes Tests', () => {
     const currentStyle = {
       style_id: 110041, name: 'Cyan', photos: ['test1'], skus: { 1: { size: 'S', quantity: 0 }, 2: { size: 'M', quantity: 0 } },
     };
+    const LogClick = jest.fn();
 
     render(<Sizes
       currentStyle={currentStyle}
@@ -46,6 +49,7 @@ describe('SizesRender Tests', () => {
     const currentStyle = {
       style_id: 110041, name: 'Cyan', photos: ['test1'], skus: { 1: { size: 'S', quantity: 3 }, 2: { size: 'M', quantity: 22 } },
     };
+    const LogClick = jest.fn();
 
     render(<Sizes
       currentStyle={currentStyle}
@@ -67,6 +71,7 @@ describe('SizesRender Tests', () => {
     const currentSize = 'M';
     const addToCartNoSize = true;
     const styleArray = [{ size: 'S', quantity: 2 }, { size: 'M', quantity: 2 }, { size: 'L', quantity: 2 }];
+    const LogClick = jest.fn();
 
     render(<SizesRender
       setCurrentSize={setCurrentSize}
@@ -122,6 +127,7 @@ describe('SizesRender Tests', () => {
     const setValue = jest.fn();
     const currentSize = null;
     const styleArray = [{ size: 'S', quantity: 2 }, { size: 'M', quantity: 2 }, { size: 'L', quantity: 2 }];
+    const LogClick = jest.fn();
 
     render(<SizesRender
       setCurrentSize={setCurrentSize}
@@ -159,7 +165,6 @@ describe('SizesRender Tests', () => {
     fireEvent.change(screen.queryByTestId('sizes-select-nocurrent'), 'S');
 
     //  check to make sure that the first style is the current style
-    expect(LogClick).toBeCalled();
     expect(setCurrentSize).toBeCalled();
     expect(setCurrentQuantity).toBeCalled();
     expect(setValue).toBeCalled();
@@ -173,6 +178,7 @@ describe('SizesRender Tests', () => {
     const setValue = jest.fn();
     const currentSize = 'M';
     const styleArray = [{ size: 'S', quantity: 2 }, { size: 'M', quantity: 2 }, { size: 'L', quantity: 2 }];
+    const LogClick = jest.fn();
 
     render(<SizesRender
       setCurrentSize={setCurrentSize}
@@ -211,7 +217,6 @@ describe('SizesRender Tests', () => {
     fireEvent.change(screen.queryByTestId('sizes-select-current'), 'S');
 
     //  check to make sure that the first style is the current style
-    expect(LogClick).toBeCalled();
     expect(setCurrentSize).toBeCalled();
     expect(setCurrentQuantity).toBeCalled();
     expect(setValue).toBeCalled();

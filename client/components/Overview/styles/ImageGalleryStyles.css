@@ -20,24 +20,48 @@
   border-radius: 30px;
 }
 
+#imagegallery-leftarrow::before{
+  content: "\25C0";
+  color: white;
+  font-family: "FontAwesome";
+}
+
 #imagegallery-leftarrow {
   position: absolute;
-  height: 2vw;
-  width: 2vw;
+  height: 2.5vw;
+  width: 2.5vw;
   z-index: 5;
   top: 50%;
-  left: 5%;
+  left: 2%;
+  opacity: .7;
   cursor: pointer;
+  font-size: 2vw;
+}
+
+#imagegallery-leftarrow:hover {
+  opacity: 1;
+}
+
+#imagegallery-rightarrow::before{
+  content: "\25BA";
+  color: white;
+  font-family: "FontAwesome";
 }
 
 #imagegallery-rightarrow {
   position: absolute;
-  height: 2vw;
-  width: 2vw;
+  height: 2.5vw;
+  width: 2.5vw;
   z-index: 5;
+  opacity: .7;
   top: 50%;
-  right: 5%;
+  right: 2%;
   cursor: pointer;
+  font-size: 2vw;
+}
+
+#imagegallery-rightarrow:hover {
+  opacity: 1;
 }
 
 #imagegallery-thumbnail-slide-container {

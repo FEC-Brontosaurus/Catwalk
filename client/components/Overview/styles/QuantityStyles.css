@@ -27,3 +27,7 @@
 #quantity-option-valid:hover {
   background-color: rgb(233, 233, 233);
 }
+
+#quantity-select-valid:hover{
+  cursor: pointer;
+}

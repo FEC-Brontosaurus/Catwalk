@@ -144,7 +144,6 @@ const Overview = ({
         ? (
           <>
             <div id="product-info-overview">
-              Overview:
               {currentProduct.description}
             </div>
             <div id="product-info-share">
@@ -154,6 +153,7 @@ const Overview = ({
             </div>
           </>
         ) : null}
+      <div id="overview-bottom-border" />
     </div>
   );
 };
