@@ -1,16 +1,16 @@
 /* Organization is from parent top parent component down */
 
 /* Ratings and Reviews title div*/
+#RatingsAndReviews{
+  margin-bottom: 100px;
+}
 
 #RatingsAndReviews-title {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.title-features{
-  /* display: flex;
-  justify-content: space-around; */
-}
+
 #title-sort-form{
   margin-left: auto;
 
@@ -24,20 +24,11 @@
   border: 2px solid black;
 }
 
+/* Rating and Reviews Sidebar */
+
 .RatingsAndReviews-sidebar {
-  background-color: lightpink;
   width: 20vw;
 }
-
-.RatingsAndReviews-content{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: cadetblue;
-  margin-left: 20px;
-}
-
-
 
 .product-breakdown-items{
   margin-top:15px;
@@ -50,14 +41,44 @@
   margin-right: 20%;
 }
 
+/* Rating and Reviews Content */
+
+.RatingsAndReviews-content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 20px;
+}
+
+
 /* Individual Review Tile */
+.IndividualReviewTile-wrapper{
+  height: 800px;
+  overflow-y: scroll;
+  
+}
 
 .IndividualReviewTile-content{
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
+  background-color: lightskyblue;
+}
+
+.IndividualReviewTile-content-title {
   display: flex;
-  background-color: lightseagreen;
+  align-items: center;
+}
+
+.IndividualReviewTile-content-username{
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.IndividualReviewTile-content-date{
+  margin-right: 10px;
 }
 
 .IndividualReviewTile-images{
@@ -72,15 +93,45 @@
     object-fit: cover;
   }
 
-  .IndividualReviewTileInsideModal-img {
-    width: 700px;
-    padding:2px;
-  }
+.IndividualReviewTile-helpful-button{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
 
 
-  #RatingAndReviews-buttons{
-    display: flex;
+
+.IndividualReviewTileInsideModal-img {
+  width: 700px;
+  padding:2px;
+}
+
+#RatingAndReviews-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+  /* .bottom-button-collective {
+    margin-left: 15%;
+    margin-right: 15%;
   }
+  .bottom-buttons {
+    height: 50px;
+    width:300px;
+    background-color: #CCF2F4;
+    border: 1px solid black;
+  } */
+
+
+
+
+
+
+
+
 
 
 

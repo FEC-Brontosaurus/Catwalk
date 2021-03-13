@@ -103,6 +103,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
       }
       </div>
       <div className="RatingsAndReviews-content">
+        <div className="IndividualReviewTile-wrapper">
         {productReviewArr.length > 0
           ? productReviewArr.map((productReviewObj) => (
             <IndividualReviewTile
@@ -113,6 +114,7 @@ const RatingsAndReviews = ({ currentProduct, setOverviewAverage, reviewScroll, L
             ))
         : <div>No reviews to display</div>
         }
+        </div>
       <div id="RatingAndReviews-buttons">
         {Object.keys(characteristicsMetadataObj).length > 0
           ? <SpecifiedCharacteristicsAddReviewModal 

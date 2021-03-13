@@ -29,8 +29,6 @@ const ProductBreakdown = ({ productMetadataObj, filterRatingReviewsDisplay, setO
       setAverageRating(0);
       setOverviewAverage(0);
     }
-
-    console.log(Object.keys(ratingsObj).length);
     let totalReviews = 0;
     let weightedAverageRating = 0;
     for (const rating in ratingsObj) {
