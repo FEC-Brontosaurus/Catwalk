@@ -31,7 +31,7 @@ button {
   margin: 3px 3px;
 }
 
-input {
+.modal-styles input {
  background-color: #f4f9f9;
  border-radius: 5px;
  width: 300px;

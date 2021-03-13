@@ -77,7 +77,7 @@ const QuestionModal = ({
           About the:
           {title}
         </h3>
-        <form>
+        <form class="modal-styles">
           <h3>Question*</h3>
           <label className="hidden-style" htmlFor="question-question-input">Question *</label>
           <input type="text" id="question-question-input" maxLength="1000" placeholder="Why did you like the product or not?" value={userQuestion} onInput={(event) => setUserQuestion(event.target.value)} required />
