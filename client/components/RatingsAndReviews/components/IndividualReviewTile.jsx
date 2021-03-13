@@ -53,41 +53,48 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
 
   return (
     <div className="IndividualReviewTile-content">
-      <RenderStars 
-        rating={productReviewObj.rating}
-      />
-      <div>{reformattedDate(productReviewObj.date)}</div>
-      <div><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
+      <div className="IndividualReviewTile-content-title">
+        <RenderStars rating={productReviewObj.rating}/>
+        <div className="IndividualReviewTile-content-username">{_.unescape(productReviewObj.reviewer_name)}</div>
+        <div className="IndividualReviewTile-content-date">{reformattedDate(productReviewObj.date)}</div>
+      </div>
+
+      <div className="IndividualReviewTile-content-summary"><strong>{reformattedSummary(productReviewObj.summary)}</strong></div>
+
       {productReviewObj.body.length >= 250
         ? (
-          <div>
+          <div className="IndividualReviewTile-content-body">
             {reformattedBody(productReviewObj.body)}
-            <button type="button" onClick={() => {setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews')}}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
+            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews') }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
-        : <div>{reformattedBody(productReviewObj.body)}</div>}
-      {productReviewObj.photos
-        ? productReviewObj.photos.map((photoObj) => (
-          <div key={`${photoObj.id}-div`}>
-            <ClickedImageModal 
-              id="IndividualReviewTile-img"
-              key={photoObj.id}
-              photoURL={photoObj.url}
-              alt="Individual Review Tile"
-              LogClick={LogClick}
-            />
-          </div>
-        ))
-      : null}
-      <div>{_.unescape(productReviewObj.reviewer_name)}</div>
+        : <div className="IndividualReviewTile-content-body">{reformattedBody(productReviewObj.body)}</div>
+      }
+
+      <div className="IndividualReviewTile-images">
+        {productReviewObj.photos
+          ? productReviewObj.photos.map((photoObj) => (
+            <div key={`${photoObj.id}-div`}>
+              <ClickedImageModal
+                id="IndividualReviewTile-img"
+                key={photoObj.id}
+                photoURL={photoObj.url}
+                alt="Individual Review Tile"
+                LogClick={LogClick}
+              />
+            </div>
+          ))
+          : null}
+      </div>
+      
       {productReviewObj.response
-      ? <div>Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>
-      : null}
+        ? <div className="IndividualReviewTile-content-response">Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>
+        : null}
       {productReviewObj.recommend
-        ? <div><span>&#10003;</span>I recommend this product</div>
+        ? <div className="IndividualReviewTile-content-recommend"><span>&#10003;</span>I recommend this product</div>
         : null
       }
-      <HelpfulReviewFeedbackButton 
+      <HelpfulReviewFeedbackButton
         review_id={productReviewObj.review_id}
         helpfulnessRating={productReviewObj.helpfulness}
         LogClick={LogClick}
