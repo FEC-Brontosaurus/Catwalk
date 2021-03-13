@@ -1,6 +1,10 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable quote-props */
+/* eslint-disable import/extensions */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import _, { unescape } from 'underscore';
-import HelpfulReviewFeedbackButton from '../components/HelpfulReviewFeedbackButton.jsx'
+import HelpfulReviewFeedbackButton from './HelpfulReviewFeedbackButton.jsx';
 import ClickedImageModal from '../Modals/ClickedImageModal.jsx';
 import RenderStars from '../../renderStars.jsx';
 import styles from '../styles/RatingsAndReviewsStyles.css';
@@ -41,20 +45,19 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
   };
 
   const reformattedBody = (body) => {
-    const bodyUnescaped = _.unescape(body)
+    const bodyUnescaped = _.unescape(body);
 
     if (isShowingFullReviewBody) {
       return bodyUnescaped;
-    } else {
-      const shortenedStr = bodyUnescaped.slice(0, 250);
-      return `${shortenedStr}...`;
     }
+    const shortenedStr = bodyUnescaped.slice(0, 250);
+    return `${shortenedStr}...`;
   };
 
   return (
     <div className="IndividualReviewTile-content">
       <div className="IndividualReviewTile-content-title">
-        <RenderStars rating={productReviewObj.rating}/>
+        <RenderStars rating={productReviewObj.rating} />
         <div className="IndividualReviewTile-content-username">{_.unescape(productReviewObj.reviewer_name)}</div>
         <div className="IndividualReviewTile-content-date">{reformattedDate(productReviewObj.date)}</div>
       </div>
@@ -65,7 +68,7 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
         ? (
           <div className="IndividualReviewTile-content-body">
             {reformattedBody(productReviewObj.body)}
-            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews') }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
+            <button type="button" onClick={() => { setIsShowingFullReviewBody(!isShowingFullReviewBody), LogClick('button', 'RatingsAndReviews'); }}>{isShowingFullReviewBody ? 'Show Less' : 'Show More'}</button>
           </div>
         )
         : <div className="IndividualReviewTile-content-body">{reformattedBody(productReviewObj.body)}</div>
@@ -86,20 +89,30 @@ const IndividualReviewTile = ({ productReviewObj, LogClick }) => {
           ))
           : null}
       </div>
-      
+
       {productReviewObj.response
-        ? <div className="IndividualReviewTile-content-response">Response from seller: <i>{_.unescape(productReviewObj.response)}</i></div>
+        ? (
+          <div className="IndividualReviewTile-content-response">
+            Response from seller:
+            {' '}
+            <i>{_.unescape(productReviewObj.response)}</i>
+          </div>
+        )
         : null}
       {productReviewObj.recommend
-        ? <div className="IndividualReviewTile-content-recommend"><span>&#10003;</span>I recommend this product</div>
-        : null
-      }
+        ? (
+          <div className="IndividualReviewTile-content-recommend">
+            <span>&#10003;</span>
+            I recommend this product
+          </div>
+        )
+        : null}
       <HelpfulReviewFeedbackButton
         review_id={productReviewObj.review_id}
         helpfulnessRating={productReviewObj.helpfulness}
         LogClick={LogClick}
       />
-      <br></br>
+      <br />
     </div>
   );
 };

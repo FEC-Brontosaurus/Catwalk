@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -39,10 +41,9 @@ const HelpfulReviewFeedbackButton = ({ review_id, helpfulnessRating, LogClick })
             {helpfulnessRating}
             {/* <div><button type="button" onClick={() => {setIsHelpfulReviewFeedbackButtonClicked(true); LogClick('button', 'RatingsAndReviews_HelpfulReviewFeedbackButton_No')}}>No</button>INSERT NO TALLY</div> */}
           </div>
-        )
-      }
+        )}
     </div>
-  )
-}
+  );
+};
 
 export default HelpfulReviewFeedbackButton;
