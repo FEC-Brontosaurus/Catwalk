@@ -1,5 +1,9 @@
 /* Organization is from parent top parent component down */
 
+h3{
+  font-family: 'Lato', sans-serif;
+}
+
 /* Ratings and Reviews title div*/
 #RatingsAndReviews{
   margin-bottom: 100px;
@@ -24,7 +28,7 @@
 
 #RatingsAndReviews-wrapper{
   display: flex;
-  border: 2px solid black;
+  border-radius: 5px;
 }
 
 /* Rating and Reviews Sidebar */
@@ -36,6 +40,10 @@
 #product-breakdown{
   margin-left: 20px;
   margin-top: 20px;
+}
+
+.product-breakdown-rating-average{
+  font-size: xx-large;
 }
 
 .product-breakdown-items{
@@ -61,20 +69,21 @@
 
 /* Individual Review Tile */
 .IndividualReviewTile-wrapper{
-  height: 800px;
+  height: 650px;
   overflow-y: scroll;
   padding: 10px 10px;
   margin-right: 20px;
-  
+  background-color: #3DA3A5;
 }
 
 .IndividualReviewTile-content{
   display: flex;
   flex-direction: column;
   width: 95%;
+  margin-left:10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: lightskyblue;
+  background-color: #f4f9f9;
   border: solid black 1px;
   border-radius: 5px;
   padding: 10px 10px;
@@ -114,7 +123,6 @@
 }
 
 
-
 .IndividualReviewTileInsideModal-img {
   width: 700px;
   padding:2px;
@@ -127,25 +135,17 @@
   margin-bottom: 20px;
 }
 
-  /* .bottom-button-collective {
-    margin-left: 15%;
-    margin-right: 15%;
-  }
-  .bottom-buttons {
-    height: 50px;
-    width:300px;
-    background-color: #CCF2F4;
-    border: 1px solid black;
-  } */
+.RatingAndReviews-bottom-button-collective {
+  margin-left: 15%;
+  margin-right: 15%;
+}
 
-
-
-
-
-
-
-
-
+.RatingAndReviews-bottom-buttons {
+  height: 50px;
+  width:300px;
+  background-color: #CCF2F4;
+  border: 1px solid black;
+}
 
 
   /* The Modal (background) */
@@ -192,7 +192,7 @@
 
 /* Progress Bar */
 progress {
-  background: green;
+  background: #3DA3A5;
 }
 
 /* Star Rating */
