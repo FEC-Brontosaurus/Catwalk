@@ -15,7 +15,12 @@ The user interface for a mock retail website. The website has three primary comp
 
 ---
 ### 3. Ratings and Reviews
-The Ratings and Reviews section displayes individual customer reviews and the meta-data breakdown of the product.
+The Ratings and Reviews section displays individual customer reviews and the meta-data overview of the product. The features include: 
+- A scrollable list of individual review tiles (Username, Date Reviewed, Review Title, Review Body, Star Rating, Button to mark a review as helpful, (optional) Photos)
+- A button to sort the review tiles (Newest, Relevance, Rating)
+- A button that would reveal two more reviews
+- Meta-data overview (Star Ratings Distribution, Characteristics Breakdown)
+- Add a new review modal 
 
 
 Notes:
