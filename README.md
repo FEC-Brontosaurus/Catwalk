@@ -1,5 +1,21 @@
-# HR catwalk
+# HR Catwalk
 Front End Capstone: Project Catwalk
+
+## Project Catwalk Overview
+The user interface for a mock retail website. The website has three primary components: 
+1. Product Overview 
+2. Questions and Answers 
+3. Ratings and Reviews 
+
+---
+### 1. Product Overview
+
+---
+### 2. Questions and Answers
+
+---
+### 3. Ratings and Reviews
+
 
 Notes:
 - Currently each individual has their own github API key to use when making requests
@@ -18,3 +34,7 @@ Package Consistency:
 - MVC: ExpressJS (if not given)
 - Database: Database chosen by HR
 - Testing: Jest + Enzymes
+
+
+
+
