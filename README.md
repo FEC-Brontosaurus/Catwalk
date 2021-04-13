@@ -9,6 +9,34 @@ The user interface for a mock retail website. The website has three primary comp
 
 ---
 ### 1. Product Overview
+For this application the Product Overview section is responsible for displaying a product and its styles as well as allowing a user to purchase a product. The core components of this page include an image gallery, checkout/information section, and an overview section.
+
+In the checkout/information section the functionality this section was requested by the client include:
+
+<ul>
+    <li>Image gallery able to cycle through images via arrows or thumbnail</li>
+    <li>Image taking up full screen on click maintaining collapsed functionality</li>
+    <li>Image clicked on in expanded mode zooms in on image</li>
+    <li>Sale indicator displaying sale price in red and the striking through the original price</li>
+    <li>Style selector that will update image gallery component</li>
+    <li>Only display sizes that are in stock</li>
+    <li>Only allow quantity to be clicked on once size is selected</li>
+    <li>Limit the quantity to be at most 15 in stock</li>
+    <li>Adding to cart with no size selected will open size dropdown</li>
+    <li>Overview section that displays description of the product</li>
+</ul>
+
+Below is a gif displaying the core functionality of the image gallery.
+
+![Overview Image Gallery](https://github.com/FEC-Brontosaurus/Catwalk/blob/main/misc/overview/FECimagegallery.gif)
+
+Below is a gif displaying the core functionality of the checkout/information section.
+
+![Overview Checkout](https://github.com/FEC-Brontosaurus/Catwalk/blob/main/misc/overview/FECcheckout.gif)
+
+Below is an image of the overview section.
+
+![Overview Description](https://github.com/FEC-Brontosaurus/Catwalk/blob/main/misc/overview/FEC%20overview.png)
 
 ---
 ### 2. Questions and Answers
