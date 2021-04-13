@@ -15,6 +15,7 @@ The user interface for a mock retail website. The website has three primary comp
 
 ---
 ### 3. Ratings and Reviews
+The Ratings and Reviews section displayes individual customer reviews and the meta-data breakdown of the product.
 
 
 Notes:
