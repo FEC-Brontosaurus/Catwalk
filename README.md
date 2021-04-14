@@ -60,7 +60,7 @@ The Ratings and Reviews section displays individual customer reviews and the met
 - Meta-data overview (Star Ratings Distribution, Characteristics Breakdown)
 - Add a new review modal 
 
-![Ratings And Reviews Description]
+![Ratings And Reviews Description](https://github.com/FEC-Brontosaurus/Catwalk/blob/main/misc/overview/RandR.gif)
 
 
 Notes:
