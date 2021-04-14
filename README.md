@@ -44,11 +44,17 @@ The Questions and Answers section is the portion of the front-end platform where
 
 The first component of the Q&A section is the search feature. This feature automatically filters questions after three or more characters have been entered into an input, and returns the questions list to the original state if less than three characters are entered into the input. 
 
+![QandA Search Bar](https://github.com/FEC-Brontosaurus/Catwalk/blob/74d2311472dd3c893aa22fb3c4e3f21b57a145d9/misc/overview/searchBar.gif)
+
 Associated with each question component is a helpful rating, a report button, and lastly an add an answer feature. Upon clicking the add an answer feature, a modal appears prompting the user to enter a username, an answer, and lastly an email address. All three are required fields before the user can submit their response. In addition, the user can exit the modal by clicking the grayed-out portion of screen.
+
+![QandA Answer Modal](https://raw.githubusercontent.com/FEC-Brontosaurus/Catwalk/74d2311472dd3c893aa22fb3c4e3f21b57a145d9/misc/overview/addAnAnswer.gif)
 
 The answer component likewise has a helpful rating, and a report button.
 
 That last component is the add a question button, and the more questions button. These two buttons provide features that match their names, in that upon clicking the more questions button, more questions appear as the default number of questions rendered to the screen is four. Upon clicking the less questions button, the questions list returns to the default number. The add a question button opens a modal, where the user inputs a username, a question, and an email and submits the information which will be rendered at the bottom of the questions list due to the questions list being sorted by helpful rating.
+
+![QandA Question Modal](https://github.com/FEC-Brontosaurus/Catwalk/blob/74d2311472dd3c893aa22fb3c4e3f21b57a145d9/misc/overview/addAQuestion.gif)
 
 ---
 ### 3. Ratings and Reviews
