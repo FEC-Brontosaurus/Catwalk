@@ -53,11 +53,14 @@ That last component is the add a question button, and the more questions button.
 ---
 ### 3. Ratings and Reviews
 The Ratings and Reviews section displays individual customer reviews and the meta-data overview of the product. The features include: 
-- A scrollable list of individual review tiles (Username, Date Reviewed, Review Title, Review Body, Star Rating, Button to mark a review as helpful, (optional) Photos)
+- A scrollable list of individual review tiles 
+- Individual Review Tile (includes Username, Date Reviewed, Review Title, Review Body, Star Rating, Mark Review As Helpful Button, Photos)
 - A button to sort the review tiles (Newest, Relevance, Rating)
 - A button that would reveal two more reviews
 - Meta-data overview (Star Ratings Distribution, Characteristics Breakdown)
 - Add a new review modal 
+
+![Ratings And Reviews Description]
 
 
 Notes:
